@@ -21,3 +21,5 @@ class Image:
     sdxl = {"author":"stability-ai", "model":"sdxl", "desc":"A text-to-image generative AI model that creates beautiful images","github":"https://github.com/replicate/cog-sdxl","runs":"33.4M"}
     
     stable_diff = {"author":"stability-ai", "model":"stable-diffusion", "desc":"A latent text-to-image diffusion model capable of generating photo-realistic images given any text input","github":"https://github.com/replicate/cog-stable-diffusion","runs":"106.5M"}
+    
+    kandinsky = {"author":"ai-forever", "model":"kandinsky-2.2", "desc":"multilingual text2image latent diffusion model","github":"https://github.com/chenxwh/Kandinsky-2/tree/v2.2","runs":"7.1M"}

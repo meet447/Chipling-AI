@@ -47,6 +47,8 @@ def generateImage_page(author, model):
        return render_template("image.html", data=Image.sdxl, prompt=Image.prompts)
     elif model == "stable-diffusion" and author == "stability-ai":
        return render_template("image.html", data=Image.stable_diff, prompt=Image.prompts)
+    elif model == "kandinsky-2.2" and author == "ai-forever":
+       return render_template("image.html", data=Image.kandinsky, prompt=Image.prompts)
    
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
