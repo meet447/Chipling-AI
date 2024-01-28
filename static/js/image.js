@@ -10,15 +10,16 @@ function runModel() {
     var imageElement = document.getElementById("generated-image");
     imageElement.src = loadingGif;
 
-
     var models = document.getElementById("title");
     console.log(models.textContent.toLowerCase());
 
+    // Determine the current domain
+    var currentDomain = window.location.origin;
 
     // Make the API request
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:5000/api/prediction",
+        url: currentDomain + "/api/prediction",
         data: {
             model: models.textContent.toLowerCase(),
             prompt: prompt
@@ -34,9 +35,12 @@ function runModel() {
 
 function checkForResult(id) {
     var interval = setInterval(function () {
+        // Determine the current domain
+        var currentDomain = window.location.origin;
+
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:5000/api/response",
+            url: currentDomain + "/api/response",
             data: { id: id },
             success: function (result) {
                 if (result.status === "succeeded") {
