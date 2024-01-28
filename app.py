@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from models.image import sdxl, stablediffusion, kandinsky
+from models.text import llama70
 from models.modelsData import *
 
 app = Flask(__name__)
@@ -16,6 +17,8 @@ def index_page():
 def api_page():
     prompt = request.args.get("prompt")
     model = request.args.get("model")
+    
+    #image models
 
     if model == "stability-ai/sdxl":
         data = sdxl.sdxl.create_image(prompt)
@@ -27,6 +30,12 @@ def api_page():
 
     elif model == "stability-ai/stable-diffusion":
         data = stablediffusion.stablediff.create_image(prompt)
+        return jsonify(data)
+    
+    #text models
+    
+    elif model == "meta/llama-2-70b-chat":
+        data  = llama70.llama70.create_req(prompt)
         return jsonify(data)
     
     else:

@@ -1,35 +1,10 @@
-import requests
-import time
+from models.text.llama70 import llama70
 
-def create_request(prompt):
-    url = "http://127.0.0.1:5000/api/prediction"
+response = llama70.create_req(
+                prompt="Can you write a poem about open source machine learning? Let's make it in the style of E. E. Cummings.",
+                )
 
-    data = {
-        "model": "stability-ai/sdxl",
-        "prompt": prompt
-    }
 
-    response = requests.get(url, params=data)
+print(response)
 
-    id = response.json()
-    
-    while True:
-        result = get_response(id)
-
-        if result["status"] == "succeeded":
-            print(get_response(id)["output"])
-            return get_response(id)["output"]
-
-        time.sleep(3)
-
-def get_response(id):
-    url = "http://127.0.0.1:5000/api/response"
-    
-    data = {
-        "id": id,
-    }
-    
-    response = requests.get(url, params=data)
-    
-    return response.json()
 
