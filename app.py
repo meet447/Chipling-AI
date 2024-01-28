@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 
 from models.image.aiforever import kandinsky
 from models.image.stabilityai import sdxl, stablediffusion
+from models.image.fofr import latent_consistency_model
 
 from models.video.lucataco import animatediff
 
@@ -42,6 +43,10 @@ def api_page():
         data = stablediffusion.stablediff.create_image(prompt)
         return jsonify(data)
     
+    elif model == "fofr/latent-consistency-model":
+        data = latent_consistency_model.latentConsistency.create_image(prompt)
+        return jsonify(data)    
+    
     #text models
     
     elif model == "meta/llama-2-70b-chat":
@@ -80,6 +85,8 @@ def generateImage_page(author, model):
        return render_template("image.html", data=Image.stable_diff, prompt=Image.prompts)
     elif model == "kandinsky-2.2" and author == "ai-forever":
        return render_template("image.html", data=Image.kandinsky, prompt=Image.prompts)
+    elif model == "latent-consistency-model" and author == "fofr":
+       return render_template("image.html", data=Image.latentConsistency, prompt=Image.prompts)
 
     #text models 
      
