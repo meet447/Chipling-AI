@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Image Generative Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/text.js') }}"></script>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <!-- New Bar Section -->
+    <section class="info-bar">
+        <div class="info-content">
+            <h1 id="title" name="models">{{ data.author }}/{{ data.model }}</h1>
+            <p>{{ data.desc }}</p>
+            <div class="additional-info">
+                <span>Public</span>
+                <span>{{ data.runs }} runs</span>
+                <a href="{{ data.github }}" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Form -->
+        <form action="#" class="form">
+            <textarea name="prompt" id="prompt" rows="1" placeholder="Who is imu sama one piece"></textarea>
+            <button type="button" class="run-button" onclick="runModel()">Run</button>
+        </form>
+
+        <div class="text-placeholder" id="generated-text-placeholder">
+            Imu is a character in the manga and anime series One Piece. Imu is the main antagonist and the true ruler of the World Government. Imu sits on the Empty Throne and holds the most power in the world. 
+ The Five Elders are the public face of the World Government, but they serve Imu's every whim.
+        </div>
+    </main>
+
+    {% include 'footer.html' %}
+
+</body>
+</html>

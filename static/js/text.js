@@ -4,25 +4,16 @@ function runModel() {
         alert("Please enter a prompt before running the model.");
         return;
     }
+    var models = document.getElementById("title");
+    console.log(models.textContent.toLowerCase());
 
+    var currentDomain = window.location.origin;
+
+    // Disable the run button
     var runButtons = document.getElementsByClassName("run-button");
     for (var i = 0; i < runButtons.length; i++) {
         runButtons[i].disabled = true;
     }
-
-    // Display loading gif
-    var loadingGif = "https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-11-849_512.gif";
-    
-    var errorGif = "https://i.gifer.com/embedded/download/GY9C.gif"
-
-    var imageElement = document.getElementById("generated-image");
-    imageElement.src = loadingGif;
-
-    var models = document.getElementById("title");
-    console.log(models.textContent.toLowerCase());
-
-    // Determine the current domain
-    var currentDomain = window.location.origin;
 
     // Make the API request
     $.ajax({
@@ -33,10 +24,12 @@ function runModel() {
             prompt: prompt
         },
         success: function (data) {
-            checkForResult(data,runButtons);
+            console.log(data);
+            checkForResult(data, runButtons);
         },
         error: function (error) {
             console.error("Error making API request:", error);
+            // Enable the run button in case of an error
             for (var i = 0; i < runButtons.length; i++) {
                 runButtons[i].disabled = false;
             }
@@ -44,28 +37,35 @@ function runModel() {
     });
 }
 
-function checkForResult(id) {
+function checkForResult(id, runButtons) {
     var interval = setInterval(function () {
         // Determine the current domain
         var currentDomain = window.location.origin;
-
-        var errorGif = "https://i.gifer.com/embedded/download/GY9C.gif"
 
         $.ajax({
             type: "GET",
             url: currentDomain + "/api/response",
             data: { id: id },
             success: function (result) {
+                output = result.output
+                var sentence = output.join('');
+                console.log(sentence);
+
+                // Updated: Display the generated sentence in the text placeholder
+                var textPlaceholder = document.getElementById("generated-text-placeholder");
+                textPlaceholder.textContent = sentence;
+
                 if (result.status === "succeeded") {
                     clearInterval(interval);
-                    displayResult(result.output);
+                    console.log("result complete");
+                    // Enable the run button once the result is succeeded
                     for (var i = 0; i < runButtons.length; i++) {
                         runButtons[i].disabled = false;
                     }
-                }
-                else if (result.status === "failed"){
+                } else if (result.status === "failed") {
                     clearInterval(interval);
-                    displayResult(errorGif);
+                    console.log("error failed");
+                    // Enable the run button in case of failure
                     for (var i = 0; i < runButtons.length; i++) {
                         runButtons[i].disabled = false;
                     }
@@ -75,18 +75,12 @@ function checkForResult(id) {
                 console.error("Error checking for result:", error);
                 clearInterval(interval);
 
-                var imageElement = document.getElementById("generated-image");
-                imageElement.src = errorGif;
-
+                // Enable the run button in case of an error
                 for (var i = 0; i < runButtons.length; i++) {
                     runButtons[i].disabled = false;
                 }
+                // ... (your existing error handling code) ...
             }
         });
     }, 3000);
-}
-
-function displayResult(imageUrl) {
-    var imageElement = document.getElementById("generated-image");
-    imageElement.src = imageUrl;
 }

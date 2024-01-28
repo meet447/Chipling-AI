@@ -91,6 +91,14 @@ input[type="file"] {
   transition: background-color 0.3s ease;
 }
 
+/* Add this CSS to your stylesheet or in a <style> tag in the head of your HTML */
+.run-button:disabled {
+  background-color: #999; /* Change the background color to gray */
+  color: #ccc; /* Change the text color to light gray */
+  cursor: not-allowed; /* Change the cursor to not-allowed */
+}
+
+
 .run-button:hover {
   background-color: #0056b3;
 }
@@ -192,4 +200,12 @@ button.prompt {
 
 button.prompt:hover {
   background-color: #0056b3;
+}
+.text-placeholder {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-height: 50px;
+  font-size: 16px;
 }

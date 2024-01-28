@@ -52,12 +52,21 @@ def response_page():
 
 @app.route("/<author>/<model>")
 def generateImage_page(author, model):
-    if model == "sdxl" and author == "stability-ai":
+    
+    #image models
+    
+    if model == "sdxl" and author == "  -ai":
        return render_template("image.html", data=Image.sdxl, prompt=Image.prompts)
     elif model == "stable-diffusion" and author == "stability-ai":
        return render_template("image.html", data=Image.stable_diff, prompt=Image.prompts)
     elif model == "kandinsky-2.2" and author == "ai-forever":
        return render_template("image.html", data=Image.kandinsky, prompt=Image.prompts)
+     
+    #text models 
+     
+    if model == "llama-2-70b-chat" and author == "meta":
+       return render_template("text.html", data=Text.llama70)
    
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
