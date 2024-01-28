@@ -10,8 +10,8 @@ app.secret_key = "test123"
 
 @app.route("/")
 def index_page():
-    
-    return render_template("index.html")
+    trend = Website.trending_models
+    return render_template("index.html", trending=trend)
 
 @app.route("/api/prediction")
 def api_page():

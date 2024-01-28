@@ -1,6 +1,105 @@
 <head>
-</head>
-<body>
-    
-</body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chipling Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>   
 
+<body>
+    <header>
+      <h1 class="logo">Chipling</h1>
+      <input type="checkbox" class="nav-toggle" id="nav-toggle">
+      <nav>
+        <ul>
+          <li> <a href="/models">Models</a></li>
+          <li> <a href="">Docs</a></li>
+          <li> <a href="">API</a></li>
+        </ul>
+      </nav>
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
+    </header>
+    
+    <!-- Section One -->
+    
+    <section class="section-one">
+      <h2 class="header">AI Access made free for everyone!</h2>
+      <p class="section-one-paragraph">Try out various ai models, llms song gens and more here</p>
+      <a href="/models" class="learn-more-btn">Explore</a> 
+    </section>
+    
+    
+    <!-- Section Four -->
+    <section class="section-four">
+      <div class="flex-group">
+        <div>
+          <img src="https://learn.thinkdiffusion.com/content/images/2023/07/00000-3097553845B.jpg">
+        </div>
+        <div class="content-container">
+          <p>Stable Diffusion XL (SDXL) is a powerful text-to-image generation model that iterates on the previous Stable Diffusion models in three key ways:</p>
+          <p>the UNet is 3x larger and SDXL combines a second text encoder (OpenCLIP ViT-bigG/14) with the original text encoder to significantly increase the number of parameters</p>
+          <a href="/stability-ai/sdxl" class="learn-more-btn section-four-btn">Try Out Now</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section Five -->
+    <section class="section-five">
+      <div class="flex-group section-five-flex-group">
+        <div>
+          <img src="https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1">
+        </div>
+        <div class="content-container">
+          <p>LLama 70b chat</p>
+          <p>A latent text-to-image diffusion model capable of generating photo-realistic images given any text input </p>
+          <a href="/meta/llama-2-70b-chat" class="learn-more-btn section-four-btn">Try Out Now</a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section six -->
+    <section class="section-six">
+      <div class="flex-group">
+        <div>
+          <img src=https://s13.gifyu.com/images/SCbiG.gif>
+        </div>
+        <div class="content-container">
+          <p>AnimateDiff: Animate Your Personalized Text-to-Image Diffusion Models without Specific Tuning.</p>
+          <a href="" class="learn-more-btn section-four-btn">Try Out Now</a>
+        </div>
+      </div>
+    </section>  
+    
+  <!-- Section Seven -->  
+  
+    <section class="section-seven">
+          <h3>Here are some more trending models:</h3>
+    </section>
+    
+  <!-- Section Eight -->
+    <section class="section-eight">
+      <div class="flex-group-eight">
+        {% for trend in trending %}
+        <div>
+          <img src={{trend.img}}>
+          <h4>{{ trend.author}}/{{trend.model}}</h4>
+          <p>{{trend.desc}}</p>
+          <p>.....</p>
+          <p><a href="{{trend.author}}/{{trend.model}}" class="learn-more-btn section-four-btn">Try Out Now</a></p>
+        </div>
+        {% endfor %} 
+      </div>
+    </section>
+    
+    <!-- Section Nine -->
+    
+    <section class="section-ten">
+        <footer>
+            <p>&copy; 2024 Chipling AI. All rights reserved.</p>
+        </footer>
+    </section>
+
+    
+  </body>
