@@ -14,7 +14,6 @@ app = Flask(__name__)
 
 app.secret_key = "test123"
 
-
 @app.route("/")
 def index_page():
     trend = Website.trending_models
@@ -97,6 +96,3 @@ def generateImage_page(author, model):
     else:
         return "404"
    
-
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
