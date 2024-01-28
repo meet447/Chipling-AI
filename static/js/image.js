@@ -7,7 +7,7 @@ function runModel() {
 
     var runButtons = document.getElementsByClassName("run-button");
     for (var i = 0; i < runButtons.length; i++) {
-        runButtons[i].disabled = true;
+        runButtons[i].disabled = false;
     }
 
     // Display loading gif
