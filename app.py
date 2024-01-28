@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from models.image import sdxl, stablediffusion, kandinsky
-from models.text import llama70
+from models.text import llama70, mistral7
 from models.modelsData import *
 
 app = Flask(__name__)
@@ -38,6 +38,10 @@ def api_page():
         data  = llama70.llama70.create_req(prompt)
         return jsonify(data)
     
+    elif model == "mistralai/mistral-7b-instruct-v0.1":
+        data = mistral7.Mistral7b.create_req(prompt)
+        return jsonify(data)
+    
     else:
         return jsonify({"error": "error occurred"})
     
@@ -61,11 +65,13 @@ def generateImage_page(author, model):
        return render_template("image.html", data=Image.stable_diff, prompt=Image.prompts)
     elif model == "kandinsky-2.2" and author == "ai-forever":
        return render_template("image.html", data=Image.kandinsky, prompt=Image.prompts)
-     
+
     #text models 
      
-    if model == "llama-2-70b-chat" and author == "meta":
+    elif model == "llama-2-70b-chat" and author == "meta":
        return render_template("text.html", data=Text.llama70)
+    elif model == "mistral-7b-instruct-v0.1" and author == "mistralai":
+       return render_template("text.html", data=Text.mistral7)
    
     else:
         return "404"

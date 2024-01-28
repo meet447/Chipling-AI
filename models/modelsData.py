@@ -28,10 +28,12 @@ class Image:
 class Text:
     llama70 = {"author":"meta", "model":"llama-2-70b-chat", "desc":"A 70 billion parameter language model from Meta, fine tuned for chat completions","github":"https://github.com/a16z-infra/cog-llama-template","runs":"4.3M","img":"https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1"}
     
+    mistral7 = {"author":"mistralai", "model":"mistral-7b-instruct-v0.1", "desc":"An instruction-tuned 7 billion parameter language model from Mistral","github":"https://github.com/mistralai/mistral-src","runs":"4.3M","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS72TV5uKAC9XWbLUbfX63UaY6tYqDkxh648w&usqp=CAU"}
+    
 class Video:
     animateDiff = {}
     
 class Website:
-    trending_models = [Image.stable_diff, Image.kandinsky, Text.llama70]
+    trending_models = [Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70]
     
     
