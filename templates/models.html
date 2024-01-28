@@ -1,5 +1,81 @@
-{{ image }}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chipling Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>   
 
-{{ video }}
+<body>
+    <header>
+        <h1 class="logo">Chipling</h1>
+        <input type="checkbox" class="nav-toggle" id="nav-toggle">
+        <nav>
+            <ul>
+                <li> <a href="/models">AI Models</a></li>
+                <li> <a href="">Documentation</a></li>
+                <li> <a href="">API</a></li>
+                <li> <a href="">Blog</a><li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
 
-{{ text }}
+    <section class="section-seven">
+        <h3>Here are all the models:</h3>
+    </section>   
+    
+    <!-- Section Eight -->
+    <h1>Text Models:</h1>
+    <section class="section-eight">
+        <div class="flex-group-eight">
+            {% for img in text %}
+            <div>
+                <img src= {{ img.img }}>
+                <h4>{{ img.author }}/{{ img.model }}</h4>
+                <p>{{ img.desc }}</p>
+                <p><a href="{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
+            </div>
+            {% endfor %} 
+        </div>
+    </section>
+    <h1>Image Models:</h1>
+    <section class="section-eight">
+        <div class="flex-group-eight">
+            {% for img in image %}
+            <div>
+                <img src= {{ img.img }}>
+                <h4>{{ img.author }}/{{ img.model }}</h4>
+                <p>{{ img.desc }}</p>
+                <p><a href="{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
+            </div>
+            {% endfor %} 
+        </div>
+    </section>
+    
+    <h1>Video Models:</h1>
+    <section class="section-eight">
+        <div class="flex-group-eight">
+            {% for img in video %}
+            <div>
+                <img src= {{ img.img }}>
+                <h4>{{ img.author }}/{{ img.model }}</h4>
+                <p>{{ img.desc }}</p>
+                <p><a href="{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
+            </div>
+            {% endfor %} 
+        </div>
+    </section>
+    
+    
+    <!-- Section Nine -->
+    
+    <section class="section-ten">
+        <footer>
+            <p>&copy; 2024 Chipling AI. All rights reserved.</p>
+        </footer>
+    </section>
+
+</body>
