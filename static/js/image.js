@@ -7,6 +7,9 @@ function runModel() {
 
     // Display loading gif
     var loadingGif = "https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-11-849_512.gif";
+    
+    var errorGif = "https://i.gifer.com/embedded/download/GY9C.gif"
+
     var imageElement = document.getElementById("generated-image");
     imageElement.src = loadingGif;
 
@@ -38,6 +41,8 @@ function checkForResult(id) {
         // Determine the current domain
         var currentDomain = window.location.origin;
 
+        var errorGif = "https://i.gifer.com/embedded/download/GY9C.gif"
+
         $.ajax({
             type: "GET",
             url: currentDomain + "/api/response",
@@ -47,10 +52,17 @@ function checkForResult(id) {
                     clearInterval(interval);
                     displayResult(result.output);
                 }
+                else if (result.status === "failed"){
+                    clearInterval(interval);
+                    displayResult(errorGif);
+                }
             },
             error: function (error) {
                 console.error("Error checking for result:", error);
                 clearInterval(interval);
+
+                var imageElement = document.getElementById("generated-image");
+                imageElement.src = errorGif;
             }
         });
     }, 3000);
