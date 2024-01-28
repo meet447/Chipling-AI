@@ -168,7 +168,6 @@ nav a:hover {
         padding: 3rem 1rem; /* Adjust padding for smaller screens */
     }
 }
-
   
 
 .header {
@@ -270,15 +269,15 @@ nav a:hover {
 
 /* Section Eight */
 
-/* Section Eight */
-
-.section-eight h4 {
-  margin: 1rem 0;
-  font-size: 1.25rem;
+.section-eight {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent items from wrapping to the next line */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-.section-eight p {
-  line-height: 1.5rem;
+.section-eight::-webkit-scrollbar {
+  display: none; /* Webkit (Safari, Chrome, etc.) */
 }
 
 .flex-group-eight {
@@ -288,21 +287,28 @@ nav a:hover {
 
 /* Set a fixed width and height for the images in Section Eight */
 .flex-group-eight img {
-  width: 100%; /* Make the image take up 100% of the container width */
-  height: 200px; /* Set a fixed height for all images */
-  object-fit: cover; /* Maintain aspect ratio while covering the container */
+  width: 800px;
+  height:250px;
+  object-fit: cover;
 }
 
 @media (max-width: 800px) {
-  .flex-group-eight {
-    flex-direction: column;
+  .section-eight {
+    overflow-x: auto; /* Keep horizontal scrolling for smaller screens */
+    white-space: nowrap; /* Prevent items from wrapping to the next line */
   }
 
-  /* For smaller screens, you might want to adjust the height of the images */
+  .flex-group-eight {
+    flex-direction: row; /* Ensure items stay in a row even on smaller screens */
+  }
+
   .flex-group-eight img {
     height: 150px;
   }
 }
+
+
+
 /* Section Nine */
 
 .section-nine {
