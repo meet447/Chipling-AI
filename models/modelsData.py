@@ -49,6 +49,9 @@ class Video:
     
     animateDiff = {"author":"lucataco", "model":"animate-diff", "desc":"Animate Your Personalized Text-to-Image Diffusion Models","github":"https://github.com/lucataco/cog-animatediff","runs":"130.8K","img":"https://s13.gifyu.com/images/SCbiG.gif"}
     
+    zeroScope = {"author":"anotherjesse", "model":"zeroscope-v2-xl", "desc":"Zeroscope V2 XL & 576w","github":"","runs":"192.5K","img":"https://im4.ezgif.com/tmp/ezgif-4-eef349e4fb.gif"}
+
+    
 class Website:
     trending_models = [Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70]
     
@@ -56,4 +59,4 @@ class Website:
     
     image_models = [Image.kandinsky, Image.sdxl, Image.stable_diff]
     
-    video_models = [Video.animateDiff]
+    video_models = [Video.animateDiff, Video.zeroScope]
