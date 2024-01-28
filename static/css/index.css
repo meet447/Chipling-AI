@@ -288,7 +288,7 @@ nav a:hover {
 /* Set a fixed width and height for the images in Section Eight */
 .flex-group-eight img {
   width: 800px;
-  height:250px;
+  height:300px;
   object-fit: cover;
 }
 
