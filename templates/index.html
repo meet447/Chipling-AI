@@ -8,88 +8,87 @@
 
 <body>
     <header>
-      <h1 class="logo">Chipling</h1>
-      <input type="checkbox" class="nav-toggle" id="nav-toggle">
-      <nav>
-        <ul>
-          <li> <a href="/models">Models</a></li>
-          <li> <a href="">Docs</a></li>
-          <li> <a href="">API</a></li>
-        </ul>
-      </nav>
-      <label for="nav-toggle" class="nav-toggle-label">
-        <span></span>
-      </label>
+        <h1 class="logo">Chipling</h1>
+        <input type="checkbox" class="nav-toggle" id="nav-toggle">
+        <nav>
+            <ul>
+                <li> <a href="/models">AI Models</a></li>
+                <li> <a href="">Documentation</a></li>
+                <li> <a href="">API</a></li>
+                <li> <a href="">Blog</a><li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
     </header>
     
     <!-- Section One -->
     
     <section class="section-one">
-      <h2 class="header">AI Access made free for everyone!</h2>
-      <p class="section-one-paragraph">Try out various ai models, llms song gens and more here</p>
-      <a href="/models" class="learn-more-btn">Explore</a> 
+        <h2 class="header">Unlock the Power of AI for Everyone!</h2>
+        <p class="section-one-paragraph">Discover a world of AI models, LLMs, song generators, and more.</p>
+        <a href="/models" class="learn-more-btn">Explore Now</a>
     </section>
-    
     
     <!-- Section Four -->
     <section class="section-four">
-      <div class="flex-group">
-        <div>
-          <img src="https://learn.thinkdiffusion.com/content/images/2023/07/00000-3097553845B.jpg">
+        <div class="flex-group">
+            <div>
+                <img src="https://learn.thinkdiffusion.com/content/images/2023/07/00000-3097553845B.jpg">
+            </div>
+            <div class="content-container">
+                <p>Stable Diffusion XL (SDXL) is a powerful text-to-image generation model that iterates on the previous Stable Diffusion models in three key ways:</p>
+                <a href="/stability-ai/sdxl" class="learn-more-btn section-four-btn">Try Out Now</a>
+            </div>
         </div>
-        <div class="content-container">
-          <p>Stable Diffusion XL (SDXL) is a powerful text-to-image generation model that iterates on the previous Stable Diffusion models in three key ways:</p>
-          <a href="/stability-ai/sdxl" class="learn-more-btn section-four-btn">Try Out Now</a>
-        </div>
-      </div>
     </section>
     
     <!-- Section Five -->
     <section class="section-five">
-      <div class="flex-group section-five-flex-group">
-        <div>
-          <img src="https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1">
+        <div class="flex-group section-five-flex-group">
+            <div>
+                <img src="https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1">
+            </div>
+            <div class="content-container">
+                <p>LLama 70b chat</p>
+                <p>A latent text-to-image diffusion model capable of generating photo-realistic images given any text input </p>
+                <a href="/meta/llama-2-70b-chat" class="learn-more-btn section-four-btn">Try Out Now</a>
+            </div>
         </div>
-        <div class="content-container">
-          <p>LLama 70b chat</p>
-          <p>A latent text-to-image diffusion model capable of generating photo-realistic images given any text input </p>
-          <a href="/meta/llama-2-70b-chat" class="learn-more-btn section-four-btn">Try Out Now</a>
-        </div>
-      </div>
     </section>
     
     <!-- Section six -->
     <section class="section-six">
-      <div class="flex-group">
-        <div>
-          <img src=https://s13.gifyu.com/images/SCbiG.gif>
+        <div class="flex-group">
+            <div>
+                <img src=https://s13.gifyu.com/images/SCbiG.gif>
+            </div>
+            <div class="content-container">
+                <p>AnimateDiff: Animate Your Personalized Text-to-Image Diffusion Models without Specific Tuning.</p>
+                <a href="/lucataco/animate-diff" class="learn-more-btn section-four-btn">Try Out Now</a>
+            </div>
         </div>
-        <div class="content-container">
-          <p>AnimateDiff: Animate Your Personalized Text-to-Image Diffusion Models without Specific Tuning.</p>
-          <a href="" class="learn-more-btn section-four-btn">Try Out Now</a>
-        </div>
-      </div>
     </section>  
     
-  <!-- Section Seven -->  
-  
+    <!-- Section Seven -->  
+    
     <section class="section-seven">
-          <h3>Here are some more trending models:</h3>
+        <h3>Here are some more trending models:</h3>
     </section>
     
-  <!-- Section Eight -->
+    <!-- Section Eight -->
     <section class="section-eight">
-      <div class="flex-group-eight">
-        {% for trend in trending %}
-        <div>
-          <img src={{trend.img}}>
-          <h4>{{ trend.author}}/{{trend.model}}</h4>
-          <p>{{trend.desc}}</p>
-          <p>.....</p>
-          <p><a href="{{trend.author}}/{{trend.model}}" class="learn-more-btn section-four-btn">Try Out Now</a></p>
+        <div class="flex-group-eight">
+            {% for trend in trending %}
+            <div>
+                <img src={{trend.img}}>
+                <h4>{{ trend.author}}/{{trend.model}}</h4>
+                <p>{{trend.desc}}</p>
+                <p><a href="{{trend.author}}/{{trend.model}}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
+            </div>
+            {% endfor %} 
         </div>
-        {% endfor %} 
-      </div>
     </section>
     
     <!-- Section Nine -->
@@ -100,5 +99,4 @@
         </footer>
     </section>
 
-    
-  </body>
+</body>

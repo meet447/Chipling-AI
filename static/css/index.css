@@ -5,6 +5,8 @@
   margin: 0;
 }
 
+/* index.css */
+
 img {
   display: block;
   width: 100%;
@@ -179,6 +181,7 @@ nav a:hover {
   width: 70%;
   max-width: 500px;
   line-height: 1.5rem;
+  font-family: 'YourCustomFont', sans-serif;
 }
 
 
@@ -219,6 +222,7 @@ nav a:hover {
 
 .section-four p {
   margin-bottom: 2rem;
+  font-family: 'YourCustomFont', sans-serif;
 }
 
 .section-four-btn {
@@ -233,12 +237,15 @@ nav a:hover {
 
 .section-five p {
   margin-bottom: 2rem;
+  font-family: 'YourCustomFont', sans-serif;
 }
 
 /* Section Six */
 
 .section-six p {
   margin-bottom: 2rem;
+  font-family: 'YourCustomFont', sans-serif;
+
 }
 
 /* Flex Group Mobile */
@@ -274,7 +281,15 @@ nav a:hover {
   white-space: nowrap; /* Prevent items from wrapping to the next line */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  font-family: 'YourCustomFont', sans-serif;
 }
+
+.section-eight-btn {
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    width: 7.5rem;
+  }
 
 .section-eight::-webkit-scrollbar {
   display: none; /* Webkit (Safari, Chrome, etc.) */
@@ -288,7 +303,7 @@ nav a:hover {
 /* Set a fixed width and height for the images in Section Eight */
 .flex-group-eight img {
   width: 800px;
-  height:300px;
+  height:250px;
   object-fit: cover;
 }
 

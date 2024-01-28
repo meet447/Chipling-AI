@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Image Generative Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/video.js') }}"></script>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    
+
+    <!-- New Bar Section -->
+    <section class="info-bar">
+        <div class="info-content">
+            <h1 id="title" name="models">{{ data.author }}/{{ data.model }}</h1>
+            <p>{{ data.desc }}</p>
+            <div class="additional-info">
+                <span>Public</span>
+                <span>{{ data.runs }} runs</span>
+                <a href="{{ data.github }}" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Form -->
+        <form action="#" class="form">
+            <textarea name="prompt" id="prompt" rows="1" placeholder="An astronaut riding a rainbow unicorn"></textarea>
+            <ul>
+                <div cat="details">
+                    <ul>
+                        <h1>details:</h1>
+                        <li>
+                            <div class="is-flex">
+                                {% for detail in prompt.details %}
+                                <button class="prompt">{{ detail }}</button>
+                                {% endfor %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <h1>colors:</h1>
+                <li>
+                    <div class="is-flex">
+                        {% for color in prompt.colors %}
+                        <button class="prompt">{{ color }}</button>
+                        {% endfor %}
+                    </div>   
+                </li>
+            </ul>
+            <ul>
+                <h1>lighting:</h1>
+                <li>
+                    <div class="is-flex">
+                        {% for light in prompt.lighting %}
+                        <button class="prompt">{{ light }}</button>
+                        {% endfor %}
+                    </div>
+                </li>
+            </ul>
+            <div cat="artists">
+                <ul>
+                    <h1>artists:</h1>
+                    <li>
+                        <div class="is-flex">
+                            {% for artist in prompt.artists %}
+                            <button class="prompt">{{ artist }}</button>
+                            {% endfor %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button type="button" class="run-button" onclick="runModel()">Run</button>
+        </form>
+
+        <div class="video-placeholder">
+            <video id="generated-video" width="320" height="240" controls>
+                <source src="" type="video/mp4">
+            </video>
+        </div>        
+    </main>
+
+    {% include 'footer.html' %}
+
+</body>
+</html>

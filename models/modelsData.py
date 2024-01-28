@@ -1,4 +1,4 @@
-#title, desc, github, runs
+#title, desc, github, runs, img
 class Image:
     
     prompts = {
@@ -31,9 +31,29 @@ class Text:
     mistral7 = {"author":"mistralai", "model":"mistral-7b-instruct-v0.1", "desc":"An instruction-tuned 7 billion parameter language model from Mistral","github":"https://github.com/mistralai/mistral-src","runs":"4.3M","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS72TV5uKAC9XWbLUbfX63UaY6tYqDkxh648w&usqp=CAU"}
     
 class Video:
-    animateDiff = {}
+    
+    prompts = {
+	 "colors": ['autochrome', 'cinecolour', 'colour', 'colourised', 'colour wheel',
+			  'cyanopsia', 'faded', 'faded colours', 'high contrast', 'hue',
+			  'low contrast', 'kinemacolour', 'kodachrome', 'monochromatic', 'monochrome',
+			  'neon', 'neonpink', 'pigment', 'pure', 'sepia',
+			  'spectrum', 'technicolor', 'tone', 'triadic colours', 'variegated',
+			  'vibrant'],
+	"lighting": ['artificial lighting', 'backlight', 'bright', 'bubble light', 'crepuscular rays',
+			   'dark lighting', 'dynamic lighting', 'flickering light', 'floodlight', 'frontlight',
+			   'moonlight', 'natural lighting', 'soft lighting', 'spotlight', 'strobe',
+			   'strobe light', 'sunlight', 'vivid lighting'],
+	"details": ["(fractal art:1.3)","(1girl)","extreme detailed","top quality"],
+	"artists": ['anne stokes']
+    }
+    
+    animateDiff = {"author":"lucataco", "model":"animate-diff", "desc":"Animate Your Personalized Text-to-Image Diffusion Models","github":"https://github.com/lucataco/cog-animatediff","runs":"130.8K","img":"https://s13.gifyu.com/images/SCbiG.gif"}
     
 class Website:
     trending_models = [Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70]
     
+    text_models = [Text.llama70, Text.mistral7]
     
+    image_models = [Image.kandinsky, Image.sdxl, Image.stable_diff]
+    
+    video_models = [Video.animateDiff]

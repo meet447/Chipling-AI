@@ -1,6 +1,13 @@
 from flask import Flask, request, jsonify, render_template
-from models.image import sdxl, stablediffusion, kandinsky
-from models.text import llama70, mistral7
+
+from models.image.aiforever import kandinsky
+from models.image.stabilityai import sdxl, stablediffusion
+
+from models.video.lucataco import animatediff
+
+from models.text.mistralai import mistral7
+from models.text.meta import llama70
+
 from models.modelsData import *
 
 app = Flask(__name__)
@@ -12,6 +19,10 @@ app.secret_key = "test123"
 def index_page():
     trend = Website.trending_models
     return render_template("index.html", trending=trend)
+
+@app.route("/models")
+def models_page():
+    return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models)
 
 @app.route("/api/prediction")
 def api_page():
@@ -40,6 +51,11 @@ def api_page():
     
     elif model == "mistralai/mistral-7b-instruct-v0.1":
         data = mistral7.Mistral7b.create_req(prompt)
+        return jsonify(data)
+    
+    #video models
+    elif model == "lucataco/animate-diff":
+        data = animatediff.animateDiff.create_vid(prompt)
         return jsonify(data)
     
     else:
@@ -72,6 +88,11 @@ def generateImage_page(author, model):
        return render_template("text.html", data=Text.llama70)
     elif model == "mistral-7b-instruct-v0.1" and author == "mistralai":
        return render_template("text.html", data=Text.mistral7)
+   
+    #video models
+    
+    elif model == "animate-diff" and author == "lucataco":
+       return render_template("video.html", data=Video.animateDiff, prompt=Video.prompts)
    
     else:
         return "404"
