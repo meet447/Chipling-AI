@@ -24,8 +24,21 @@
     </header>
 
     <section class="section-seven">
-        <h3>Here are all the models:</h3>
+        <h3>Check out this new models:</h3>
     </section>   
+
+    <section class="section-eight">
+        <div class="flex-group-eight">
+            {% for img in new %}
+            <div>
+                <img src= {{ img.img }}>
+                <h4>{{ img.author }}/{{ img.model }}</h4>
+                <p>{{ img.desc }}</p>
+                <p><a href="{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
+            </div>
+            {% endfor %} 
+        </div>
+    </section>
     
     <!-- Section Eight -->
     <h1>Text Models:</h1>

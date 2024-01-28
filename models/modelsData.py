@@ -58,6 +58,8 @@ class Video:
 class Website:
     trending_models = [Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70]
     
+    new_models = [Image.latentConsistency, Video.zeroScope]
+    
     text_models = [Text.llama70, Text.mistral7]
     
     image_models = [Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]

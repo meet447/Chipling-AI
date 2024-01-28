@@ -22,7 +22,7 @@ def index_page():
 
 @app.route("/models")
 def models_page():
-    return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models)
+    return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models)
 
 @app.route("/api/prediction")
 def api_page():
