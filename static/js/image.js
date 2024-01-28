@@ -58,10 +58,10 @@ function checkForResult(id) {
             success: function (result) {
                 if (result.status === "succeeded") {
                     clearInterval(interval);
+                    displayResult(result.output);
                     for (var i = 0; i < runButtons.length; i++) {
                         runButtons[i].disabled = false;
                     }
-                    displayResult(result.output);
                 }
                 else if (result.status === "failed"){
                     clearInterval(interval);

@@ -152,10 +152,17 @@ nav a:hover {
 }
 
 /* Section One */
-
 .section-one {
-  margin: 11rem 2rem 0;
+    background-image: url('https://replicate.delivery/pbxt/Lca3IEjcKoJBBVS6ajROkK37sDzPsmjYxIcFzxPZp65wZzTE/out-0.png'); /* Replace with the actual URL of your image */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+    color: white; /* Set the text color to white or a color that contrasts well with the background */
+    text-align: left; /* Center align text */
+    padding: 5rem 2rem; /* Adjust padding as needed */
 }
+
+  
 
 .header {
   font-size: 4.5rem;
