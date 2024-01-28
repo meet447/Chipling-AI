@@ -55,7 +55,7 @@ def generateImage_page(author, model):
     
     #image models
     
-    if model == "sdxl" and author == "  -ai":
+    if model == "sdxl" and author == "stability-ai":
        return render_template("image.html", data=Image.sdxl, prompt=Image.prompts)
     elif model == "stable-diffusion" and author == "stability-ai":
        return render_template("image.html", data=Image.stable_diff, prompt=Image.prompts)
@@ -66,6 +66,9 @@ def generateImage_page(author, model):
      
     if model == "llama-2-70b-chat" and author == "meta":
        return render_template("text.html", data=Text.llama70)
+   
+    else:
+        return "404"
    
 
 if __name__ == "__main__":
