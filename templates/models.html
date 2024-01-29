@@ -14,7 +14,7 @@
             <ul>
                 <li> <a href="/models">AI Models</a></li>
                 <li> <a href="">Documentation</a></li>
-                <li> <a href="">API</a></li>
+                <li> <a href="/profile">Profile</a></li>
                 <li> <a href="">Blog</a><li>
             </ul>
         </nav>
@@ -24,9 +24,12 @@
     </header>
 
     <section class="section-seven">
-        <h3>Check out this new models:</h3>
-    </section>   
+        {% if session.user %}
+            <h3>Welcome Back: {{ session.user }}</h3>
+        {% endif %}
+    </section>    
 
+    <h1>New Models:</h1>
     <section class="section-eight">
         <div class="flex-group-eight">
             {% for img in new %}

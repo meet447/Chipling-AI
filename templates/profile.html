@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Image Generative Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/text.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/text.js') }}"></script>
+</head>
+<body>
+
+    {% include 'main/navbar.html' %}
+    <main>
+        <div class="text-placeholder" id="generated-text-placeholder">
+           <h1>{{ session.user }}<h1>
+           <h2>{{ session.email}}</h2>
+
+           <h1>Get Api Here:<h1>
+           <h1> {{ session.api_key }}<h1>
+        </div>
+    </main>
+
+    {% include 'main/footer.html' %}
+
+</body>
+</html>

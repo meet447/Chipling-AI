@@ -1,0 +1,56 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #080808;
+  margin: 0;
+  padding-top: 60px; /* Adjust the padding based on your navbar height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box; /* Include padding in the total width and height */
+}
+
+
+
+.login-container {
+  background-image: url("https://replicate.delivery/pbxt/mAnYfo1bmJQOWyKWH6t3TsKoUM87ctqRvngvQHhweg6IpVRSA/out-0.png");   
+  background-color: #1f1f1f;
+  padding:10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 8px;
+  color: #fff; /* Set text color to white */
+}
+
+.login-container input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  color: #fff; /* Set text color to white */
+}
+
+.login-container button {
+  background-color: #534caf;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}

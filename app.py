@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, session, redirect
+from pyrebase import pyrebase
 
 from models.image.aiforever import kandinsky
 from models.image.stabilityai import sdxl, stablediffusion
@@ -11,15 +12,117 @@ from models.text.mistralai import mistral7
 from models.text.meta import llama70
 
 from models.modelsData import *
+from config import firebaseConfig
+from api.key import generate_api_key
+
+#import ends here
 
 app = Flask(__name__)
 
 app.secret_key = "test123"
 
+firebase = pyrebase.initialize_app(config=firebaseConfig)
+auth = firebase.auth()
+db = firebase.database()
+
+#routes start here
+
 @app.route("/")
 def index_page():
     trend = Website.trending_models
     return render_template("index.html", trending=trend)
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if 'user' in session:
+        return redirect("/models")  # Redirect if the user is already logged in
+
+    if request.method == "POST":
+        email = request.form.get('email')
+        password = request.form.get('password')
+        
+        try:
+            user = auth.sign_in_with_email_and_password(email, password)
+            
+            print("succesfull")
+
+            # Fetch additional user data from the database using UID
+            user_data = db.child('users').child(user['localId']).get().val()
+            
+            user_data = db.child('users').child(user['localId']).get().val()
+
+            if user_data:
+                session["user"] = user_data.get('username', '')
+                session["api_key"] = user_data.get('api_key', '')
+                session["email"] = user_data.get('email', '')
+                
+                return redirect("/models")
+
+            else:
+                return "error"
+            
+        except Exception as e:
+            return f"Error during registration: {e}"
+
+    return render_template("login.html")
+
+
+@app.route("/register", methods=["POST", "GET"])
+def register():
+    if 'user' in session:
+        return redirect("/models")  # Redirect if the user is already logged in
+
+    if request.method == "POST":
+        email = request.form.get('email')
+        password = request.form.get('password')
+        username = request.form.get('username')
+        
+        try:
+            # Create user in Firebase
+            user = auth.create_user_with_email_and_password(email, password)
+            
+            # Generate a random API key
+            api_key = generate_api_key()
+
+            # Store user details in the database (you need to adjust this based on your Firebase structure)
+            user_data = {
+                "email": email,
+                "username": username,
+                "api_key": api_key
+            }
+            # Example: Assuming you have a 'users' collection in Firestore
+            db.child('users').child(user['localId']).set(user_data)
+
+            # Store user information in session
+            session["user"] = username
+            
+            session["email"] = email
+            
+            session["api_key"] = api_key
+             
+            return redirect("/models")
+        except Exception as e:
+            return f"Error during registration: {e}"
+
+    return render_template("register.html")
+
+@app.route('/logout')
+def logout():
+    try:
+        session.pop('user')
+        session.pop('email')
+        session.pop('api_key')
+    
+        return redirect("/login")
+    except:
+        return redirect("/")
+
+@app.route("/profile")
+def profile(): 
+    if 'user' in session:
+        return render_template("profile.html")
+    else:
+        return render_template("register.html")
 
 @app.route("/models")
 def models_page():
