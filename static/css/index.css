@@ -307,23 +307,43 @@ nav a:hover {
   object-fit: cover;
 }
 
-@media (max-width: 800px) {
+
+@media (max-width: 500px) 
+{
   .section-eight {
-    overflow-x: auto; /* Keep horizontal scrolling for smaller screens */
-    white-space: nowrap; /* Prevent items from wrapping to the next line */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: wrap; /* Prevent items from wrapping to the next line */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    font-family: 'YourCustomFont', sans-serif;
+    height: auto;
+    width: auto;
   }
-
+  
+  .section-eight-btn {
+      margin: 2rem auto;
+      display: flex;
+      justify-content: center;
+      width: 7.5rem;
+    }
+  
+  .section-eight::-webkit-scrollbar {
+    display: none; /* Webkit (Safari, Chrome, etc.) */
+  }
+  
   .flex-group-eight {
-    flex-direction: row; /* Ensure items stay in a row even on smaller screens */
+    display: flex;
+    gap: 2rem;
   }
-
+  
+  /* Set a fixed width and height for the images in Section Eight */
   .flex-group-eight img {
-    height: 150px;
+    width: 250px;
+    height:250px;
+    object-fit: cover;
   }
+
 }
-
-
-
 /* Section Nine */
 
 .section-nine {
@@ -370,4 +390,3 @@ nav a:hover {
   margin: 0 auto;
   width: 7.5rem;
 }
-

@@ -1,16 +1,8 @@
 from flask import Flask, request, jsonify, render_template, session, redirect
 from pyrebase import pyrebase
 
-from models.image.aiforever import kandinsky
-from models.image.stabilityai import sdxl, stablediffusion
-from models.image.fofr import latent_consistency_model
-
-from models.video.lucataco import animatediff
-from models.video.anotherjesse import zeroscopev2xl
-
-from models.text.mistralai import mistral7
-from models.text.meta import llama70
-
+from models.models_route import get_model
+from models.image.stabilityai.sdxl import sdxl
 from models.modelsData import *
 from config import firebaseConfig
 from api.key import generate_api_key
@@ -66,7 +58,7 @@ def login():
 
     return render_template("login.html")
 
-
+#USER ROUTES
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if 'user' in session:
@@ -124,6 +116,7 @@ def profile():
     else:
         return render_template("register.html")
 
+#MODEL ROUTES
 @app.route("/models")
 def models_page():
     return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models)
@@ -133,54 +126,17 @@ def api_page():
     prompt = request.args.get("prompt")
     model = request.args.get("model")
     
-    #image models
-
-    if model == "stability-ai/sdxl":
-        data = sdxl.sdxl.create_image(prompt)
-        return jsonify(data)
-
-    elif model == "ai-forever/kandinsky-2.2":
-        data = kandinsky.kandisky.create_image(prompt)
-        return jsonify(data)
-
-    elif model == "stability-ai/stable-diffusion":
-        data = stablediffusion.stablediff.create_image(prompt)
-        return jsonify(data)
+    data = get_model(prompt=prompt, model=model)
     
-    elif model == "fofr/latent-consistency-model":
-        data = latent_consistency_model.latentConsistency.create_image(prompt)
-        return jsonify(data)    
-    
-    #text models
-    
-    elif model == "meta/llama-2-70b-chat":
-        data  = llama70.llama70.create_req(prompt)
-        return jsonify(data)
-    
-    elif model == "mistralai/mistral-7b-instruct-v0.1":
-        data = mistral7.Mistral7b.create_req(prompt)
-        return jsonify(data)
-    
-    #video models
-    elif model == "lucataco/animate-diff":
-        data = animatediff.animateDiff.create_vid(prompt)
-        return jsonify(data)
-    
-    elif model == "anotherjesse/zeroscope-v2-xl":
-        data = zeroscopev2xl.zeroScope.create_vid(prompt)
-        return jsonify(data)
-    
-    else:
-        return jsonify({"error": "error occurred"})
-    
+    return data
+     
 @app.route("/api/response")
 def response_page():
     id = request.args.get("id")
     
-    data = sdxl.sdxl.get_image(id)
+    data = sdxl.get_image(id)
     
     return data
-
 
 @app.route("/<author>/<model>")
 def generateImage_page(author, model):
@@ -214,3 +170,28 @@ def generateImage_page(author, model):
     else:
         return "404"
    
+#API ROUTES START HERE
+def check_key(api_key_to_check):
+    data = db.child('users').get().val()
+
+    print(data)  # Optional: Print the data for debugging purposes
+
+    # Check if the provided API key exists in any of the user entries
+    for user_id, user_data in data.items():
+        if 'api_key' in user_data and user_data['api_key'] == api_key_to_check:
+            return True
+    
+    return False
+
+@app.route("/api/request")
+def request_api():
+    prompt = request.args.get("prompt")
+    model = request.args.get("model")
+    key = request.args.get("key")
+    
+    #image models
+    
+    if check_key(key):
+        get_model(prompt=prompt, model=model)
+    else:
+        return jsonify({"error": "invalid api key"})
