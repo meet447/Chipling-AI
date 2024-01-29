@@ -32,6 +32,9 @@ class Text:
     
     mistral7 = {"author":"mistralai", "model":"mistral-7b-instruct-v0.1", "desc":"An instruction-tuned 7 billion parameter language model from Mistral","github":"https://github.com/mistralai/mistral-src","runs":"4.3M","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS72TV5uKAC9XWbLUbfX63UaY6tYqDkxh648w&usqp=CAU"}
     
+    codellama13b = {"author":"meta", "model":"codellama-13b", "desc":"A 13 billion parameter Llama tuned for code completion","github":"https://github.com/facebookresearch/codellama","runs":"93K","img":"https://venturebeat.com/wp-content/uploads/2023/08/cfr0z3n_vector_art_synthwave_llama_typing_on_a_laptop_ee7e1f3d-7509-4cc2-9a46-15841f4da40b.png?fit=1456%2C816&strip=all"}
+
+    
     
 class Video:
     
@@ -56,11 +59,11 @@ class Video:
 
     
 class Website:
-    trending_models = [Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70]
+    trending_models = [Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70, Text.codellama13b]
     
-    new_models = [Image.latentConsistency, Video.zeroScope]
+    new_models = [Text.codellama13b, Image.latentConsistency, Video.zeroScope]
     
-    text_models = [Text.llama70, Text.mistral7]
+    text_models = [Text.llama70, Text.mistral7, Text.codellama13b]
     
     image_models = [Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
     

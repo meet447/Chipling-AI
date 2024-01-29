@@ -6,7 +6,7 @@ from models.video.lucataco import animatediff
 from models.video.anotherjesse import zeroscopev2xl
 
 from models.text.mistralai import mistral7
-from models.text.meta import llama70
+from models.text.meta import llama70, codellama
 
 from flask import jsonify
 
@@ -52,6 +52,10 @@ def get_model(prompt, model):
     
     elif model == "anotherjesse/zeroscope-v2-xl":
         data = zeroscopev2xl.zeroScope.create_vid(prompt)
+        return jsonify(data)
+    
+    elif model == "meta/codellama-13b":
+        data  = codellama.codeLlama13B.create_req(prompt)
         return jsonify(data)
     
     else:

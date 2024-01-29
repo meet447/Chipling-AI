@@ -158,6 +158,8 @@ def generateImage_page(author, model):
        return render_template("text.html", data=Text.llama70)
     elif model == "mistral-7b-instruct-v0.1" and author == "mistralai":
        return render_template("text.html", data=Text.mistral7)
+    elif model == "codellama-13b" and author == "meta":
+       return render_template("text.html", data=Text.codellama13b)
    
     #video models
     
