@@ -1,0 +1,181 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  background: #000;
+  color: white;
+  width: 95%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+section {
+  margin: 5rem 2rem;
+}
+
+/* Content of your_custom_styles.css */
+* { box-sizing: border-box; outline: none; }
+
+
+
+body, button {
+    font-family: 'Calibri', sans-serif;
+    font-size: 9pt;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.25em;
+    text-transform: capitalize;
+}
+
+#app {
+    margin: 0 auto;
+    padding: 12px;
+    width: 100vw;
+}
+
+#app > div {
+    margin-bottom: 12px;
+}
+
+.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 8px;
+    background-color: rgb(15, 15, 15);
+    color: rgb(175, 175, 175);
+    border-radius: 0px;
+}
+
+li {
+    margin: 0;
+    padding: 8px;
+}
+
+.is-input {
+    padding: 8px;
+    background-color: rgb(18, 18, 18);
+    color: rgb(175, 175, 175);
+    border: 1px solid rgb(48, 48, 48);
+    border-radius: 0px;
+}
+
+button {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 0px;
+    background-color: rgb(10, 80, 40);
+    color: rgb(205, 205, 205);
+    border: 1px solid transparent;
+}
+
+button.prompt {
+    background-color: rgb(15, 15, 15);
+    color: rgb(175, 175, 175);
+    border: 1px solid rgb(48, 48, 48);
+}
+
+button.selected {
+    background-color: rgb(10, 40, 80);
+    color: rgb(205, 205, 205);
+    border: 1px solid transparent;
+}
+
+button i {
+    margin-right: 4px;
+}
+
+@media only screen and (min-width: 767px) {
+    body, button {
+        font-size: 10pt;
+    }
+
+    #app {
+        padding: 24px;
+        width: 70vw;
+    }
+
+    #app > div {
+        margin-bottom: 24px;
+    }
+}
+/* Image Placeholder Styles */
+.image-placeholder {
+    margin: 20px auto; /* Center the image placeholder and provide margin */
+    text-align: center; /* Center text within the image placeholder */
+}
+
+#generated-image {
+    max-width: 100%; /* Make the image responsive within its container */
+    height: auto; /* Maintain the aspect ratio of the image */
+}
+
+/* Info-Bar Section Styles */
+.info-bar {
+    background-color: #1b1a1a; /* Adjusted background color */
+    color: white; /* Text color */
+    padding: 30px; /* Adjusted padding */
+    margin-top: 60px; /* Added margin to push info bar below the navigation bar */
+}
+
+.info-content {
+    max-width: 100%; /* Adjusted max width */
+    margin: 0 auto; /* Center the content */
+}
+
+.additional-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Adjusted margin for spacing */
+}
+
+.additional-info span {
+    background-color: #0e0e0e; /* Background color for spans */
+    padding: 5px 10px; /* Adjusted padding */
+    border-radius: 100px; /* Rounded corners */
+}
+
+/* Text Area Styles */
+.form {
+    max-width: 1024px; /* Adjusted max width */
+    margin: 20px auto; /* Center the form and provide margin */
+    background-color: #1f1f1f; /* Adjusted background color */
+    padding: 20px; /* Adjusted padding */
+    text-align: center; /* Center the text within the form */
+}
+
+#prompt {
+    width: 100%; /* Adjusted width */
+    height: auto;
+    padding: 20px; /* Adjusted padding */
+    margin-bottom: 15px; /* Adjusted margin for spacing */
+    background-color: #444; /* Adjusted background color */
+    color: white; /* Text color */
+    border: 1px solid #2b2b2b; /* Border color */
+    border-radius: 15px; /* Rounded corners */
+}
+
+.run-button {
+    margin-top: 20px;
+    border-radius: 100px;
+    width: 200px; /* Adjusted width */
+    padding: 20px; /* Adjusted padding */
+}
+
+/* Ensure consistent styling for the is-flex class */
+.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}

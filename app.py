@@ -5,6 +5,7 @@ from models.image.stabilityai import sdxl, stablediffusion
 from models.image.fofr import latent_consistency_model
 
 from models.video.lucataco import animatediff
+from models.video.anotherjesse import zeroscopev2xl
 
 from models.text.mistralai import mistral7
 from models.text.meta import llama70
@@ -62,6 +63,10 @@ def api_page():
         data = animatediff.animateDiff.create_vid(prompt)
         return jsonify(data)
     
+    elif model == "anotherjesse/zeroscope-v2-xl":
+        data = zeroscopev2xl.zeroScope.create_vid(prompt)
+        return jsonify(data)
+    
     else:
         return jsonify({"error": "error occurred"})
     
@@ -99,6 +104,9 @@ def generateImage_page(author, model):
     
     elif model == "animate-diff" and author == "lucataco":
        return render_template("video.html", data=Video.animateDiff, prompt=Video.prompts)
+    elif model == "zeroscope-v2-xl" and author == "anotherjesse":
+       return render_template("video.html", data=Video.zeroScope, prompt=Video.prompts)
+
    
     else:
         return "404"

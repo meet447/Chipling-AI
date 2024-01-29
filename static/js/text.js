@@ -13,7 +13,11 @@ function runModel() {
     var runButtons = document.getElementsByClassName("run-button");
     for (var i = 0; i < runButtons.length; i++) {
         runButtons[i].disabled = true;
+        console.log("Button disabled");
     }
+
+    var textPlaceholder = document.getElementById("generated-text-placeholder");
+    textPlaceholder.textContent = "please wait genrating response might take some time for server to boot up!";
 
     // Make the API request
     $.ajax({
@@ -33,6 +37,7 @@ function runModel() {
             for (var i = 0; i < runButtons.length; i++) {
                 runButtons[i].disabled = false;
             }
+            console.log("Button disabled");
         }
     });
 }
@@ -62,6 +67,8 @@ function checkForResult(id, runButtons) {
                     for (var i = 0; i < runButtons.length; i++) {
                         runButtons[i].disabled = false;
                     }
+                    console.log("Button enabled");
+
                 } else if (result.status === "failed") {
                     clearInterval(interval);
                     console.log("error failed");

@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text-to-Image Generative Model</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/image.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/image.js') }}"></script>
+    <style>
+        /* Your additional styles can be added here */
+        /* For example: body { background-color: #f0f0f0; } */
+    </style>
 </head>
-<body>
 
-    {% include 'navbar.html' %}
+
+{% include 'navbar.html' %}
 
     <!-- New Bar Section -->
-    <section class="info-bar">
+    <section class="info-bar" style="background: url({{ data.img }}) center/cover no-repeat;">
         <div class="info-content">
             <h1 id="title" name="models">{{ data.author }}/{{ data.model }}</h1>
             <p>{{ data.desc }}</p>
@@ -25,24 +30,27 @@
             </div>
         </div>
     </section>
+    
 
     <main>
         <!-- Form -->
         <form action="#" class="form">
             <textarea name="prompt" id="prompt" rows="1" placeholder="An astronaut riding a rainbow unicorn"></textarea>
+            <div>
+                <ul>
+                    <li>
+                        <h1>colors:</h1>
+                        <div class="is-flex">
+                            {% for color in prompt.colors %}
+                            <button class="prompt">{{ color }}</button>
+                            {% endfor %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
             <ul>
-                <h1>colors:</h1>
                 <li>
-                    <div class="is-flex">
-                        {% for color in prompt.colors %}
-                        <button class="prompt">{{ color }}</button>
-                        {% endfor %}
-                    </div>   
-                </li>
-            </ul>
-            <ul>
-                <h1>lighting:</h1>
-                <li>
+                    <h1>lighting:</h1>
                     <div class="is-flex">
                         {% for light in prompt.lighting %}
                         <button class="prompt">{{ light }}</button>
@@ -52,8 +60,8 @@
             </ul>
             <div cat="details">
                 <ul>
-                    <h1>details:</h1>
                     <li>
+                        <h1>details:</h1>
                         <div class="is-flex">
                             {% for detail in prompt.details %}
                             <button class="prompt">{{ detail }}</button>
@@ -64,8 +72,8 @@
             </div>
             <div cat="artists">
                 <ul>
-                    <h1>artists:</h1>
                     <li>
+                        <h1>artists:</h1>
                         <div class="is-flex">
                             {% for artist in prompt.artists %}
                             <button class="prompt">{{ artist }}</button>
@@ -82,7 +90,8 @@
         </div>
     </main>
 
-    {% include 'footer.html' %}
-
 </body>
+
+{% include 'footer.html' %}
+
 </html>

@@ -303,7 +303,7 @@ nav a:hover {
 /* Set a fixed width and height for the images in Section Eight */
 .flex-group-eight img {
   width: 800px;
-  height:250px;
+  height:400px;
   object-fit: cover;
 }
 
@@ -370,9 +370,4 @@ nav a:hover {
   margin: 0 auto;
   width: 7.5rem;
 }
-
-
-
-
-
 

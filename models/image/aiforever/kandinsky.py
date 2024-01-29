@@ -8,4 +8,4 @@ class kandisky:
     
     def get_image(id):
         return image.replicateAPI.get_image(id=id)
-        
+    

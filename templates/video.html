@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text-to-Image Generative Model</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/video.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/video.js') }}"></script>
@@ -14,9 +14,8 @@
     {% include 'navbar.html' %}
 
     
-
     <!-- New Bar Section -->
-    <section class="info-bar">
+    <section class="info-bar" style="background: url({{ data.img }}) center/cover no-repeat;">
         <div class="info-content">
             <h1 id="title" name="models">{{ data.author }}/{{ data.model }}</h1>
             <p>{{ data.desc }}</p>
@@ -27,6 +26,7 @@
             </div>
         </div>
     </section>
+    
 
     <main>
         <!-- Form -->

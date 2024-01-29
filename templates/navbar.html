@@ -1,16 +1,20 @@
 <!-- navbar.html -->
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navigation.css') }}">
 </head>
 <body>
-<header> 
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Docs</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="/explore">Models</a></li>
-        </ul>
-    </nav>
-</header> 
+    <header>
+        <h1 class="logo">Chipling</h1>
+        <input type="checkbox" class="nav-toggle" id="nav-toggle">
+        <nav>
+            <ul>
+                <li> <a href="/models">AI Models</a></li>
+                <li> <a href="">Documentation</a></li>
+                <li> <a href="">API</a></li>
+                <li> <a href="">Blog</a><li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
