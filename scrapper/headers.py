@@ -27,3 +27,18 @@ replicate_cookies = {
     'rl_group_trait': 'RudderEncrypt%3AU2FsdGVkX18GhfHfOQ%2F5lO%2BApbV7kuTD2jj3agrh0G0%3D',
     'rl_anonymous_id': 'RudderEncrypt%3AU2FsdGVkX19IPzQqYjJIKM7iR5suPYLUh87kvZAAf0HzfpdrIsh11Lj2aiDGYZv5eMQ9M3CzSO43WDoVd8xOWw%3D%3D',
 }
+
+prodia_headers = {
+    'authority': 'api.prodia.com',
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9,ja;q=0.8',
+    'origin': 'https://app.prodia.com',
+    'referer': 'https://app.prodia.com/',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+}

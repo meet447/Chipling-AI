@@ -33,6 +33,7 @@ function runModel() {
             prompt: prompt
         },
         success: function (data) {
+            console.log(data)
             checkForResult(data,runButtons);
         },
         error: function (error) {
@@ -56,6 +57,7 @@ function checkForResult(id) {
             url: currentDomain + "/api/response",
             data: { id: id },
             success: function (result) {
+                console.log(result)
                 if (result.status === "succeeded") {
                     clearInterval(interval);
                     displayResult(result.output);

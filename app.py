@@ -3,6 +3,7 @@ from pyrebase import pyrebase
 
 from models.models_route import get_model
 from models.image.stabilityai.sdxl import sdxl
+from models.image.anything.anythingv5 import anythingv5
 from models.modelsData import *
 from config import firebaseConfig
 from api.key import generate_api_key
@@ -134,9 +135,13 @@ def api_page():
 def response_page():
     id = request.args.get("id")
     
-    data = sdxl.get_image(id)
-    
-    return data
+    try:
+        data = sdxl.get_image(id)
+        return data
+    except:
+        data = anythingv5.get_image(id)
+        if data["status"] == "succeeded":
+            return {"status":"succeeded", "output":f"https://images.prodia.xyz/{data['job']}.png"}
 
 @app.route("/<author>/<model>")
 def generateImage_page(author, model):
@@ -151,6 +156,8 @@ def generateImage_page(author, model):
        return render_template("image.html", data=Image.kandinsky, prompt=Image.prompts)
     elif model == "latent-consistency-model" and author == "fofr":
        return render_template("image.html", data=Image.latentConsistency, prompt=Image.prompts)
+    elif model == "anythingv5" and author == "anything":
+       return render_template("image.html", data=Image.anythingv5, prompt=Image.prompts)
 
     #text models 
      
