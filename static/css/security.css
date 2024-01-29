@@ -42,7 +42,7 @@ body {
   padding: 8px;
   margin-bottom: 16px;
   box-sizing: border-box;
-  color: #fff; /* Set text color to white */
+  color: #000000; /* Set text color to white */
 }
 
 .login-container button {

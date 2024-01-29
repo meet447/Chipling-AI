@@ -12,11 +12,18 @@
         <input type="checkbox" class="nav-toggle" id="nav-toggle">
         <nav>
             <ul>
+                {% if session.user %}
+                <li> <a href="/logout">Logout</a></li>
+                {% endif %}
                 <li> <a href="/models">AI Models</a></li>
                 <li> <a href="">Documentation</a></li>
+                {% if session.user %}
+                <li> <a href="/profile">{{ session.user }}</a></li>
+                {% else %}
                 <li> <a href="/profile">Profile</a></li>
-                <li> <a href="">Blog</a><li>
-            </ul>
+                {% endif %}
+                <li> <a href="">Blog</a></li>            
+            </ul> 
         </nav>
         <label for="nav-toggle" class="nav-toggle-label">
             <span></span>
