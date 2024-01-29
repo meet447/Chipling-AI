@@ -142,6 +142,8 @@ def response_page():
         data = anythingv5.get_image(id)
         if data["status"] == "succeeded":
             return {"status":"succeeded", "output":f"https://images.prodia.xyz/{data['job']}.png"}
+        else:
+            return data
 
 @app.route("/<author>/<model>")
 def generateImage_page(author, model):
