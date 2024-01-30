@@ -166,6 +166,8 @@ def generateImage_page(author, model):
        return render_template("image.html", data=Image.latentConsistency, prompt=Image.prompts)
     elif model == "anythingv5" and author == "anything":
        return render_template("image.html", data=Image.anythingv5, prompt=Image.prompts)
+    elif model == "dreamshaper8" and author == "lykon":
+       return render_template("image.html", data=Image.dreamshaper8, prompt=Image.prompts)
 
     #text models 
      
@@ -182,10 +184,9 @@ def generateImage_page(author, model):
        return render_template("video.html", data=Video.animateDiff, prompt=Video.prompts)
     elif model == "zeroscope-v2-xl" and author == "anotherjesse":
        return render_template("video.html", data=Video.zeroScope, prompt=Video.prompts)
-
    
     else:
-        return "404"
+        return "404" + model + author
    
 #API ROUTES START HERE
 def check_key(api_key_to_check):
