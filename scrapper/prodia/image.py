@@ -4,16 +4,16 @@ from scrapper.headers import prodia_headers
 headers = prodia_headers
 
 class prodiaAPI:
-    def create_image(neg_prompt, prompt, model):
+    def create_image(neg_prompt, prompt, model, steps, cfg, seed):
         
         json_data = {
             'new': 'true',
             'prompt': prompt,
             'model': model,
             'negative_prompt': neg_prompt,
-            'steps': '20',
-            'cfg': '7',
-            'seed': '3605272979',
+            'steps': steps,
+            'cfg': cfg,
+            'seed': seed,
             'sampler': 'DPM++ 2M Karras',
             'aspect_ratio': 'landscape',
         }

@@ -31,7 +31,25 @@
     <main>
         <!-- Form -->
         <form action="#" class="form">
-            <textarea name="prompt" id="prompt" rows="1" placeholder="An astronaut riding a rainbow unicorn"></textarea>
+            <h1>Prompt:</h1>
+            <textarea name="prompt" id="prompt" rows="3" placeholder="An astronaut riding a rainbow unicorn"></textarea>
+            {% if data.neg %}
+            <h1>Negative Prompt:</h1>
+            <textarea name="prompt" id="neg_prompt" rows="3" placeholder="Add words you dont want to show up in your genrated image"></textarea>
+            <h1>CFG:</h1>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="12" value="7" class="slider" id="myCFG">
+                <p>CFG value: <span id="cfg">7</span></p>
+                <p>keep it 7-9 if you dont know what it does</p>
+            </div>
+            <h1>Seed:</h1>
+            <textarea name="prompt" id="seed_value" rows="1" placeholder="Add seed value for your generated image" pattern="\d+" title="Please enter only numbers">-1</textarea>
+            <p>Do not change if you don't know what it does</p>
+            <h1>Steps:</h1>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="25" value="20" class="slider" id="mySteps">
+                <p>Steps: <span id="steps">20</span></p>
+            </div>            {% endif %}
             <div>
                 <ul>
                     <li>

@@ -26,7 +26,7 @@ class Image:
     
     latentConsistency = {"author":"fofr", "model":"latent-consistency-model", "desc":"Super-fast, 0.6s per image. LCM with img2img, large batching and canny controlnet","github":"https://github.com/fofr/cog-lcm","runs":"357K","img":"https://latent-consistency-models.github.io/static/images/4Step_Image/dreamer_365_sample_1.png"}
     
-    anythingv5 = {"author":"anything", "model":"anythingv5", "desc":"Anything V5 is a popular choice among users for generating high-quality images from text prompts.","runs":"357K","img":"https://preview.redd.it/anything-v5-is-out-on-civitai-the-real-one-v0-1pawu0cpthqa1.png?width=1216&format=png&auto=webp&s=596f50ed2a102c2bb45a71d82787e63e0e427741"}
+    anythingv5 = {"author":"anything", "model":"anythingv5", "desc":"Anything V5 is a popular choice among users for generating high-quality images from text prompts.","runs":"357K","img":"https://preview.redd.it/anything-v5-is-out-on-civitai-the-real-one-v0-1pawu0cpthqa1.png?width=1216&format=png&auto=webp&s=596f50ed2a102c2bb45a71d82787e63e0e427741", "neg":"True"}
 
 class Text:
     llama70 = {"author":"meta", "model":"llama-2-70b-chat", "desc":"A 70 billion parameter language model from Meta, fine tuned for chat completions","github":"https://github.com/a16z-infra/cog-llama-template","runs":"4.3M","img":"https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1"}

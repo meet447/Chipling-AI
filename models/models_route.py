@@ -11,7 +11,7 @@ from models.text.meta import llama70, codellama
 
 from flask import jsonify
 
-def get_model(prompt, model):
+def get_model(prompt, model, neg_prompt=None, seed=None, cfg=None, steps=None):
     
     #test model
     
@@ -60,7 +60,7 @@ def get_model(prompt, model):
         return jsonify(data)
     
     elif model == "anything/anythingv5":
-        data = anythingv5.anythingv5.create_image(prompt=prompt, neg_prompt="")
+        data = anythingv5.anythingv5.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
         return jsonify(data)
     else:
         return jsonify({"error": "error occurred"})

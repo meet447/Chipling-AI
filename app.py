@@ -125,9 +125,15 @@ def models_page():
 @app.route("/api/prediction")
 def api_page():
     prompt = request.args.get("prompt")
+    neg_prompt = request.args.get("neg_prompt")
     model = request.args.get("model")
+    cfg = request.args.get("cfg")
+    seed = request.args.get("seed")
+    steps = request.args.get("steps")
     
-    data = get_model(prompt=prompt, model=model)
+    print({prompt, neg_prompt, model, cfg, seed, steps})
+    
+    data = get_model(prompt=prompt, model=model, neg_prompt=neg_prompt, cfg=cfg, seed=seed, steps=steps)
     
     return data
      
@@ -142,6 +148,8 @@ def response_page():
         data = anythingv5.get_image(id)
         if data["status"] == "succeeded":
             return {"status":"succeeded", "output":f"https://images.prodia.xyz/{data['job']}.png"}
+        else:
+            return data
 
 @app.route("/<author>/<model>")
 def generateImage_page(author, model):
