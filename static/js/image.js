@@ -1,48 +1,142 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Code executed after the DOM has fully loaded
-
-    // Getting references to HTML elements
     var slider = document.getElementById("myCFG");
     var output = document.getElementById("cfg");
     var steps_slider = document.getElementById("mySteps");
     var steps_output = document.getElementById("steps");
+    var seed_element = document.getElementById("seed_value");
 
     // Setting initial values for the sliders
-    output.innerHTML = slider.value;
-    steps_output.innerHTML = steps_slider.value;
-
+    if (output !== null){
+        output.innerHTML = slider ? slider.value : "";
+    }
+    if (steps_output !== null){
+        steps_output.innerHTML = steps_slider ? steps_slider.value : "";
+    }
     // Event listeners to update slider values in real-time
-    slider.oninput = function() {
-        output.innerHTML = this.value;
-        console.log(slider.value);
-    };
+    if (slider !== null) {
+        output.innerHTML = slider.value;
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+            console.log(slider.value);
+        };
+    
+    } else {
+        output = "Slider is null";
+    }
 
-    steps_slider.oninput = function() {
-        steps_output.innerHTML = this.value;
-        console.log(steps_slider.value);
-    };
+    if (steps_slider !== null){
+        steps_output.innerHTML = steps_slider.value
+        steps_slider.oninput = function() {
+            steps_output.innerHTML = this.value;
+            console.log(steps_slider.value);
+        };
+    }
+    else {
+        steps_output = "Slider is null";
+    }
+    
+    window.uploadPost = function() {
+        // Getting values from input elements
+        var prompt_element = document.getElementById("prompt");
+        var prompt = prompt_element ? prompt_element.value : "";
+
+        var seed_element = document.getElementById("seed_value");
+        var seed = seed_element ? seed_element.value : null;
+
+        var neg_prompt_element = document.getElementById("neg_prompt");
+        var neg_prompt = neg_prompt_element ? neg_prompt_element.value : null;
+
+        var steps_element = document.getElementById("mySteps");
+        var steps = steps_element ? steps_element.value : null;
+
+        var cfg_element = document.getElementById("myCFG");
+        var cfg = cfg_element ? cfg_element.value : null;
+
+        var imageElement = document.getElementById("generated-image");
+        var image = imageElement.src
+
+        var models = document.getElementById("title");
+        var modelText = models.textContent.toLowerCase();
+
+        
+        if (seed != null)
+        {
+            if (prompt.trim() === "") {
+                alert("Please enter a prompt before running the model.");
+                return;
+            }
+
+            if (seed.trim() === "") {
+                alert("Please enter a seed (-1 default) before running the model.");
+                return;
+            }
+
+            if (image.trim() === "") {
+                alert("Please Genrate a Image before uploading.");
+                return;
+            }
+        }
+
+
+        // Determine the current domain
+        var currentDomain = window.location.origin;
+
+        var requestData = {
+            model: modelText,
+            prompt: prompt,
+            neg_prompt: neg_prompt,
+            cfg:cfg,
+            steps:steps,
+            seed:seed,
+            image: image
+        };
+        
+        $.ajax({
+            type: "GET",
+            url: currentDomain + "/uploads",
+            data: requestData,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (error) {
+                console.error("Error uploading post :", error);
+            }
+        });
+    }
 
 
     window.runModel= function() {
-        // Getting user input values
+
+        document.getElementById("uploadButton").style.display = "none";
         var prompt = document.getElementById("prompt").value;
-        var seed = document.getElementById("seed_value").value;
+        var seed = seed_element ? seed_element.value : null;
+
+        // Getting user input values
+        var prompt_element = document.getElementById("prompt");
+        var prompt = prompt_element ? prompt_element.value : "";
+
+        var seed_element = document.getElementById("seed_value");
+        var seed = seed_element ? seed_element.value : "none";
+
         var neg_prompt_element = document.getElementById("neg_prompt");
         var neg_prompt = neg_prompt_element ? neg_prompt_element.value : null;
-        var steps_element = document.getElementById("mySteps").value;
-        var steps = steps_element ? steps_element : null;
-        var cfg_element = document.getElementById("myCFG").value;
-        var cfg = cfg_element ? cfg_element : null;
+
+        var steps_element = document.getElementById("mySteps");
+        var steps = steps_element ? steps_element.value : null;
+
+        var cfg_element = document.getElementById("myCFG");
+        var cfg = cfg_element ? cfg_element.value : null;
 
         // Validation for prompt and seed
         if (prompt.trim() === "") {
             alert("Please enter a prompt before running the model.");
             return;
         }
-
-        if (seed.trim() === "") {
-            alert("Please enter a seed (-1 default) before running the model.");
-            return;
+        if(seed != null){
+            if (seed.trim() === "") {
+                alert("Please enter a seed (-1 default) before running the model.");
+                return;
+            }
         }
 
         // Logging user input values
@@ -110,6 +204,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (result.status === "succeeded") {
                         clearInterval(interval);
                         displayResult(result.output);
+                        document.getElementById("uploadButton").style.display = "block";
                     }
                     else if (result.status === "failed"){
                         clearInterval(interval);

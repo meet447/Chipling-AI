@@ -103,6 +103,11 @@
         <div class="image-placeholder">
             <img id="generated-image" src={{ data.img }} alt="Loading...">
         </div>
+        {% if session.user  %}
+        <button id="uploadButton" type="button" class="upload-button" onclick="uploadPost()" style="display: none;">Upload it!</button>
+        {% else %}
+        <button type="button" class="upload-button" onclick="redirectToRegister()">Sign IN to make a post!</button>
+        {% endif %}
     </main>
 
 </body>

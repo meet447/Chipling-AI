@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+    <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+
+    <title>Document</title>
+</head>
+
+
+<body>
+    {% include "main/navbar.html" %}
+
+    <div class="image_gallery">
+        {% for key, item in data.items() %}
+        <img src="{{ item['image'] }}" onclick="showImage('{{ item['model'] }}', '{{ item['image'] }}', '{{ item['user'] }}', '{{ item['prompt'] }}', '{{ item['neg_prompt'] }}', '{{ item['cfg'] }}', '{{ item['steps'] }}', '{{ item['seed'] }}')"> 
+        {% endfor %}
+    </div>
+
+    <div id="expanded_img" class="single_image_display">
+        <span class="close" onclick="closeImage()">&times;</span>
+        <img class="image_content" id="image">
+        <div id="desc_box" class="description_box">
+            <h1 id="model"></h1>
+            <p id="user"></p>
+            <p id="prompt"></p>
+            <p id="neg_prompt"></p>
+            <p id="cfg"></p>
+            <p id="steps"></p>
+            <p id="seed"></p>
+        </div>
+    </div>
+
+    {% include "main/footer.html" %}
+</body>
+</html>

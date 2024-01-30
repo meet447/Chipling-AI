@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template, session, redirect
 from pyrebase import pyrebase
+import json
 
 from models.models_route import get_model
 from models.image.stabilityai.sdxl import sdxl
@@ -7,6 +8,7 @@ from models.image.anything.anythingv5 import anythingv5
 from models.modelsData import *
 from config import firebaseConfig
 from api.key import generate_api_key
+
 
 #import ends here
 
@@ -213,3 +215,56 @@ def request_api():
         get_model(prompt=prompt, model=model)
     else:
         return jsonify({"error": "invalid api key"})
+
+#User uploads
+
+@app.route("/uploads", methods=["GET"])
+def uploads():
+    
+    print("recived request")
+    
+    print(request.args)
+    
+    image = request.args.get("image")
+
+    prompt = request.args.get("prompt")
+
+    neg_prompt = request.args.get("neg_prompt")
+
+    cfg = request.args.get("cfg")
+
+    steps = request.args.get("steps")
+
+    seed = request.args.get("seed")
+
+    username = session["user"]
+    email = session["email"]
+
+    model = request.args.get("model")
+    
+    user_data = {
+                "image":image,
+                "email": email,
+                "user": username,
+                "prompt":prompt,
+                "neg_prompt":neg_prompt,
+                "cfg":cfg,
+                "steps":steps,
+                "seed":seed,
+                "model":model,
+            }
+        
+    key = generate_api_key()
+        
+    db.child('uploads').child(key).set(user_data)
+    
+    print("upload sucessfull")
+    
+    return jsonify("succesfull")
+
+@app.route("/gallery")
+def gallery_page():
+                  
+    data = db.child('uploads').get().val()
+
+    return render_template("gallery.html", data=data)
