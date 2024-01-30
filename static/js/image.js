@@ -107,7 +107,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.runModel= function() {
 
-        document.getElementById("uploadButton").style.display = "none";
+        if(document.getElementById("uploadButtom") !=  null)
+        {
+          document.getElementById("uploadButton").style.display = "none";
+        }        
         var prompt = document.getElementById("prompt").value;
         var seed = seed_element ? seed_element.value : null;
 
