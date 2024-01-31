@@ -3,7 +3,6 @@
 
 ## Run Locally
 
-Sure, I'll guide you through creating a Firebase project, obtaining the necessary credentials, and setting up your .env file.
 
 ### Step 1: Create a Firebase Project
 
