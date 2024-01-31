@@ -62,15 +62,18 @@ class Video:
     animateDiff = {"author":"lucataco", "model":"animate-diff", "desc":"Animate Your Personalized Text-to-Image Diffusion Models","github":"https://github.com/lucataco/cog-animatediff","runs":"130.8K","img":"https://s13.gifyu.com/images/SCbiG.gif"}
     
     zeroScope = {"author":"anotherjesse", "model":"zeroscope-v2-xl", "desc":"Zeroscope V2 XL & 576w","github":"","runs":"192.5K","img":"https://assets-global.website-files.com/624ac40503a527cf47af4192/64a6ab8e435a254313318bfd_videoexamples.gif"}
+    
+    stablevidDiff = {"author":"stability-ai", "model":"stable-video-diffusion", "desc":"Animate a Image into Video","github":"","runs":"192.5K","img":"https://tjzk.replicate.delivery/models_models_cover_image/923695cb-4735-439c-868b-79620bcacb32/svd.gif", "no_prompt":"True"}
+
 
     
 class Website:
-    trending_models = [Image.dreamshaper8, Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70, Text.codellama13b]
+    trending_models = [Image.dreamshaper8, Video.stablevidDiff, Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70, Text.codellama13b]
     
-    new_models = [Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency, Video.zeroScope]
+    new_models = [Video.stablevidDiff, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency, Video.zeroScope]
     
     text_models = [Text.llama70, Text.mistral7, Text.codellama13b]
     
     image_models = [Image.absoluteReality, Image.dreamshaper8, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency, Image.anythingv5]
     
-    video_models = [Video.animateDiff, Video.zeroScope]
+    video_models = [Video.stablevidDiff, Video.animateDiff, Video.zeroScope]

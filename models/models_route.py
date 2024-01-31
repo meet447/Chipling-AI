@@ -6,6 +6,7 @@ from models.image.lykon import dreamshaper8, absolutereality
 
 from models.video.lucataco import animatediff
 from models.video.anotherjesse import zeroscopev2xl
+from models.video.stabilityai import stable_video_diffusion
 
 from models.text.mistralai import mistral7
 from models.text.meta import llama70, codellama
@@ -70,6 +71,10 @@ def get_model(prompt, model, neg_prompt=None, seed=None, cfg=None, steps=None):
     
     elif model == "lykon/absolutereality":
         data = absolutereality.absoluteReality.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
+        return jsonify(data)
+    
+    elif model == "stability-ai/stable-video-diffusion":
+        data = stable_video_diffusion.stablevideoDiff.create_vid(prompt)
         return jsonify(data)
     
     else:

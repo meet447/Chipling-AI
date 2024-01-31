@@ -188,7 +188,8 @@ def generateImage_page(author, model):
        return render_template("video.html", data=Video.animateDiff, prompt=Video.prompts)
     elif model == "zeroscope-v2-xl" and author == "anotherjesse":
        return render_template("video.html", data=Video.zeroScope, prompt=Video.prompts)
-   
+    elif model == "stable-video-diffusion" and author == "stability-ai":
+       return render_template("video.html", data=Video.stablevidDiff, prompt="")
     else:
         return "404" + model + author
    

@@ -26,12 +26,17 @@
             </div>
         </div>
     </section>
-    
-
     <main>
         <!-- Form -->
         <form action="#" class="form">
+            {% if data.no_prompt  %}
+            <textarea name="prompt" id="prompt" rows="1" placeholder="Enter an Image Url"></textarea>
+            {% else %}
             <textarea name="prompt" id="prompt" rows="1" placeholder="An astronaut riding a rainbow unicorn"></textarea>
+            {% endif %}
+            {% if data.no_prompt  %}
+            <p><Enter image url only</p>
+            {% else %}
             <ul>
                 <div cat="details">
                     <ul>
@@ -76,6 +81,7 @@
                     </li>
                 </ul>
             </div>
+            {% endif %}
             <button type="button" class="run-button" onclick="runModel()">Run</button>
         </form>
 
