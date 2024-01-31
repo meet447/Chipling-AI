@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>   
-
 <body>
     <header>
         <h1 class="logo">Chipling</h1>
@@ -51,7 +50,7 @@
             {% endfor %} 
         </div>
     </section>
-
+    <h1>Image Models:</h1>
     <section class="section-eight">
         <div class="flex-group-eight">
             {% for img in image %}
@@ -64,7 +63,6 @@
             {% endfor %} 
         </div>
     </section>
-    
     <h1>Text Models:</h1>
     <section class="section-eight">
         <div class="flex-group-eight">
@@ -77,10 +75,7 @@
             </div>
             {% endfor %} 
         </div>
-    </section>
-    <h1>Image Models:</h1>
-  
-    
+    </section>  
     <h1>Video Models:</h1>
     <section class="section-eight">
         <div class="flex-group-eight">
@@ -94,14 +89,9 @@
             {% endfor %} 
         </div>
     </section>
-    
-    
-    <!-- Section Nine -->
-    
     <section class="section-ten">
         <footer>
             <p>&copy; 2024 Chipling AI. All rights reserved.</p>
         </footer>
     </section>
-
 </body>

@@ -4,15 +4,6 @@ from models.image.fofr import latent_consistency_model
 from models.image.anything import anythingv5
 from models.image.lykon import dreamshaper8, absolutereality
 
-from models.video.lucataco import animatediff
-from models.video.anotherjesse import zeroscopev2xl
-from models.video.stabilityai import stable_video_diffusion
-
-from models.text.mistralai import mistral7
-from models.text.meta import llama70, codellama
-
-from flask import jsonify
-
 def get_playground(prompt, neg_prompt=None, seed=None, cfg=None, steps=None):
     # Model 1
     model1_name = "stability-ai/sdxl"
@@ -21,7 +12,7 @@ def get_playground(prompt, neg_prompt=None, seed=None, cfg=None, steps=None):
 
     # Model 2
     model2_name = "ai-forever/kandinsky-2.2"
-    data2 = kandinsky.kandinsky.create_image(prompt)
+    data2 = kandinsky.kandisky.create_image(prompt)
     result2 = {"model": model2_name, "data": data2}
 
     # Model 3
@@ -52,5 +43,5 @@ def get_playground(prompt, neg_prompt=None, seed=None, cfg=None, steps=None):
 
     # Return all results
     all_results = [result1, result2, result3, result4, result10, result11, result12]
-    return jsonify(all_results)
+    return all_results
  

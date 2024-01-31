@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, render_template, session, redirect
 from pyrebase import pyrebase
-import json
 
 from models.models_route import get_model
 from models.image.stabilityai.sdxl import sdxl
@@ -9,12 +8,13 @@ from models.modelsData import *
 from config import firebaseConfig
 from api.key import generate_api_key
 
-
 #import ends here
 
 app = Flask(__name__)
 
 app.secret_key = "test123"
+
+#firebase initialise
 
 firebase = pyrebase.initialize_app(config=firebaseConfig)
 auth = firebase.auth()
@@ -132,9 +132,7 @@ def api_page():
     cfg = request.args.get("cfg")
     seed = request.args.get("seed")
     steps = request.args.get("steps")
-    
-    print({prompt, neg_prompt, model, cfg, seed, steps})
-    
+        
     data = get_model(prompt=prompt, model=model, neg_prompt=neg_prompt, cfg=cfg, seed=seed, steps=steps)
     
     return data
@@ -208,14 +206,18 @@ def check_key(api_key_to_check):
 
 @app.route("/api/request")
 def request_api():
-    prompt = request.args.get("prompt")
-    model = request.args.get("model")
     key = request.args.get("key")
     
-    #image models
-    
+    prompt = request.args.get("prompt")
+    neg_prompt = request.args.get("neg_prompt")
+    model = request.args.get("model")
+    cfg = request.args.get("cfg")
+    seed = request.args.get("seed")
+    steps = request.args.get("steps")
+        
     if check_key(key):
-        get_model(prompt=prompt, model=model)
+        data = get_model(prompt=prompt, model=model, neg_prompt=neg_prompt, cfg=cfg, seed=seed, steps=steps)    
+        return jsonify(data)
     else:
         return jsonify({"error": "invalid api key"})
 
@@ -271,3 +273,5 @@ def gallery_page():
     data = db.child('uploads').get().val()
 
     return render_template("gallery.html", data=data)
+
+
