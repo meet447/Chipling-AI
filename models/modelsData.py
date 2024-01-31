@@ -30,7 +30,9 @@ class Image:
     
     dreamshaper8 = {"author":"lykon", "model":"dreamshaper8", "desc":"Dreamshaper is one of the best models trained for image genration.","runs":"357K","img":"https://assets.st-note.com/production/uploads/images/113620660/rectangle_large_type_2_1787502e90ce95b07850bb502cbbffca.png?width=800", "neg":"True"}
 
-    
+    absoluteReality = {"author":"lykon", "model":"absolutereality", "desc":"Create Realistic Art with absolute Reality","runs":"-", "img":"https://ts2.pl/wp-content/uploads/2023/07/mfrack_realistic_photo_of_future_AI_10d24595-30f7-4765-af70-d9f9e8068a6a-1024x574.jpeg","neg":"True"}
+
+
 class Text:
     llama70 = {"author":"meta", "model":"llama-2-70b-chat", "desc":"A 70 billion parameter language model from Meta, fine tuned for chat completions","github":"https://github.com/a16z-infra/cog-llama-template","runs":"4.3M","img":"https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1"}
     
@@ -65,10 +67,10 @@ class Video:
 class Website:
     trending_models = [Image.dreamshaper8, Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70, Text.codellama13b]
     
-    new_models = [Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency, Video.zeroScope]
+    new_models = [Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency, Video.zeroScope]
     
     text_models = [Text.llama70, Text.mistral7, Text.codellama13b]
     
-    image_models = [Image.dreamshaper8, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency, Image.anythingv5]
+    image_models = [Image.absoluteReality, Image.dreamshaper8, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency, Image.anythingv5]
     
     video_models = [Video.animateDiff, Video.zeroScope]

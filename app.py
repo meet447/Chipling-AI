@@ -170,6 +170,8 @@ def generateImage_page(author, model):
        return render_template("image.html", data=Image.anythingv5, prompt=Image.prompts)
     elif model == "dreamshaper8" and author == "lykon":
        return render_template("image.html", data=Image.dreamshaper8, prompt=Image.prompts)
+    elif model == "absolutereality" and author == "lykon":
+       return render_template("image.html", data=Image.absoluteReality, prompt=Image.prompts)
 
     #text models 
      

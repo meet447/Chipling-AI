@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     window.uploadPost = function() {
         // Getting values from input elements
+
         var prompt_element = document.getElementById("prompt");
         var prompt = prompt_element ? prompt_element.value : "";
 
@@ -97,6 +98,11 @@ document.addEventListener("DOMContentLoaded", function() {
             data: requestData,
             success: function (data) {
                 console.log(data);
+                if( document.getElementById("uploadButton"))
+                {
+                  document.getElementById("uploadButton").style.display = "none";
+                }
+                
             },
             error: function (error) {
                 console.error("Error uploading post :", error);
@@ -107,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.runModel= function() {
 
-        if(document.getElementById("uploadButtom") !=  null)
+        if(document.getElementById("uploadButtom") != null)
         {
           document.getElementById("uploadButton").style.display = "none";
         }        
@@ -207,7 +213,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (result.status === "succeeded") {
                         clearInterval(interval);
                         displayResult(result.output);
+                        if( document.getElementById("uploadButton"))
+                        {
                         document.getElementById("uploadButton").style.display = "block";
+                        }
                     }
                     else if (result.status === "failed"){
                         clearInterval(interval);

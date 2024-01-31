@@ -2,7 +2,7 @@ from models.image.aiforever import kandinsky
 from models.image.stabilityai import sdxl, stablediffusion
 from models.image.fofr import latent_consistency_model
 from models.image.anything import anythingv5
-from models.image.lykon import dreamshaper8
+from models.image.lykon import dreamshaper8, absolutereality
 
 from models.video.lucataco import animatediff
 from models.video.anotherjesse import zeroscopev2xl
@@ -66,6 +66,10 @@ def get_model(prompt, model, neg_prompt=None, seed=None, cfg=None, steps=None):
     
     elif model == "lykon/dreamshaper8":
         data = dreamshaper8.dreamshaper.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
+        return jsonify(data)
+    
+    elif model == "lykon/absolutereality":
+        data = absolutereality.absoluteReality.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
         return jsonify(data)
     
     else:
