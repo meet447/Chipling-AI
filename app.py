@@ -193,27 +193,43 @@ def generateImage_page(author, model):
    
 #API ROUTES START HERE
 def check_key(api_key_to_check):
-    data = db.child('users').get().val()
-
-    print(data)  # Optional: Print the data for debugging purposes
-
-    # Check if the provided API key exists in any of the user entries
+    data = db.child('users').get().val()    
     for user_id, user_data in data.items():
         if 'api_key' in user_data and user_data['api_key'] == api_key_to_check:
             return True
-    
     return False
 
-@app.route("/api/request")
+@app.route("/api/request", methods=["POST"])
 def request_api():
     key = request.args.get("key")
+    print(key)
     
     prompt = request.args.get("prompt")
+    if prompt == None or "":
+        return jsonify({"error": "please enter prompt"})
+        
     neg_prompt = request.args.get("neg_prompt")
+    if neg_prompt == None:
+        neg_prompt == ""
+
     model = request.args.get("model")
+    if model == None or "":
+        return jsonify({"error": "please enter a proper model"})
+    
     cfg = request.args.get("cfg")
+    if cfg == None:
+        cfg == "7"
+        
     seed = request.args.get("seed")
+    if seed == None:
+        seed == "-1"
+        
     steps = request.args.get("steps")
+    if steps == None:
+        steps == "20"
+        
+    chk = check_key(key)
+    print(chk)
         
     if check_key(key):
         data = get_model(prompt=prompt, model=model, neg_prompt=neg_prompt, cfg=cfg, seed=seed, steps=steps)    
@@ -274,4 +290,8 @@ def gallery_page():
 
     return render_template("gallery.html", data=data)
 
-
+#Documentation
+@app.route("/docs")
+def api_docs():
+    data = "work in progress"
+    return data
