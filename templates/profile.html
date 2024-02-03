@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/text.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/text.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864078994533800"
     crossorigin="anonymous"></script></head>
@@ -16,11 +19,34 @@
     <main>
         <div class="text-placeholder" id="generated-text-placeholder">
            <h1>{{ session.user }}<h1>
-           <h2>{{ session.email}}</h2>
-
-           <h1>Get Api Here:<h1>
+           <h1>Email:<h1>
+          {{ session.email}}
+           <h1>Get Api Key:<h1>
            <h1> {{ session.api_key }}<h1>
         </div>
+        <h1>Saved Posts</h1>
+
+        <div class="image_gallery">
+            {% for item  in data.values() %}
+            <img src="{{ item['image'] }}" onclick="showImage('{{ item['model'] }}', '{{ item['image'] }}', '{{ item['user'] }}', '{{ item['prompt'] }}', '{{ item['neg_prompt'] }}', '{{ item['cfg'] }}', '{{ item['steps'] }}', '{{ item['seed'] }}')"> 
+            {% endfor %}
+        </div>
+
+        
+        <div id="expanded_img" class="single_image_display">
+            <span class="close" onclick="closeImage()">&times;</span>
+            <img class="image_content" id="image">
+            <div id="desc_box" class="description_box">
+                <h1 id="model"></h1>
+                <p id="user"></p>
+                <p id="prompt"></p>
+                <p id="neg_prompt"></p>
+                <p id="cfg"></p>
+                <p id="steps"></p>
+                <p id="seed"></p>
+            </div>
+        </div>
+        
     </main>
 
     {% include 'main/footer.html' %}

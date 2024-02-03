@@ -123,7 +123,9 @@ def logout():
 @app.route("/profile")
 def profile(): 
     if 'user' in session:
-        return render_template("profile.html")
+        api_key = session["api_key"]
+        data = db.child('profile').child(api_key).get().val()
+        return render_template("profile.html", data=data)
     else:
         return render_template("register.html")
 
@@ -308,6 +310,51 @@ def uploads():
     
     return jsonify("succesfull")
 
+
+@app.route("/uploads_profile", methods=["GET"])
+def uploads_private():
+            
+    image = request.args.get("image")
+
+    prompt = request.args.get("prompt")
+
+    neg_prompt = request.args.get("neg_prompt")
+
+    cfg = request.args.get("cfg")
+
+    steps = request.args.get("steps")
+
+    seed = request.args.get("seed")
+
+    username = session["user"]
+    
+    email = session["email"]
+
+    model = request.args.get("model")
+        
+    api_key = session["api_key"]
+
+    user_data = {
+                "image":image,
+                "email": email,
+                "user": username,
+                "prompt":prompt,
+                "neg_prompt":neg_prompt,
+                "cfg":cfg,
+                "steps":steps,
+                "seed":seed,
+                "model":model,
+            }
+        
+    key = generate_api_key()
+        
+    db.child('profile').child(api_key).child(key).set(user_data)
+    
+    print("upload sucessfull")
+    
+    return jsonify("succesfull")
+
+
 @app.route("/gallery")
 def gallery_page():
                   
@@ -318,6 +365,4 @@ def gallery_page():
 #Documentation
 @app.route("/docs")
 def api_docs():
-    with open("readme.md", "r") as file:
-        data = file.read()
-    return render_template("docs.html", data=data)
+    return render_template("docs.html")

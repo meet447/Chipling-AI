@@ -107,9 +107,10 @@
             <img id="generated-image" src={{ data.img }} alt="Loading...">
         </div>
         {% if session.user  %}
-        <button id="uploadButton" type="button" class="upload-button" onclick="uploadPost()" style="display: none;">Upload it!</button>
+        <button id="uploadButton" type="button" class="upload-button" onclick="uploadPost()" style="display: none;">Upload it to public gallery!</button>
+        <button id="uploadprofileButton" type="button" class="upload-button" onclick="uploadProfile()" style="display: none;">Save to profile gallery!</button>
         {% else %}
-        <button type="button" class="upload-button" onclick="redirectToRegister()">Sign IN to make a post!</button>
+        <button type="button" class="upload-button" onclick="redirectToRegister()">Sign IN to make a post! or save to profile</button>
         {% endif %}
     </main>
 

@@ -109,6 +109,81 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+    window.uploadProfile = function() {
+        // Getting values from input elements
+
+        var prompt_element = document.getElementById("prompt");
+        var prompt = prompt_element ? prompt_element.value : "";
+
+        var seed_element = document.getElementById("seed_value");
+        var seed = seed_element ? seed_element.value : null;
+
+        var neg_prompt_element = document.getElementById("neg_prompt");
+        var neg_prompt = neg_prompt_element ? neg_prompt_element.value : null;
+
+        var steps_element = document.getElementById("mySteps");
+        var steps = steps_element ? steps_element.value : null;
+
+        var cfg_element = document.getElementById("myCFG");
+        var cfg = cfg_element ? cfg_element.value : null;
+
+        var imageElement = document.getElementById("generated-image");
+        var image = imageElement.src
+
+        var models = document.getElementById("title");
+        var modelText = models.textContent.toLowerCase();
+
+        
+        if (seed != null)
+        {
+            if (prompt.trim() === "") {
+                alert("Please enter a prompt before running the model.");
+                return;
+            }
+
+            if (seed.trim() === "") {
+                alert("Please enter a seed (-1 default) before running the model.");
+                return;
+            }
+
+            if (image.trim() === "") {
+                alert("Please Genrate a Image before uploading.");
+                return;
+            }
+        }
+
+
+        // Determine the current domain
+        var currentDomain = window.location.origin;
+
+        var requestData = {
+            model: modelText,
+            prompt: prompt,
+            neg_prompt: neg_prompt,
+            cfg:cfg,
+            steps:steps,
+            seed:seed,
+            image: image
+        };
+        
+        $.ajax({
+            type: "GET",
+            url: currentDomain + "/uploads_profile",
+            data: requestData,
+            success: function (data) {
+                console.log(data);
+                if( document.getElementById("uploadprofileButton"))
+                {
+                  document.getElementById("uploadprofileButton").style.display = "none";
+                }
+                
+            },
+            error: function (error) {
+                console.error("Error uploading post :", error);
+            }
+        });
+    }
+
 
 
     window.runModel= function() {
@@ -116,7 +191,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if(document.getElementById("uploadButtom") != null)
         {
           document.getElementById("uploadButton").style.display = "none";
-        }        
+        }
+        if(document.getElementById("uploadprofileButton") != null)
+        {
+          document.getElementById("uploadprofileButton").style.display = "none";
+        }            
         var prompt = document.getElementById("prompt").value;
         var seed = seed_element ? seed_element.value : null;
 
@@ -216,6 +295,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         if( document.getElementById("uploadButton"))
                         {
                         document.getElementById("uploadButton").style.display = "block";
+                        }
+                        if( document.getElementById("uploadprofileButton"))
+                        {
+                        document.getElementById("uploadprofileButton").style.display = "block";
                         }
                     }
                     else if (result.status === "failed"){
