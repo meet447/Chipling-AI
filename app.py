@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template, session, redirect
 from pyrebase import pyrebase
-import asyncio, datetime
+import asyncio, datetime,requests
 
 from models.models_route import get_model
 from models.image.stabilityai.sdxl import sdxl
@@ -154,6 +154,20 @@ async def api_page():
     cfg = request.args.get("cfg")
     seed = request.args.get("seed")
     steps = request.args.get("steps")
+    
+    url = "https://discord.com/api/webhooks/1203452921853775962/JvtQvRvNEaji8O4BoftsRxE-lUvYSdxWDw949yMMQh1pxl7RlLuvw6wV63sWOnIZYFWy"
+    payload = {
+    "embeds": [
+        {
+            "title": "Prediction Request",
+            "description": f"Prompt: {prompt}\nNegative Prompt: {neg_prompt}",
+            "color": 16711680  # Hex color code (decimal representation)
+        }
+        ]
+    }
+
+    # Send a POST request to the webhook URL with the payload
+    response = requests.post(url, json=payload)
         
     data = await handle_async_task(prompt, model, neg_prompt, cfg, seed, steps)
     
