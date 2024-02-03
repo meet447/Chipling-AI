@@ -132,11 +132,17 @@ def profile():
 def models_page():
     return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models)
 
-@app.route("/search")
-def search_page():
-    search_data  = {Text, Video, Image}
-    query = request.args.get('query', default='', type=str)
-    return search_data
+@app.route("/search/<query>")
+def search_page(query):
+    search_data = Website.text_models + Website.image_models + Website.video_models
+    matching_models = [model for model in search_data if query.lower() in model["desc"].lower()]
+
+    if matching_models:
+        response = {"status": "found", "results": matching_models}
+    else:
+        response = {"status": "not found"}
+
+    return render_template("search.html", data=response)
 
 @app.route("/api/prediction")
 async def api_page():
@@ -151,13 +157,11 @@ async def api_page():
     
     return data
 
-    
 async def handle_async_task(prompt, model, neg_prompt, cfg, seed, steps):
     await asyncio.sleep(2)
     data = get_model(prompt=prompt, model=model, neg_prompt=neg_prompt, cfg=cfg, seed=seed, steps=steps)
     return data
-
-     
+  
 @app.route("/api/response")
 def response_page():
     id = request.args.get("id")

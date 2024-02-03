@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore</title>
+    <title>Search</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
@@ -36,60 +36,26 @@
         <form class="search-container">
             <input type="text" id="searchInput" placeholder="search for a model here">
           </form>
-    </section> 
+    </section>
+      
+    {% if data.status == "found" %}
+    <h1>Results:</h1>
+    <section class="section-eight">
+        <div class="flex-group-eight">
+            {% for img in data.results %}
+                <div>
+                    <img src="{{ img.img }}">
+                    <h4>{{ img.author }}/{{ img.model }}</h4>
+                    <p>{{ img.desc }}</p>
+                    <p><a href="{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% elif data.status == "not found" %}
+        <h1>No Results Found</h1>
+    {% endif %}
 
-    <h1>New Models:</h1>
-    <section class="section-eight">
-        <div class="flex-group-eight">
-            {% for img in new %}
-            <div>
-                <img src= {{ img.img }}>
-                <h4>{{ img.author }}/{{ img.model }}</h4>
-                <p>{{ img.desc }}</p>
-                <p><a href="{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
-            </div>
-            {% endfor %} 
-        </div>
-    </section>
-    <h1>Image Models:</h1>
-    <section class="section-eight">
-        <div class="flex-group-eight">
-            {% for img in image %}
-            <div>
-                <img src= {{ img.img }}>
-                <h4>{{ img.author }}/{{ img.model }}</h4>
-                <p>{{ img.desc }}</p>
-                <p><a href="{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
-            </div>
-            {% endfor %} 
-        </div>
-    </section>
-    <h1>Text Models:</h1>
-    <section class="section-eight">
-        <div class="flex-group-eight">
-            {% for img in text %}
-            <div>
-                <img src= {{ img.img }}>
-                <h4>{{ img.author }}/{{ img.model }}</h4>
-                <p>{{ img.desc }}</p>
-                <p><a href="{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
-            </div>
-            {% endfor %} 
-        </div>
-    </section>  
-    <h1>Video Models:</h1>
-    <section class="section-eight">
-        <div class="flex-group-eight">
-            {% for img in video %}
-            <div>
-                <img src= {{ img.img }}>
-                <h4>{{ img.author }}/{{ img.model }}</h4>
-                <p>{{ img.desc }}</p>
-                <p><a href="{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
-            </div>
-            {% endfor %} 
-        </div>
-    </section>
     <section class="section-ten">
         <footer>
             <p>&copy; 2024 Chipling AI. All rights reserved.</p>
@@ -97,8 +63,8 @@
     </section>
 </body>
 <script>
-     // Wait for the document to be ready
-     $(document).ready(function() {
+    // Wait for the document to be ready
+    $(document).ready(function() {
         // Capture the submit event on the search form
         $('.search-container').submit(function(event) {
             // Prevent the default form submission
@@ -115,5 +81,4 @@
         });
     });
 </script>
-
 

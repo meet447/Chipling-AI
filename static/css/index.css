@@ -390,3 +390,49 @@ nav a:hover {
   margin: 0 auto;
   width: 7.5rem;
 }
+
+/* Section Search */
+
+.search-container {
+  width: 100%;
+  max-width: 600px; /* Set a maximum width to the container */
+  margin: 0 auto;
+}
+
+input#searchInput {
+  width: 100%;
+  height: 45px;
+  padding: 0 20px;
+  font-size: 1rem;
+  border: 1px solid #D0CFCE;
+  outline: none;
+  
+  &:focus {
+    border: 1px solid #008ABF;
+    transition: 0.35s ease;
+    color: #008ABF;
+
+    &::-webkit-input-placeholder {
+      transition: opacity 0.45s ease;
+      opacity: 0;
+    }
+    &::-moz-placeholder {
+      transition: opacity 0.45s ease;
+      opacity: 0;
+    }
+    &:-ms-placeholder {
+      transition: opacity 0.45s ease;
+      opacity: 0;
+    }
+  }
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 600px) {
+  .search-container {
+    max-width: 100%; /* Set the maximum width to 100% for smaller screens */
+  }
+}
+
+
+
