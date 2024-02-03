@@ -89,5 +89,5 @@ function checkForResult(id, runButtons) {
                 // ... (your existing error handling code) ...
             }
         });
-    }, 3000);
+    }, 2000);
 }

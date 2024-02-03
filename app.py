@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template, session, redirect
 from pyrebase import pyrebase
+import asyncio, datetime
 
 from models.models_route import get_model
 from models.image.stabilityai.sdxl import sdxl
@@ -14,6 +15,8 @@ app = Flask(__name__)
 
 app.secret_key = "test123"
 
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=5)
+
 #firebase initialise
 
 firebase = pyrebase.initialize_app(config=firebaseConfig)
@@ -21,6 +24,11 @@ auth = firebase.auth()
 db = firebase.database()
 
 #routes start here
+
+@app.before_request
+def before_request():
+    session.permanent = True
+    app.permanent_session_lifetime = datetime.timedelta(days=5)
 
 @app.route("/")
 def index_page():
@@ -124,8 +132,14 @@ def profile():
 def models_page():
     return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models)
 
+@app.route("/search")
+def search_page():
+    search_data  = {Text, Video, Image}
+    query = request.args.get('query', default='', type=str)
+    return search_data
+
 @app.route("/api/prediction")
-def api_page():
+async def api_page():
     prompt = request.args.get("prompt")
     neg_prompt = request.args.get("neg_prompt")
     model = request.args.get("model")
@@ -133,9 +147,16 @@ def api_page():
     seed = request.args.get("seed")
     steps = request.args.get("steps")
         
-    data = get_model(prompt=prompt, model=model, neg_prompt=neg_prompt, cfg=cfg, seed=seed, steps=steps)
+    data = await handle_async_task(prompt, model, neg_prompt, cfg, seed, steps)
     
     return data
+
+    
+async def handle_async_task(prompt, model, neg_prompt, cfg, seed, steps):
+    await asyncio.sleep(2)
+    data = get_model(prompt=prompt, model=model, neg_prompt=neg_prompt, cfg=cfg, seed=seed, steps=steps)
+    return data
+
      
 @app.route("/api/response")
 def response_page():

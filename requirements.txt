@@ -1,4 +1,4 @@
-Flask==3.0.1
+Flask[async]
+Pyrebase4
 python-dotenv==1.0.1
 Requests
-Pyrebase4

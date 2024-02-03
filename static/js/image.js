@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     imageElement.src = errorGif;
                 }
             });
-        }, 3000);
+        }, 2000);
     }
 
     function displayResult(imageUrl) {

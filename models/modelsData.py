@@ -77,3 +77,4 @@ class Website:
     image_models = [Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
     
     video_models = [Video.stablevidDiff, Video.animateDiff, Video.zeroScope]
+
