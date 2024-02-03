@@ -38,8 +38,8 @@ header {
 }
 
 .logo {
-  font-size: 1.25rem;
-  margin: 1rem;
+  font-size: 1.8rem;
+  margin: 1.3rem;
   text-transform: uppercase;
   color: white; /* Set your desired text color */
   text-decoration: none; /* Remove underline */
@@ -125,6 +125,13 @@ nav a:hover {
 @media (min-width: 900px) {
   .nav-toggle-label {
     display: none;
+  }
+  .logo {
+    font-size: 1.8rem;
+    margin: 1.3rem;
+    text-transform: uppercase;
+    color: white; /* Set your desired text color */
+    text-decoration: none; /* Remove underline */
   }
   
   header {

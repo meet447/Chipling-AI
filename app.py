@@ -13,7 +13,7 @@ from api.key import generate_api_key
 
 app = Flask(__name__)
 
-app.secret_key = "test123"
+app.secret_key = "sessionnew1111"
 
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=5)
 
