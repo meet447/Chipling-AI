@@ -12,29 +12,30 @@
 
 <body>
     <header>
-        <h1 class="logo">Chipling</h1>
+        <a href="/" class="logo">Chipling</a>
         <input type="checkbox" class="nav-toggle" id="nav-toggle">
         <nav>
             <ul>
                 {% if session.user %}
-                <li> <a href="/logout">Logout</a></li>
+                <li><a href="/logout">Logout</a></li>
                 {% else %}
-                <li> <a href="/login">Login</a></li>
+                <li><a href="/login">Login</a></li>
                 {% endif %}
-                <li> <a href="/models">AI Models</a></li>
-                <li> <a href="">Documentation</a></li>
+                <li><a href="/models">AI Models</a></li>
+                <li><a href="/docs">Api Docs</a></li>
                 {% if session.user %}
-                <li> <a href="/profile">{{ session.user }}</a></li>
+                <li><a href="/profile">{{ session.user }}</a></li>
                 {% else %}
-                <li> <a href="/profile">Profile</a></li>
+                <li><a href="/profile">Profile</a></li>
                 {% endif %}
-                <li> <a href="/gallery">Gallery</a></li>
+                <li><a href="/gallery">Gallery</a></li>
             </ul> 
         </nav>
         <label for="nav-toggle" class="nav-toggle-label">
             <span></span>
         </label>
     </header>
+    
     
     <!-- Section One -->
     

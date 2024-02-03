@@ -41,6 +41,8 @@ header {
   font-size: 1.25rem;
   margin: 1rem;
   text-transform: uppercase;
+  color: white; /* Set your desired text color */
+  text-decoration: none; /* Remove underline */
 }
 
 nav {

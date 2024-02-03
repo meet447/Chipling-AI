@@ -318,5 +318,6 @@ def gallery_page():
 #Documentation
 @app.route("/docs")
 def api_docs():
-    data = "work in progress"
-    return data
+    with open("readme.md", "r") as file:
+        data = file.read()
+    return render_template("docs.html", data=data)
