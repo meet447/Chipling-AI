@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main/ads.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main/search.js') }}"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864078994533800"
+     crossorigin="anonymous"></script>
 </head>   
 <body>
     <header>
@@ -97,24 +99,3 @@
         </footer>
     </section>
 </body>
-<script>
-     // Wait for the document to be ready
-     $(document).ready(function() {
-        // Capture the submit event on the search form
-        $('.search-container').submit(function(event) {
-            // Prevent the default form submission
-            event.preventDefault();
-            
-            // Get the input value
-            var query = $('#searchInput').val().trim();
-            
-            // Check if the query is not empty
-            if (query !== '') {
-                // Redirect to the search page with the input value
-                window.location.href = '/search/' + query;
-            }
-        });
-    });
-</script>
-
-
