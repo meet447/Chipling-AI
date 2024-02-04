@@ -27,11 +27,14 @@
         <h1>Saved Posts</h1>
 
         <div class="image_gallery">
-            {% for item  in data.values() %}
-            <img src="{{ item['image'] }}" onclick="showImage('{{ item['model'] }}', '{{ item['image'] }}', '{{ item['user'] }}', '{{ item['prompt'] }}', '{{ item['neg_prompt'] }}', '{{ item['cfg'] }}', '{{ item['steps'] }}', '{{ item['seed'] }}')"> 
-            {% endfor %}
-        </div>
-
+            {% if data %}
+                {% for item in data.values() %}
+                    <img src="{{ item['image'] }}" onclick="showImage('{{ item['model'] }}', '{{ item['image'] }}', '{{ item['user'] }}', '{{ item['prompt'] }}', '{{ item['neg_prompt'] }}', '{{ item['cfg'] }}', '{{ item['steps'] }}', '{{ item['seed'] }}')"> 
+                {% endfor %}
+            {% else %}
+                <p>No data available</p>
+            {% endif %}
+        </div>        
         
         <div id="expanded_img" class="single_image_display">
             <span class="close" onclick="closeImage()">&times;</span>

@@ -125,6 +125,8 @@ def profile():
     if 'user' in session:
         api_key = session["api_key"]
         data = db.child('profile').child(api_key).get().val()
+        if data == None:
+            data == ""
         return render_template("profile.html", data=data)
     else:
         return render_template("register.html")
