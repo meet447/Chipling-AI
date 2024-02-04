@@ -76,6 +76,4 @@ With these organized steps, developers can easily understand and implement new m
 
 | author  | model         | safe tensor                            | Image                                                                                                                                     |   |
 |---------|---------------|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---|
-| wrs111  | guofeng3      | 3Guofeng3_v34.safetensors [50f420de]   | https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/d3315e02-7c0f-420e-911f-abd53a0ebb28/original=true/tmp9d4z8vav.jpeg                      |   |
-| lostdog | am_i_real     | amIReal_V41.safetensors [0a8a2e61]     | https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/19950811-769f-4e08-b0dc-7440b1c46d6a/width=950/00358-136185449-6fa438a7af-1640x1024.jpeg |   |
-| rqdwdw  | counterfeitv3 | Counterfeit_v30.safetensors [9e2a8f19] | https://assets-global.website-files.com/624ac40503a527cf47af4192/64ad98a93748b1dd485f971d_003.jpeg                                        |   |
+| wrs111  | guofeng3      | 3Guofeng3_v34.safetensors [50f420de]   | https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/d3315e02-7c0f-420e-911f-abd53a0ebb28/original=true/tmp9d4z8vav.jpeg                      |   |                             |   |

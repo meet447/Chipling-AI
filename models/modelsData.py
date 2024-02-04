@@ -31,8 +31,11 @@ class Image:
     dreamshaper8 = {"author":"lykon", "model":"dreamshaper8", "desc":"Dreamshaper is one of the best models trained for image genration.","runs":"357K","img":"https://assets.st-note.com/production/uploads/images/113620660/rectangle_large_type_2_1787502e90ce95b07850bb502cbbffca.png?width=800", "neg":"True"}
 
     absoluteReality = {"author":"lykon", "model":"absolutereality", "desc":"Create Realistic Art with absolute Reality","runs":"-", "img":"https://ts2.pl/wp-content/uploads/2023/07/mfrack_realistic_photo_of_future_AI_10d24595-30f7-4765-af70-d9f9e8068a6a-1024x574.jpeg","neg":"True"}
-
-
+    
+    counterfeitv3 = {"author":"rqdwdw", "model":"counterfeitv3", "desc":"Create Anime style Art with counter feit","runs":"-", "img":"https://assets-global.website-files.com/624ac40503a527cf47af4192/64ad98a93748b1dd485f971d_003.jpeg","neg":"True"}
+    
+    am_i_real = {"author":"lostdog", "model":"am-i-real", "desc":"Create Realistic style Art with am i real model","runs":"-", "img":"https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/19950811-769f-4e08-b0dc-7440b1c46d6a/width=950/00358-136185449-6fa438a7af-1640x1024.jpeg","neg":"True"}
+    
 class Text:
     llama70 = {"author":"meta", "model":"llama-2-70b-chat", "desc":"A 70 billion parameter language model from Meta, fine tuned for chat completions","github":"https://github.com/a16z-infra/cog-llama-template","runs":"4.3M","img":"https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1"}
     
@@ -40,8 +43,7 @@ class Text:
     
     codellama13b = {"author":"meta", "model":"codellama-13b", "desc":"A 13 billion parameter Llama tuned for code completion","github":"https://github.com/facebookresearch/codellama","runs":"93K","img":"https://venturebeat.com/wp-content/uploads/2023/08/cfr0z3n_vector_art_synthwave_llama_typing_on_a_laptop_ee7e1f3d-7509-4cc2-9a46-15841f4da40b.png?fit=1456%2C816&strip=all"}
 
-    
-    
+ 
 class Video:
     
     prompts = {
@@ -65,16 +67,15 @@ class Video:
     
     stablevidDiff = {"author":"stability-ai", "model":"stable-video-diffusion", "desc":"Animate a Image into Video","github":"","runs":"192.5K","img":"https://tjzk.replicate.delivery/models_models_cover_image/923695cb-4735-439c-868b-79620bcacb32/svd.gif", "no_prompt":"True"}
 
-
     
 class Website:
-    trending_models = [Image.dreamshaper8, Video.stablevidDiff, Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70, Text.codellama13b]
+    trending_models = [Image.dreamshaper8, Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70, Text.codellama13b]
     
-    new_models = [Video.stablevidDiff, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency, Video.zeroScope]
+    new_models = [Image.am_i_real, Image.counterfeitv3, Video.stablevidDiff, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency]
     
     text_models = [Text.llama70, Text.mistral7, Text.codellama13b]
     
-    image_models = [Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
+    image_models = [Image.am_i_real, Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
     
-    video_models = [Video.stablevidDiff, Video.animateDiff, Video.zeroScope]
+    video_models = [Video.animateDiff, Video.zeroScope]
 

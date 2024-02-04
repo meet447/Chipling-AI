@@ -211,6 +211,10 @@ def generateImage_page(author, model):
        return render_template("image.html", data=Image.dreamshaper8, prompt=Image.prompts)
     elif model == "absolutereality" and author == "lykon":
        return render_template("image.html", data=Image.absoluteReality, prompt=Image.prompts)
+    elif model == "counterfeitv3" and author == "rqdwdw":
+        return render_template("image.html", data=Image.counterfeitv3, prompt=Image.prompts)
+    elif model == "am-i-real" and author == "lostdog":
+        return render_template("image.html", data=Image.am_i_real, prompt=Image.prompts)
 
     #text models 
      
