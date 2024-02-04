@@ -94,8 +94,8 @@ def get_model(prompt, model, neg_prompt=None, seed=None, cfg=None, steps=None):
         return jsonify(data)
     
     elif model == "kandooai/juggernaut_aftermath":
-        data = juggernaut_aftermath.juggernaut_aftermath.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
+        data = juggernaut_aftermath.juggernautAftermath.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
         return jsonify(data) 
- 
+
     else:
         return jsonify({"error": "error occurred"})

@@ -1,6 +1,6 @@
 from scrapper.prodia import image
 
-class juggernaut_aftermath:
+class juggernautAftermath:
     def create_image(prompt, neg_prompt, seed, cfg, steps):
         return image.prodiaAPI.create_image(prompt=prompt, neg_prompt=neg_prompt, model="juggernaut_aftermath.safetensors [5e20c455]",seed=seed, cfg=cfg, steps=steps)
     
