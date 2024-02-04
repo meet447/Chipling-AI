@@ -111,6 +111,7 @@ mistralai/mistral-7b-instruct-v0.1|Text|An instruction-tuned 7 billion parameter
 |stability-ai/stable-video-diffusion|Video|Animate your fav images to short vids|
 
 
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)

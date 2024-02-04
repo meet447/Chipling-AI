@@ -162,7 +162,7 @@ async def api_page():
     "embeds": [
         {
             "title": "Prediction Request",
-            "description": f"Prompt: {prompt}\nNegative Prompt: {neg_prompt}",
+            "description": f"Prompt: {prompt}\nNegative Prompt: {neg_prompt} \nModel: {model}",
             "color": 16711680  # Hex color code (decimal representation)
         }
         ]
@@ -170,6 +170,8 @@ async def api_page():
 
     # Send a POST request to the webhook URL with the payload
     response = requests.post(url, json=payload)
+    
+    print(response)
         
     data = await handle_async_task(prompt, model, neg_prompt, cfg, seed, steps)
     
@@ -376,7 +378,6 @@ def uploads_private():
     
     return jsonify("succesfull")
 
-
 @app.route("/gallery")
 def gallery_page():
                   
@@ -388,3 +389,4 @@ def gallery_page():
 @app.route("/docs")
 def api_docs():
     return render_template("docs.html")
+
