@@ -5,6 +5,7 @@ from models.image.anything import anythingv5
 from models.image.lykon import dreamshaper8, absolutereality
 from models.image.rqdwdw import counterfeitv3
 from models.image.lostdog import am_i_real
+from models.image.wrs111 import guofeng3
 
 from models.video.lucataco import animatediff
 from models.video.anotherjesse import zeroscopev2xl
@@ -85,6 +86,10 @@ def get_model(prompt, model, neg_prompt=None, seed=None, cfg=None, steps=None):
     
     elif model == "lostdog/am-i-real":
         data = am_i_real.amiReal.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
+        return jsonify(data)
+    
+    elif model == "wrs111/guofeng3":
+        data = guofeng3.guoFeng3.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
         return jsonify(data)
  
     else:

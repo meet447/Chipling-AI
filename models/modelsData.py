@@ -36,6 +36,8 @@ class Image:
     
     am_i_real = {"author":"lostdog", "model":"am-i-real", "desc":"Create Realistic style Art with am i real model","runs":"-", "img":"https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/19950811-769f-4e08-b0dc-7440b1c46d6a/width=950/00358-136185449-6fa438a7af-1640x1024.jpeg","neg":"True"}
     
+    guofeng3 = {"author":"wrs111", "model":"guofeng3", "desc":"Create Chinese Style Model with guofeng3","runs":"-", "img":"https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/d3315e02-7c0f-420e-911f-abd53a0ebb28/original=true/tmp9d4z8vav.jpeg","neg":"True"}
+    
 class Text:
     llama70 = {"author":"meta", "model":"llama-2-70b-chat", "desc":"A 70 billion parameter language model from Meta, fine tuned for chat completions","github":"https://github.com/a16z-infra/cog-llama-template","runs":"4.3M","img":"https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1"}
     
@@ -71,11 +73,11 @@ class Video:
 class Website:
     trending_models = [Image.dreamshaper8, Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70, Text.codellama13b]
     
-    new_models = [Image.am_i_real, Image.counterfeitv3, Video.stablevidDiff, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency]
+    new_models = [Image.guofeng3, Image.am_i_real, Image.counterfeitv3, Video.stablevidDiff, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency]
     
     text_models = [Text.llama70, Text.mistral7, Text.codellama13b]
     
-    image_models = [Image.am_i_real, Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
+    image_models = [Image.guofeng3, Image.am_i_real, Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
     
     video_models = [Video.animateDiff, Video.zeroScope]
 
