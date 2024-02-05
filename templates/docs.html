@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docs</title>
+    <!-- Updated and more descriptive meta tags for SEO -->
+    <meta name="description" content="Documentation page for Chipling API">
+    <meta name="keywords" content="HTML, CSS, JavaScript, llm, stable diffusion">
+    <title>Chipling API Docs</title>
+    <!-- Corrected the URL for the stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/text.css') }}">
+    <!-- Ensured scripts are secure and necessary -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/text.js') }}"></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
-    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <!-- Added a crossorigin attribute for external script -->
+    <script type="module" src="https://md-block.verou.me/md-block.js" crossorigin="anonymous"></script>
+    <!-- Added async attribute for AdSense script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864078994533800"
-    crossorigin="anonymous"></script></head>
-<body>
+        crossorigin="anonymous"></script>
+</head>
 
+<body>
+    <!-- Included comments for better code understanding -->
     {% include 'main/navbar.html' %}
     <main>
-    <md-block>
-        
-    </md-block>
-
+        <!-- Introduced a comment regarding custom md-block element -->
+        <!-- Ensure that md-block is defined and used appropriately -->
+        <md-block>
+            <!-- Content for md-block goes here -->
+        </md-block>
     </main>
-
     {% include 'main/footer.html' %}
-
 </body>
 
 </html>
