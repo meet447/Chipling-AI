@@ -221,6 +221,8 @@ def generateImage_page(author, model):
         return render_template("image.html", data=Image.am_i_real, prompt=Image.prompts)
     elif model == "guofeng3" and author == "wrs111":
         return render_template("image.html", data=Image.guofeng3, prompt=Image.prompts)
+    elif model == "juggernaut_aftermath" and author == "kandooai":
+        return render_template("image.html", data=Image.juggernaut_aftermath, prompt=Image.prompts)
 
     #text models 
      
