@@ -82,4 +82,28 @@ class Website:
     image_models = [Image.juggernaut_aftermath, Image.guofeng3, Image.am_i_real, Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
     
     video_models = [Video.animateDiff, Video.zeroScope]
+    
+    
+class leaderboards:
+    
+    class image:
+        fastest_image = []
+        
+        most_used_images = []
+        
+        best_image_genration = []
+    
+    class text:
+        fastest_text = []
+        
+        most_used_text = []
+        
+        best_text_genration = []
+        
+    class models:
+        fastest_models = []
+        
+        most_used_models = []
+        
+        best_model_genration = []
 

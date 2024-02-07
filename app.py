@@ -62,12 +62,18 @@ def login():
                 return redirect("/models")
 
             else:
-                return "error"
+                return "error while creating your session please try again later"
             
         except Exception as e:
-            return f"Error during registration: {e}"
+            error_message = str(e)  # Convert the exception to a string
+            if "TOO_MANY_ATTEMPTS_TRY_LATER" in error_message:
+                issue = "Your account has been temporarily restricted Due to too many login attempts please try again later!."
+            else:
+                issue = "Invalid login credentials."
+            return render_template("login.html", issue=issue)
 
-    return render_template("login.html")
+
+    return render_template("login.html", issue="")
 
 #USER ROUTES
 @app.route("/register", methods=["POST", "GET"])
@@ -391,4 +397,8 @@ def gallery_page():
 @app.route("/docs")
 def api_docs():
     return render_template("docs.html")
+
+@app.route("/leaderboards")
+def leader_page():
+    return render_template('leaderboard.html')
 
