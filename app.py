@@ -402,3 +402,10 @@ def api_docs():
 def leader_page():
     return render_template('leaderboard.html')
 
+@app.route("/about")
+def about_page():
+    return render_template("extra/about.html")
+
+@app.route("/privacy-policy")
+def privacy_page():
+    return render_template("extra/privacy.html")
