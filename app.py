@@ -409,3 +409,17 @@ def about_page():
 @app.route("/privacy-policy")
 def privacy_page():
     return render_template("extra/privacy.html")
+
+@app.route("/models/<query>")
+def expmodels_page(query):
+    if query == "image":
+        data = Website.image_models
+        return render_template("models/base.html", data=data)
+    elif query == "text":
+        data = Website.text_models
+        return render_template("models/base.html", data=data)
+    elif query == "video":
+        data = Website.video_models
+        return render_template("models/base.html", data=data)
+    else:
+        return "page not found"

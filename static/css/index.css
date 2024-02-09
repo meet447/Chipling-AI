@@ -443,5 +443,17 @@ input#searchInput {
   }
 }
 
+a.custom-link:link,
+a.custom-link:visited {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
 
-
+a.custom-link:hover,
+a.custom-link:active {
+  background-color: red;
+}
