@@ -79,7 +79,7 @@ class Website:
     
     text_models = [Text.llama70, Text.mistral7, Text.codellama13b]
     
-    image_models = [Image.juggernaut_aftermath, Image.guofeng3, Image.am_i_real, Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
+    image_models = [Image.am_i_real, Image.juggernaut_aftermath,  Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.guofeng3, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
     
     video_models = [Video.animateDiff, Video.zeroScope]
     
