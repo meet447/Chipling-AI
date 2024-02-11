@@ -1,0 +1,82 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chipling Home</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864078994533800"
+     crossorigin="anonymous"></script>
+     <script src="{{ url_for('static', filename='js/main/search.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main/ads.js') }}"></script>
+</head>   
+
+<body>
+    <header>
+        <a href="/" class="logo">Chipling</a>
+        <input type="checkbox" class="nav-toggle" id="nav-toggle">
+        <nav>
+            <ul>
+                {% if session.user %}
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="/login">Login</a></li>
+                {% endif %}
+                <li><a href="/models">AI Models</a></li>
+                <li><a href="/docs">Api Docs</a></li>
+                {% if session.user %}
+                <li><a href="/profile">{{ session.user }}</a></li>
+                {% else %}
+                <li><a href="/profile">Profile</a></li>
+                {% endif %}
+                <li><a href="/gallery">Gallery</a></li>
+            </ul> 
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <section class="search">
+        <form class="search-container">
+            <input type="text" id="searchInput" placeholder="search for a model here">
+          </form>
+    </section> 
+    
+    {% for datas in data %}
+    {% if loop.index is even %}
+        <!-- Section Four -->
+        <section class="section-four">
+            <div class="flex-group">
+                <div>
+                    <img src="{{ datas.img }}">
+                </div>
+                <div class="content-container">
+                    <p>{{ datas.model }}</p>
+                    <p>{{ datas.desc }} </p>
+                    <a href="/{{ datas.author }}/{{ datas.model}}" class="learn-more-btn section-four-btn">Try Out Now</a>
+                </div>
+            </div>
+        </section>
+    {% else %}
+        <!-- Section Five -->
+        <section class="section-five">
+            <div class="flex-group section-five-flex-group">
+                <div>
+                    <img src="{{ datas.img }}">
+                </div>
+                <div class="content-container">
+                    <p>{{ datas.model }}</p>
+                    <p>{{ datas.desc }} </p>
+                    <a href="/{{ datas.author }}/{{ datas.model}}" class="learn-more-btn section-four-btn">Try Out Now</a>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endfor %}
+
+    <!-- Section Nine -->
+    {% include 'main/footer.html' %}
+
+</body>

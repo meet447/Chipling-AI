@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864078994533800"
@@ -58,11 +59,8 @@
         <h1>No Results Found</h1>
     {% endif %}
 
-    <section class="section-ten">
-        <footer>
-            <p>&copy; 2024 Chipling AI. All rights reserved.</p>
-        </footer>
-    </section>
+    {% include 'main/footer.html' %}
+
 </body>
 <script>
     // Wait for the document to be ready

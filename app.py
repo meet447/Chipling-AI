@@ -62,12 +62,18 @@ def login():
                 return redirect("/models")
 
             else:
-                return "error"
+                return "error while creating your session please try again later"
             
         except Exception as e:
-            return f"Error during registration: {e}"
+            error_message = str(e)  # Convert the exception to a string
+            if "TOO_MANY_ATTEMPTS_TRY_LATER" in error_message:
+                issue = "Your account has been temporarily restricted Due to too many login attempts please try again later!."
+            else:
+                issue = "Invalid login credentials."
+            return render_template("login.html", issue=issue)
 
-    return render_template("login.html")
+
+    return render_template("login.html", issue="")
 
 #USER ROUTES
 @app.route("/register", methods=["POST", "GET"])
@@ -162,7 +168,7 @@ async def api_page():
     "embeds": [
         {
             "title": "Prediction Request",
-            "description": f"Prompt: {prompt}\nNegative Prompt: {neg_prompt}",
+            "description": f"Prompt: {prompt}\nNegative Prompt: {neg_prompt} \nModel: {model}",
             "color": 16711680  # Hex color code (decimal representation)
         }
         ]
@@ -170,6 +176,8 @@ async def api_page():
 
     # Send a POST request to the webhook URL with the payload
     response = requests.post(url, json=payload)
+    
+    print(response)
         
     data = await handle_async_task(prompt, model, neg_prompt, cfg, seed, steps)
     
@@ -382,7 +390,6 @@ def uploads_private():
     
     return jsonify("succesfull")
 
-
 @app.route("/gallery")
 def gallery_page():
                   
@@ -394,3 +401,29 @@ def gallery_page():
 @app.route("/docs")
 def api_docs():
     return render_template("docs.html")
+
+@app.route("/leaderboards")
+def leader_page():
+    return render_template('leaderboard.html')
+
+@app.route("/about")
+def about_page():
+    return render_template("extra/about.html")
+
+@app.route("/privacy-policy")
+def privacy_page():
+    return render_template("extra/privacy.html")
+
+@app.route("/models/<query>")
+def expmodels_page(query):
+    if query == "image":
+        data = Website.image_models
+        return render_template("models/base.html", data=data)
+    elif query == "text":
+        data = Website.text_models
+        return render_template("models/base.html", data=data)
+    elif query == "video":
+        data = Website.video_models
+        return render_template("models/base.html", data=data)
+    else:
+        return "page not found"

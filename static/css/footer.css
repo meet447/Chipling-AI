@@ -1,0 +1,46 @@
+/* Add this to your footer.css file or inline style */
+
+.section-ten {
+    background-color: #000; /* Set background color to black */
+    color: #fff; /* Set text color to white */
+    border-top: 1px solid #fff; /* Add a white border at the top */
+    padding: 20px; /* Add padding to the section */
+}
+
+.footer {
+    text-align: center;
+}
+
+.footer-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Add gap between footer options */
+    margin-top: 20px; /* Add margin at the top of footer options */
+}
+
+.footer-option a {
+    text-decoration: none;
+    color: #fff; /* Set link color to white */
+    font-weight: bold; /* Make the font bold */
+}
+
+.footer-option a:hover {
+    color: #007bff; /* Set link hover color as needed */
+}
+
+.social-media-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Add margin at the top of social media icons */
+}
+
+.social-media-icons img {
+    width: 30px; /* Set icon width as needed */
+    margin: 0 10px; /* Add margin around each social media icon */
+}
+
+/* Additional styling for the copyright text */
+.footer p {
+    margin-top: 20px; /* Add margin at the top of the copyright text */
+    font-size: 14px; /* Adjust font size as needed */
+}

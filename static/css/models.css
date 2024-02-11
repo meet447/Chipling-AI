@@ -283,7 +283,7 @@ nav a:hover {
   white-space: nowrap; /* Prevent items from wrapping to the next line */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  font-family: 'YourCustomFont', sans-serif;
+  font-family: sans-serif;
 }
 
 .section-eight-btn {
