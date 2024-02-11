@@ -221,7 +221,11 @@ def generateImage_page(author, model):
         return render_template("image.html", data=Image.guofeng3, prompt=Image.prompts)
     elif model == "juggernaut_aftermath" and author == "kandooai":
         return render_template("image.html", data=Image.juggernaut_aftermath, prompt=Image.prompts)
-
+    elif model == "toonyou6" and author == "bradcatt":
+        return render_template("image.html", data=Image.toonyou6, prompt=Image.prompts)
+    elif model == "openjourneyv4" and author == "prompthero":
+        return render_template("image.html", data=Image.openjourneyv4, prompt=Image.prompts)
+    
     #text models 
      
     elif model == "llama-2-70b-chat" and author == "meta":

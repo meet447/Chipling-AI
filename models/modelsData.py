@@ -40,6 +40,10 @@ class Image:
     
     juggernaut_aftermath = {"author":"kandooai", "model":"juggernaut_aftermath", "desc":"juggernaut_aftermath is one of the best models out there to create realistic images","runs":"-", "img":"https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/6c55ed9c-f83e-4ae2-a204-a28c33eb164e/width=450/00047-impossibly%20beautiful%20portrait%20of%20alien%20shapeshifter%20entity,%20insane%20smile,%20intricate%20complexity,%20surreal%20horror,%20inverted%20neon%20ra.jpeg","neg":"True"}
     
+    toonyou6 = {"author":"bradcatt", "model":"toonyou6", "desc":"toonyou, toon you by bradcatt is a checkpoint used to create images in toons style","runs":"-", "img":"https://wiki.monai.art/toonyou/(old_man_1.2)_c_8790a.jpg","neg":"True"}
+    
+    openjourneyv4 = {"author":"prompthero", "model":"openjourneyv4", "desc":"open journey v4, Openjourney  is a  s a custom text-to-image model that generates AI art images in the style of Midjourney. It's a fine-tune of Stable Diffusion","runs":"-", "img":"https://prompthero.s3.amazonaws.com/og/openjourney-og-image.jpg","neg":"True"}
+    
 class Text:
     llama70 = {"author":"meta", "model":"llama-2-70b-chat", "desc":"A 70 billion parameter language model from Meta, fine tuned for chat completions","github":"https://github.com/a16z-infra/cog-llama-template","runs":"4.3M","img":"https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1"}
     
@@ -75,11 +79,11 @@ class Video:
 class Website:
     trending_models = [Image.dreamshaper8, Image.stable_diff, Text.mistral7, Image.kandinsky, Text.llama70, Text.codellama13b]
     
-    new_models = [Image.juggernaut_aftermath,Image.guofeng3, Image.am_i_real, Image.counterfeitv3, Video.stablevidDiff, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency]
+    new_models = [Image.juggernaut_aftermath,Image.guofeng3, Image.am_i_real, Image.counterfeitv3, Video.stablevidDiff, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Text.codellama13b, Image.latentConsistency,Image.toonyou6,Image.openjourneyv4]
     
     text_models = [Text.llama70, Text.mistral7, Text.codellama13b]
     
-    image_models = [Image.juggernaut_aftermath, Image.guofeng3, Image.am_i_real, Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency]
+    image_models = [Image.juggernaut_aftermath, Image.guofeng3, Image.am_i_real, Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency,Image.toonyou6,Image.openjourneyv4]
     
     video_models = [Video.animateDiff, Video.zeroScope]
 
