@@ -52,7 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const realisticCheckbox = document.getElementById('realistic');
         const animeCheckbox = document.getElementById('anime');
         const semiRealisticCheckbox = document.getElementById('semi-realistic');
-
+        
+        const checkedCheckboxes = [realisticCheckbox, animeCheckbox, semiRealisticCheckbox].filter(checkbox => checkbox.checked);
+        if (checkedCheckboxes.length !== 1) {
+            alert("Please select exactly one checkbox before running the model.");
+            return;
+        }
+        
         console.log(currentModel);
 
         if (!validateInput(prompt, "Please enter a prompt before running the model.")) {

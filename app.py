@@ -436,6 +436,6 @@ def expmodels_page(query):
     else:
         return "page not found"
 
-@app.route("/test")
-def test_page():
-    return render_template("extra/test.html")
+@app.route("/playground")
+def playground_page():
+    return render_template("playground.html")
