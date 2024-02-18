@@ -7,6 +7,8 @@ from models.image.rqdwdw import counterfeitv3
 from models.image.lostdog import am_i_real
 from models.image.wrs111 import guofeng3
 from models.image.kandooai import juggernaut_aftermath
+from models.image.bradcatt import toonyou6
+from models.image.prompthero import openjourneyv4
 
 from models.video.lucataco import animatediff
 from models.video.anotherjesse import zeroscopev2xl
@@ -95,7 +97,15 @@ def get_model(prompt, model, neg_prompt=None, seed=None, cfg=None, steps=None):
     
     elif model == "kandooai/juggernaut_aftermath":
         data = juggernaut_aftermath.juggernautAftermath.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
-        return jsonify(data) 
+        return jsonify(data)
+    
+    elif model == "bradcatt/toonyou6":
+        data = toonyou6.toonYou6.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
+        return jsonify(data)
+    
+    elif model == "prompthero/openjourneyv4":
+        data = openjourneyv4.openJourneyv4.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
+        return jsonify(data)
 
     else:
         return jsonify({"error": "error occurred"})
