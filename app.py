@@ -252,14 +252,22 @@ def generateImage_page(author, model):
    
 #API ROUTES START HERE
 def check_key(api_key_to_check):
-    data = db.child('users').get().val()    
-    for user_id, user_data in data.items():
-        if 'api_key' in user_data and user_data['api_key'] == api_key_to_check:
-            return True
+    data = db.child('users').get().val()
+
+    if data is not None:
+        for user_node in data.values():
+            if 'api_key' in user_node and user_node['api_key'] == api_key_to_check:
+                print("Key found")
+                return True
+        print("Key not found")
+    else:
+        print("No data found in the 'users' node")
+
     return False
 
+
 @app.route("/api/request", methods=["POST"])
-def request_api():
+async def request_api():
     key = request.args.get("key")
     print(key)
     
@@ -291,8 +299,8 @@ def request_api():
     print(chk)
         
     if check_key(key):
-        data = get_model(prompt=prompt, model=model, neg_prompt=neg_prompt, cfg=cfg, seed=seed, steps=steps)    
-        return jsonify(data)
+        data = await handle_async_task(prompt, model, neg_prompt, cfg, seed, steps)
+        return data
     else:
         return jsonify({"error": "invalid api key"})
 
@@ -423,3 +431,7 @@ def expmodels_page(query):
         return render_template("models/base.html", data=data)
     else:
         return "page not found"
+
+@app.route("/test")
+def test_page():
+    return render_template("extra/test.html")

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground </title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/image.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864078994533800"
+     crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+</head>
+
+
+{% include 'main/navbar.html' %}
+
+    <section class="info-bar" style=""">
+        <div class="info-content">
+            <div class="additional-info">
+                <span>Public</span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Form -->
+        <form action="#" class="form">
+            <h1>Prompt:</h1>
+            <textarea name="prompt" id="prompt" rows="3" placeholder="An astronaut riding a rainbow unicorn"></textarea>
+            <h1>Negative Prompt:</h1>
+            <textarea name="prompt" id="neg_prompt" rows="3" placeholder="Add words you dont want to show up in your genrated image">lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, username, watermark, signature</textarea>
+            <h1>CFG:</h1>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="12" value="7" class="slider" id="myCFG">
+                <p>CFG value: <span id="cfg">7</span></p>
+                <p>keep it 7-9 if you dont know what it does</p>
+            </div>
+            <h1>Steps:</h1>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="35" value="20" class="slider" id="mySteps">
+                <p>Steps: <span id="steps">20</span></p>
+            </div>
+            <h1>Seed:</h1>
+            <textarea name="prompt" id="seed_value" rows="1" placeholder="Add seed value for your generated image" pattern="\d+" title="Please enter only numbers">-1</textarea>
+            <p>Do not change if you don't know what it does</p>
+            <div class="multipl-image-checkbox"> 
+                    <ul>
+                        <h1>Select a style</h1>
+                        <li><input type="checkbox" id="realistic" />
+                            <label for="realistic">
+                              <img src="https://preview.redd.it/realism-in-stable-diffusion-realistic-vision-animatediff-v0-wolksyufh9eb1.gif?width=768&auto=webp&s=a1061a90e13cb6e53ed01a808f9ad3ea64432dff" />
+                          </label>
+                          <h1>Realistic</h1>
+                        </li>
+                        <li><input type="checkbox" id="anime" />
+                            <label for="anime"><img src="https://user-images.githubusercontent.com/24735555/195470874-afc3dfdc-7b35-4b23-9c34-5888a4100ac1.gif" /></label>
+                            <h1>Anime</h1>
+                        </li>
+                        <li><input type="checkbox" id="semi-realistic" />
+                            <label for="semi-realistic"><img src="https://learn.thinkdiffusion.com/content/images/2023/09/Gif_1.gif" /></label>
+                            <h1>Semi-Realistic</h1>
+                        </li>
+                    </ul>
+            </div>
+            <button type="button" class="run-button" onclick="runModel()">Run</button>
+        </form>
+
+        <div class="image-placeholder">
+            <img id="generated-image1" src="" alt="Loading...">
+        </div>
+        <div class="image-placeholder">
+            <img id="generated-image2" src="" alt="Loading...">
+        </div>
+        <div class="image-placeholder">
+            <img id="generated-image3" src="" alt="Loading...">
+        </div>
+        <div class="image-placeholder">
+            <img id="generated-image4" src="" alt="Loading...">
+        </div>
+    </main>
+
+</body>
+
+{% include 'main/footer.html' %}
+</html>
