@@ -16,12 +16,13 @@
         <a href="/" class="logo">Chipling</a>
         <input type="checkbox" class="nav-toggle" id="nav-toggle">
         <nav>
-            <ul>
+            <ul>    
                 {% if session.user %}
                 <li><a href="/logout">Logout</a></li>
                 {% else %}
                 <li><a href="/login">Login</a></li>
                 {% endif %}
+                <li><a href="/playground">CREATE!</a></li>
                 <li><a href="/models">AI Models</a></li>
                 <li><a href="/docs">Api Docs</a></li>
                 {% if session.user %}
@@ -43,9 +44,11 @@
     <section class="section-one">
         <h2 class="header">Unlock the Power of AI for Everyone!</h2>
         <p class="section-one-paragraph">Discover a world of AI models, LLMs, song generators, and more.</p>
-        <a href="/models" class="learn-more-btn">Explore Now</a>
-        <a href="https://discord.gg/zZCJ3hcV" class="learn-more-btn">Join Discord!</a>
+        <a href="/playground" class="learn-more-btn">Image Playground</a>
+        <a href="/models" class="learn-more-btn">Explore Models</a>
     </section>
+
+   
     
     <!-- Section Four -->
     <section class="section-four">

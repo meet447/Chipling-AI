@@ -21,6 +21,7 @@
                 {% else %}
                 <li><a href="/login">Login</a></li>
                 {% endif %}
+                <li><a href="/playground">CREATE!</a></li>
                 <li><a href="/models">AI Models</a></li>
                 <li><a href="/docs">Api Docs</a></li>
                 {% if session.user %}
@@ -41,7 +42,12 @@
             <input type="text" id="searchInput" placeholder="search for a model here">
           </form>
     </section> 
-    
+
+    <section class="section-three">
+        <a href="/models/image" class="learn-more-btn">Image Models</a>
+        <a href="/models/text" class="learn-more-btn">Text Models</a>
+        <a href="/models/video" class="learn-more-btn">Video Models</a>
+    </section>
 
 
     <section class="section-eight">
