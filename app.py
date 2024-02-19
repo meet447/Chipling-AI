@@ -140,7 +140,7 @@ def profile():
 #MODEL ROUTES
 @app.route("/models")
 def models_page():
-    return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models)
+    return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models, trend=Website.trending_models)
 
 @app.route("/search/<query>")
 def search_page(query):
@@ -439,3 +439,11 @@ def expmodels_page(query):
 @app.route("/playground")
 def playground_page():
     return render_template("playground.html")
+
+@app.route("/docs/changelog")
+def changelog_page():
+    return render_template("extra/changelog.html")
+
+@app.route("/test")
+def test():
+    return render_template("test.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models, trend=Website.trending_models)

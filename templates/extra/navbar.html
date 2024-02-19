@@ -1,0 +1,71 @@
+<div class="navbar-wrapper sticky-top">
+    <div class="container">
+       <div data-collapse="medium" data-animation="default" data-duration="400" role="banner" class="navbar w-nav">
+          <div class="navbar-row">
+             <div>
+                <a href="/" aria-current="page" class="navbar-1-brand w-nav-brand w--current" aria-label="home"><h4>CHIPLING</h4></a>
+                <nav role="navigation" class="nav-menu w-nav-menu">
+                   <a href="/models" aria-current="page" class="nav-link w-nav-link w--current">Explore</a>
+                   <div data-delay="0" data-hover="1" class="w-dropdown">
+                      <div class="nav-link w-dropdown-toggle" id="w-dropdown-toggle-0" aria-controls="w-dropdown-list-0" aria-haspopup="menu" aria-expanded="false" role="button" tabindex="0">
+                         <div class="row row-align-center">
+                            <div>Models</div>
+                            <img src="https://assets.website-files.com/5dcb2e333e05bec4ef2fee2f/5dd224eeb88d0076b74fe33e_icon-caret-down.svg" alt="" class="dropdown-link-icon">
+                         </div>
+                      </div>
+                      <nav class="dropdown-list w-dropdown-list" id="w-dropdown-list-0" aria-labelledby="w-dropdown-toggle-0">
+                         <div class="dropdown-list-wrapper">
+                            <a href="/models/image" class="dropdown-item w-dropdown-link" tabindex="0">Image</a><a href="/models/text" class="dropdown-item w-dropdown-link" tabindex="0">Text</a><a href="/models/video" class="dropdown-item w-dropdown-link" tabindex="0">Video</a>
+                            <div class="dropdown-bg"></div>
+                         </div>
+                      </nav>
+                   </div>
+                   <div data-delay="0" data-hover="1" class="w-dropdown">
+                      <div class="nav-link w-dropdown-toggle" id="w-dropdown-toggle-3" aria-controls="w-dropdown-list-3" aria-haspopup="menu" aria-expanded="false" role="button" tabindex="0">
+                         <div class="row row-align-center">
+                            <div>Extra</div>
+                            <img src="https://assets.website-files.com/5dcb2e333e05bec4ef2fee2f/5dd224eeb88d0076b74fe33e_icon-caret-down.svg" alt="" class="dropdown-link-icon">
+                         </div>
+                      </div>
+                      <nav class="dropdown-list w-dropdown-list" id="w-dropdown-list-3" aria-labelledby="w-dropdown-toggle-3">
+                         <div class="dropdown-list-wrapper">
+                            <a href="/docs/changelog" class="dropdown-item w-dropdown-link" tabindex="0">Change log</a><a href="/about" class="dropdown-item w-dropdown-link" tabindex="0">About Us</a><a href="/gallery" class="dropdown-item w-dropdown-link" tabindex="0">Gallery</a>
+                            <div class="dropdown-bg"></div>
+                         </div>
+                      </nav>
+                   </div>
+                   {% if session.user %}
+                   <a href="/profile" aria-current="page" class="nav-link w-nav-link w--current">Profile</a>
+                   {% else %}
+                   <a href="/register" aria-current="page" class="nav-link w-nav-link w--current">Register</a>
+                   {% endif %}
+                </nav>
+             </div>
+             <div class="navbar-controls">
+                <div class="navbar-buttons">
+                   <div class="modal-button-container">
+                      <a href="#" class="button icon-button bg-gray-1 w-inline-block">
+                         <img src="https://assets.website-files.com/5dcb2e333e05bec4ef2fee2f/5dd224ef033682ccadf9e7b4_icon-search.svg" alt="" class="icon-button-icon">
+                         <div class="icon-button-text">Search</div>
+                      </a>
+                   </div>
+                   <div class="modal-container" style="opacity: 0;">
+                      <div class="modal-background"></div>
+                      <div class="content-width-medium modal-content">
+                         <div class="panel modal-panel">
+                            <div class="modal-panel-bg"></div>
+                            <div class="panel-body modal-panel-body">
+                               <form action="/search" class="search-form w-form"><input type="search" class="form-input form-input-large search-modal-input w-input" autofocus="true" maxlength="256" name="query" placeholder="Type your search" id="search" required=""><input type="submit" value="Search" class="button search-form-button w-button"></form>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <a href="/playground" target="_blank" class="button w-button">Create</a>
+                </div>
+                <div class="menu-button w-nav-button" style="-webkit-user-select: text;" aria-label="menu" role="button" tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu" aria-expanded="false"><img src="https://assets.website-files.com/5dcb2e333e05bec4ef2fee2f/5dd224eec5a7edbe9260a75d_icon-menu.svg" alt=""></div>
+             </div>
+          </div>
+          <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-0"></div>
+       </div>
+    </div>
+ </div>
