@@ -452,3 +452,7 @@ def changelog_page():
 @app.route("/test")
 def test():
     return render_template("test.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models, trend=Website.trending_models)
+
+@app.route("/sitemap.xml")
+def site_map():
+    return render_template("sitemap.xml")
