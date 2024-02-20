@@ -142,8 +142,9 @@ def profile():
 def models_page():
     return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models, trend=Website.trending_models)
 
-@app.route("/search/<query>")
-def search_page(query):
+@app.route("/search")
+def search_page():
+    query = request.args.get('query', '')
     search_data = Website.text_models + Website.image_models + Website.video_models
     matching_models = [model for model in search_data if query.lower() in model["desc"].lower()]
 
@@ -408,7 +409,11 @@ def gallery_page():
 #Documentation
 @app.route("/docs")
 def api_docs():
-    return render_template("docs.html")
+    return render_template("api.html")
+
+@app.route("/api")
+def api_i():
+    return "Coming Soon"
 
 @app.route("/leaderboards")
 def leader_page():

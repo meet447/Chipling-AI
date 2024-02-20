@@ -1,59 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'extra/head.html' %}
     <title>Profile</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/text.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{{ url_for('static', filename='js/text.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864078994533800"
-    crossorigin="anonymous"></script></head>
 <body>
 
-    {% include 'main/navbar.html' %}
-    <main>
-        <div class="text-placeholder" id="generated-text-placeholder">
-           <h1>{{ session.user }}<h1>
-           <h1>Email:<h1>
-          {{ session.email}}
-           <h1>Get Api Key:<h1>
-           <h1> {{ session.api_key }}<h1>
-        </div>
-        <h1>Saved Posts</h1>
-
-        <div class="image_gallery">
-            {% if data %}
-                {% for item in data.values() %}
-                    <img src="{{ item['image'] }}" onclick="showImage('{{ item['model'] }}', '{{ item['image'] }}', '{{ item['user'] }}', '{{ item['prompt'] }}', '{{ item['neg_prompt'] }}', '{{ item['cfg'] }}', '{{ item['steps'] }}', '{{ item['seed'] }}')"> 
-                {% endfor %}
-            {% else %}
-                <p>No data available</p>
-            {% endif %}
-        </div>        
-        
-        <div id="expanded_img" class="single_image_display">
-            <span class="close" onclick="closeImage()">&times;</span>
-            <img class="image_content" id="image">
-            <div id="desc_box" class="description_box">
-                <h1 id="model"></h1>
-                <p id="user"></p>
-                <p id="prompt"></p>
-                <p id="neg_prompt"></p>
-                <p id="cfg"></p>
-                <p id="steps"></p>
-                <p id="seed"></p>
+    {% include 'extra/navbar.html' %}
+    {% include 'extra/top.html'%}
+    <div class="container">
+        <div class="section">
+            <div class="container">
+               <div data-duration-in="300" data-duration-out="100" class="tabs-horizontal w-tabs">
+                  <div class="tabs-horizontal-menu w-tab-menu" role="tablist">
+                     <a data-w-tab="Tab 1" class="panel tab-panel w-inline-block w-tab-link" id="w-tabs-0-data-w-tab-0" href="#w-tabs-0-data-w-pane-0" role="tab" aria-controls="w-tabs-0-data-w-pane-0" aria-selected="false" tabindex="-1">
+                        <div class="panel-body-small">
+                           <div class="row row-align-center">
+                              <img src="https://assets.website-files.com/5dcb2e333e05bec4ef2fee2f/5dd227b3b88d0015704fe916_internet.svg" alt="" class="tab-icon">
+                              <div> Profile</div>
+                           </div>
+                        </div>
+                     </a>
+                     <a data-w-tab="Tab 2" class="panel tab-panel w-inline-block w-tab-link" id="w-tabs-0-data-w-tab-1" href="#w-tabs-0-data-w-pane-1" role="tab" aria-controls="w-tabs-0-data-w-pane-1" aria-selected="false" tabindex="-1">
+                        <div class="panel-body-small">
+                           <div class="row row-align-center">
+                              <img src="https://assets.website-files.com/5dcb2e333e05bec4ef2fee2f/5dd227b3ee4246cc1f22d41c_box.svg" alt="" class="tab-icon">
+                              <div>Api Key</div>
+                           </div>
+                        </div>
+                     </a>
+                     <a data-w-tab="Tab 4" class="panel tab-panel w-inline-block w-tab-link w--current" id="w-tabs-0-data-w-tab-3" href="#w-tabs-0-data-w-pane-3" role="tab" aria-controls="w-tabs-0-data-w-pane-3" aria-selected="true">
+                        <div class="panel-body-small">
+                           <div class="row row-align-center">
+                              <img src="https://assets.website-files.com/5dcb2e333e05bec4ef2fee2f/5dd227b40336820430f9eeb9_online-support.svg" alt="" class="tab-icon">
+                              <div>Email/Password</div>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+                  <div class="tabs-content w-tab-content">
+                     <div data-w-tab="Tab 1" class="w-tab-pane" id="w-tabs-0-data-w-pane-0" role="tabpanel" aria-labelledby="w-tabs-0-data-w-tab-0" style="">
+                        <div class="panel">
+                           <div class="panel-body">
+                              <div class="space-bottom-large">
+                                 <h5 class="panel-subheading text-primary-3">{{ session.user }}</h5>
+                                 <div>
+                                    <h3 class="card-heading display-inline">Welcome Back.</h3>
+                                    <a href="/logout" class="button-large-outline w-button">Logout!</a>
+                                 </div>
+                              </div>
+                           </div>
+                           <div>                        
+                           </div>
+                        </div>
+                     </div>
+                     <div data-w-tab="Tab 2" class="w-tab-pane" id="w-tabs-0-data-w-pane-1" role="tabpanel" aria-labelledby="w-tabs-0-data-w-tab-1" style="">
+                        <div class="panel">
+                           <div class="panel-body">
+                              <div class="space-bottom-large">
+                                 <h5 class="panel-subheading text-primary-2">Key</h5>
+                                 <div>
+                                    <h3 class="card-heading display-inline">{{ session.api_key}}</h3>
+                                 </div>
+                              </div>
+                              <div class="text-lead">Do Not Reveal Your Key In Public or share it!</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div data-w-tab="Tab 4" class="w-tab-pane w--tab-active" id="w-tabs-0-data-w-pane-3" role="tabpanel" aria-labelledby="w-tabs-0-data-w-tab-3" style="opacity: 1; transition: opacity 300ms ease 0s;">
+                        <div class="panel">
+                           <div class="panel-body">
+                              <div class="space-bottom-large">
+                                 <h5 class="panel-subheading text-primary-1">Email</h5>
+                                 <div>
+                                    <h3 class="card-heading display-inline">{{ session.email }}</h3>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-        
-    </main>
-
-    {% include 'main/footer.html' %}
-
+         </div>
+         {% if data %}
+         <h1>Saved Images: </h1>
+         <div data-w-id="fe5f3c70-13b2-686d-424d-aae254c50ce7" class="container" style="will-change: opacity, transform; opacity: 0.985248; transform: translate3d(0px, 0px, 0px) scale3d(0.998033, 0.998033, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+            <div class="w-dyn-list">
+               <div role="list" class="blog-grid w-dyn-items">      
+                {% for item in data.values() %}
+                  <div role="listitem" class="blog-grid-item w-dyn-item">
+                     <div class="panel">
+                        <a class="panel-image-link w-inline-block"><img alt="" src="{{ item['image'] }}" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, (max-width: 991px) 46vw, 31vw" srcset="{{ item['image'] }} 1080w, {{ item['image'] }} 1280w" class="panel-top-image" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"></a>
+                        <div class="panel-body panel-body-small">
+                           <a class="w-inline-block">
+                              <h4 class="medium-heading">{{ item['author'] }}/{{ item['model'] }}</h4>
+                              </p>
+                           </a>
+                           <div class="blog-panel-foot">
+                              <div class="blog-panel-meta-text">
+                                 <div>Feb, 2024</div>
+                                 <div class="row">
+                                    <div>By&nbsp;</div>
+                                    <div class="blog-post-panel-author">{{ session.user }}</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>                  
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </div>
+      {% else %}
+        <p>No data available</p>
+      {% endif %}
+    </div>
+    
+    {% include 'extra/footer.html' %}
+    <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5dcb2e333e05bec4ef2fee2f" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://assets.website-files.com/5dcb2e333e05bec4ef2fee2f/js/panels-template.c73880788.js" type="text/javascript"></script>
 </body>
 
 </html>

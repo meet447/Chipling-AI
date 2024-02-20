@@ -34,11 +34,11 @@ class Image:
     
     counterfeitv3 = {"author":"rqdwdw", "model":"counterfeitv3", "desc":"Create Anime style Art with counter feit","runs":"-", "img":"https://assets-global.website-files.com/624ac40503a527cf47af4192/64ad98a93748b1dd485f971d_003.jpeg","neg":"True","type":"image"}
     
-    am_i_real = {"author":"lostdog", "model":"am-i-real", "desc":"am i real can be used to Create Realistic style Art with am i real model","runs":"-", "img":"https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/19950811-769f-4e08-b0dc-7440b1c46d6a/width=950/00358-136185449-6fa438a7af-1640x1024.jpeg","neg":"True","type":"image"}
+    am_i_real = {"author":"lostdog", "model":"am-i-real", "desc":"am i real can be used to Create Realistic style Art with am i real model","runs":"-", "img":"https://preview.redd.it/amireal-v1-out-now-v0-o6fvwmczv0wa1.png?width=640&crop=smart&auto=webp&s=56b17186225443a7e8d0cc324f87f0f06394c159","neg":"True","type":"image"}
     
     guofeng3 = {"author":"wrs111", "model":"guofeng3", "desc":"Create Chinese Style Model with guofeng3","runs":"-", "img":"https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/d3315e02-7c0f-420e-911f-abd53a0ebb28/original=true/tmp9d4z8vav.jpeg","neg":"True","type":"image"}
     
-    juggernaut_aftermath = {"author":"kandooai", "model":"juggernaut_aftermath", "desc":"juggernaut_aftermath is one of the best models out there to create realistic images","runs":"-", "img":"https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/6c55ed9c-f83e-4ae2-a204-a28c33eb164e/width=450/00047-impossibly%20beautiful%20portrait%20of%20alien%20shapeshifter%20entity,%20insane%20smile,%20intricate%20complexity,%20surreal%20horror,%20inverted%20neon%20ra.jpeg","neg":"True","type":"image"}
+    juggernaut_aftermath = {"author":"kandooai", "model":"juggernaut_aftermath", "desc":"juggernaut_aftermath is one of the best models out there to create realistic images","runs":"-", "img":"https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/d4fffe64-3265-4458-9427-0342411319e1/width=450/00072-3633275756.jpeg","neg":"True","type":"image"}
     
     toonyou6 = {"author":"bradcatt", "model":"toonyou6", "desc":"toonyou, toon you by bradcatt is a checkpoint used to create images in toons style","runs":"-", "img":"https://wiki.monai.art/toonyou/(old_man_1.2)_c_8790a.jpg","neg":"True"}
     

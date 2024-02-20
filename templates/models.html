@@ -10,6 +10,7 @@
          <div class="panel-body align-content-center">
             <div class="center-content content-width-large">
                <h5 class="panel-subheading text-primary-1">Welcome!</h5>
+               <div class="content-width-medium modal-content"><div class="panel modal-panel"><div class="modal-panel-bg"></div><div class="panel-body modal-panel-body"><form action="/search" class="search-form w-form"><input type="search" class="form-input form-input-large search-modal-input w-input" autofocus="true" maxlength="256" name="query" placeholder="Type your search" id="search" required=""><input type="submit" value="Search" class="button search-form-button w-button"></form></div></div></div>
                <h2 class="display-heading-2 no-bottom-space">Newly added Models</h2>   
             </div>
             <div class="section">
@@ -34,8 +35,8 @@
                                           <div class="blog-post-panel-author">{{ data.author }}</div>
                                        </div>
                                     </div>
-                                    <a style="background-color:#3ccf91" href="/models/image" class="badge w-inline-block">
-                                       <div>Image</div>
+                                    <a style="background-color:#3ccf91" href="/models/{{ data.type }}" class="badge w-inline-block">
+                                       <div>{{ data.type }}</div>
                                     </a>
                                  </div>
                               </div>
