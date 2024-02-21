@@ -454,7 +454,8 @@ def test():
     return render_template("test.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models, trend=Website.trending_models)
 
 @app.route("/sitemap.xml")
-def sitemap():
-    print(request.path[1:])
-    return send_from_directory(app.static_folder, request.path[1:])
+def static_from_root():
+    response = send_from_directory(app.static_folder, request.path[1:])
+    response.headers["Content-Type"] = "application/xml"
+    return response
 
