@@ -406,18 +406,21 @@ def gallery_page():
 
     return render_template("gallery.html", data=data)
 
-#Documentation
 @app.route("/docs")
-def api_docs():
-    return render_template("api.html")
+def docs_page():
+    return "Hold Tight We are getting it done"
+
+#Documentation
+@app.route("/docs/<user>/<article>")
+def docs_route(user, article):
+    url = f"https://331b857f-ca60-4178-a3d6-0a8f44e178b8-00-v5l5fb8s6jkk.pike.replit.dev/{user}/{article}"
+    response = requests.get(url)
+    data = response.text
+    return render_template("docs.html", data=data)
 
 @app.route("/api")
 def api_i():
-    return "Coming Soon"
-
-@app.route("/leaderboards")
-def leader_page():
-    return render_template('leaderboard.html')
+    return redirect("/docs/chipling/api")
 
 @app.route("/about")
 def about_page():
