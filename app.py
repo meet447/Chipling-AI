@@ -413,7 +413,7 @@ def docs_page():
 #Documentation
 @app.route("/docs/<user>/<article>")
 def docs_route(user, article):
-    url = f"https://331b857f-ca60-4178-a3d6-0a8f44e178b8-00-v5l5fb8s6jkk.pike.replit.dev/{user}/{article}"
+    url = f"https://blog-chipling.onrender.com/{user}/{article}"
     response = requests.get(url)
     data = response.text
     return render_template("docs.html", data=data)
