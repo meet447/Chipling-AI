@@ -1,0 +1,59 @@
+<head>
+    <title>Search</title>
+    {% include "extra/head.html"%}
+</head>   
+<body>
+    {% include "extra/navbar.html" %}
+    {% include "extra/top.html" %}
+    
+    <div class="container">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="content-width-medium modal-content">
+                    <div class="panel modal-panel">
+                        <div class="modal-panel-bg">
+                        </div><div class="panel-body modal-panel-body">
+                            <form action="/search" class="search-form w-form">
+                                <input type="search" class="form-input form-input-large search-modal-input w-input" autofocus="true" maxlength="256" name="query" placeholder="Type your search" id="search" required=""><input type="submit" value="Search" class="button search-form-button w-button"></form></div></div></div>
+      
+    {% if data.status == "found" %}
+    <h1>Results:</h1>
+    <section class="section-eight">
+        <div class="flex-group-eight">
+            {% for img in data.results %}
+                <div>
+                    <img src="{{ img.img }}">
+                    <h4>{{ img.author }}/{{ img.model }}</h4>
+                    <p>{{ img.desc }}</p>
+                    <p><a href="/{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% elif data.status == "not found" %}
+        <h1>No Results Found</h1>
+    {% endif %}
+
+    {% include 'extra/footer.html' %}
+
+</body>
+<script>
+    // Wait for the document to be ready
+    $(document).ready(function() {
+        // Capture the submit event on the search form
+        $('.search-container').submit(function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+            
+            // Get the input value
+            var query = $('#searchInput').val().trim();
+            
+            // Check if the query is not empty
+            if (query !== '') {
+                // Redirect to the search page with the input value
+                window.location.href = '/search/' + query;
+            }
+        });
+    });
+</script>
+

@@ -38,8 +38,8 @@
   }
   
   .multipl-image-checkbox  label img {
-    height: 125px;
-    width: 125px;
+    height: 124px;
+    width: 124px;
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
   }

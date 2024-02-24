@@ -462,3 +462,4 @@ def static_from_root():
     response.headers["Content-Type"] = "application/xml"
     return response
 
+

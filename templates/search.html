@@ -1,65 +1,59 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6864078994533800"
-     crossorigin="anonymous"></script>
+    {% include "extra/head.html"%}
 </head>   
 <body>
-    <header>
-        <h1 class="logo">Chipling</h1>
-        <input type="checkbox" class="nav-toggle" id="nav-toggle">
-        <nav>
-            <ul>
-                {% if session.user %}
-                <li> <a href="/logout">Logout</a></li>
-                {% else %}
-                <li> <a href="/login">Login</a></li>
-                {% endif %}
-                <li> <a href="/models">AI Models</a></li>
-                <li> <a href="">Documentation</a></li>
-                {% if session.user %}
-                <li> <a href="/profile">{{ session.user }}</a></li>
-                {% else %}
-                <li> <a href="/profile">Profile</a></li>
-                {% endif %}
-                <li> <a href="/gallery">Gallery</a></li>
-            </ul> 
-        </nav>
-        <label for="nav-toggle" class="nav-toggle-label">
-            <span></span>
-        </label>
-    </header>
-
-    <section class="search">
-        <form class="search-container">
-            <input type="text" id="searchInput" placeholder="search for a model here">
-          </form>
-    </section>
-      
-    {% if data.status == "found" %}
-    <h1>Results:</h1>
-    <section class="section-eight">
-        <div class="flex-group-eight">
-            {% for img in data.results %}
-                <div>
-                    <img src="{{ img.img }}">
-                    <h4>{{ img.author }}/{{ img.model }}</h4>
-                    <p>{{ img.desc }}</p>
-                    <p><a href="/{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
-                </div>
-            {% endfor %}
+    {% include "extra/navbar.html" %}
+    {% include "extra/top.html" %}
+    
+    <div class="panel">
+        <div class="panel-body align-content-center">
+            <div class="modal-panel-bg"></div>
+                <div class="panel-body modal-panel-body">
+                      <form action="/search" class="search-form w-form"><input type="search" class="form-input form-input-large search-modal-input w-input" autofocus="true" maxlength="256" name="query" placeholder="Type your search" id="search" required=""><input type="submit" value="Search" class="button search-form-button w-button"></form>
+                 </div>
+             </div>
+            </div>
         </div>
-    </section>
+    </div>      
+    {% if data.status == "found" %}
+    <div data-w-id="fe5f3c70-13b2-686d-424d-aae254c50ce7" class="container" style="will-change: opacity, transform; opacity: 0.985248; transform: translate3d(0px, 0px, 0px) scale3d(0.998033, 0.998033, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+        <div class="w-dyn-list">
+           <div role="list" class="blog-grid w-dyn-items">      
+              {% for data in data.results %}
+              <div role="listitem" class="blog-grid-item w-dyn-item">
+                 <div class="panel">
+                    <a href="/{{ data.author }}/{{ data.model }}" class="panel-image-link w-inline-block"><img alt="" src="{{ data.img }}" sizes="(max-width: 479px) 100vw, (max-width: 767px) 400px, (max-width: 991px) 46vw, 31vw" srcset="{{ data.img }} 1080w, {{ data.img }} 1280w" class="panel-top-image" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"></a>
+                    <div class="panel-body panel-body-small">
+                       <a href="/{{ data.author }}/{{ data.model }}" class="w-inline-block">
+                          <h4 class="medium-heading">{{ data.author }}/{{ data.model }}</h4>
+                          <p>{{ data.desc }}
+                          </p>
+                       </a>
+                       <div class="blog-panel-foot">
+                          <div class="blog-panel-meta-text">
+                             <div>Feb, 2024</div>
+                             <div class="row">
+                                <div>By&nbsp;</div>
+                                <div class="blog-post-panel-author">{{ data.author }}</div>
+                             </div>
+                          </div>
+                          <a style="background-color:#3ccf91" href="/models/{{ data.type }}" class="badge w-inline-block">
+                             <div>{{ data.type }}</div>
+                          </a>
+                       </div>
+                    </div>
+                 </div>
+              </div>                  
+              {% endfor %}
+           </div>
+        </div>
+    </div>
     {% elif data.status == "not found" %}
         <h1>No Results Found</h1>
     {% endif %}
 
-    {% include 'main/footer.html' %}
+    {% include 'extra/footer.html' %}
 
 </body>
 <script>
