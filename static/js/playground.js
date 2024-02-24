@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const promptElement = document.getElementById("prompt");
         const prompt = promptElement ? promptElement.value : "";
 
+
         let currentModel = "";
 
         const realisticCheckbox = document.getElementById('realistic');
@@ -70,6 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!validateInput(seed, "Please enter a seed (-1 default) before running the model.")) {
             return;
+        }
+
+        if(document.getElementById("runButton") != null)
+        {
+          document.getElementById("runButton").style.display = "none";
         }
 
         const negPromptElement = document.getElementById("neg_prompt");
@@ -153,9 +159,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (result.status === "succeeded") {
                             clearInterval(interval);
                             displayResult(result.output, index);
+                            if(document.getElementById("runButton") != null  && index == 4)
+                            {
+                             document.getElementById("runButton").style.display = "block";
+                             }
                         } else if (result.status === "failed") {
                             clearInterval(interval);
                             displayResult(errorGif, index);
+                            if(document.getElementById("runButton") != null)
+                            {
+                            document.getElementById("runButton").style.display = "block";
+                            }
                         }
                     } else {
                         console.error("Unexpected response format:", result);
