@@ -1,9 +1,6 @@
 function toggleButtonsVisibility(className, isVisible) {
-    var buttons = document.getElementsByClassName(className);
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].style.display = isVisible ? "inline-block" : "none";
-        console.log("done");
-    }
+    var buttons = document.getElementById(className);
+    buttons.style.display = isVisible ? "inline-block" : "none";
 }
 
 function runModel() {
@@ -19,7 +16,7 @@ function runModel() {
 
     var runButtons = document.getElementsByClassName("run-button");
     
-    toggleButtonsVisibility("run-button", true);
+    toggleButtonsVisibility("run-button", false);
     toggleButtonsVisibility("continue-gen-button", false);
 
     var textPlaceholder = document.getElementById("generated-text-placeholder");
@@ -39,15 +36,15 @@ function runModel() {
         },
         error: function (error) {
             console.error("Error making API request:", error);
-            // Enable the run button in case of an error
-            console.log("Button disabled");
+            toggleButtonsVisibility("run-button", true);
+            toggleButtonsVisibility("continue-gen-button", true);
         }
     });
 }
 
-function checkForResult(id, runButtons) {
+function checkForResult(id) {
     var interval = setInterval(function () {
-        // Determine the current domain
+
         var currentDomain = window.location.origin;
 
         $.ajax({
@@ -55,29 +52,27 @@ function checkForResult(id, runButtons) {
             url: currentDomain + "/api/response",
             data: { id: id },
             success: function (result) {
-                output = result.output
+                var output = result.output;
                 var sentence = output.join('');
                 console.log(sentence);
 
                 var textPlaceholder = document.getElementById("generated-text-placeholder");
                 textPlaceholder.textContent = sentence;
 
-                formatGeneratedText()
+                formatGeneratedText();
 
                 if (result.status === "succeeded") {
                     clearInterval(interval);
                     console.log("result complete");
-                    for (var i = 0; i < runButtons.length; i++) {
-                        runButtons[i].disabled = false;
-                    }
+                    toggleButtonsVisibility("run-button", true);
+                    toggleButtonsVisibility("continue-gen-button", true);
                     console.log("Button enabled");
 
                 } else if (result.status === "failed") {
                     clearInterval(interval);
                     console.log("error failed");
-                    for (var i = 0; i < runButtons.length; i++) {
-                        runButtons[i].disabled = false;
-                    }
+                    toggleButtonsVisibility("run-button", true);
+                    toggleButtonsVisibility("continue-gen-button", true);
                 }
             },
             error: function (error) {
@@ -88,44 +83,38 @@ function checkForResult(id, runButtons) {
     }, 2000);
 }
 
-
 function continueModel()
 {
-    
     var models = document.getElementById("title");
     console.log(models.textContent.toLowerCase());
 
     var currentDomain = window.location.origin;
 
-    // Disable the run button
-    var runButtons = document.getElementsByClassName("run-button");
-    for (var i = 0; i < runButtons.length; i++) {
-        runButtons[i].disabled = true;
-        console.log("Button disabled");
-    }
+    toggleButtonsVisibility("run-button", false);
+    toggleButtonsVisibility("continue-gen-button", false);
 
     var textPlaceholder = document.getElementById("generated-text-placeholder");
     prompt = textPlaceholder.textContent
+
+    formatGeneratedText()
 
     $.ajax({
         type: "GET",
         url: currentDomain + "/api/prediction",
         data: {
             model: models.textContent.toLowerCase(),
-            prompt: prompt + "\n continue genrationg this",
+            prompt: prompt + "\n continue genrating this",
         },
         success: function (data) {
             console.log(data);
             var textPlaceholder = document.getElementById("generated-text-placeholder");
             pregen = textPlaceholder.textContent;
-            checkForResultGen(data, runButtons, pregen);
+            checkForResultGen(data, pregen);
         },
         error: function (error) {
             console.error("Error making API request:", error);
-            // Enable the run button in case of an error
-            for (var i = 0; i < runButtons.length; i++) {
-                runButtons[i].disabled = false;
-            }
+            toggleButtonsVisibility("run-button", true);
+            toggleButtonsVisibility("continue-gen-button", true);
             console.log("Button disabled");
         }
     });
@@ -200,10 +189,8 @@ function formatGeneratedText() {
     generatedText.appendChild(container);
 }
 
-
-function checkForResultGen(id, runButtons, pregen) {
+function checkForResultGen(id, pregen) {
     var interval = setInterval(function () {
-        // Determine the current domain
         var currentDomain = window.location.origin;
 
         $.ajax({
@@ -219,32 +206,26 @@ function checkForResultGen(id, runButtons, pregen) {
 
                 textPlaceholder.textContent = pregen + sentence;
 
-                formatGeneratedText();
-
                 console.log("formated")
 
                 if (result.status === "succeeded") {
                     clearInterval(interval);
                     console.log("result complete");
-                    for (var i = 0; i < runButtons.length; i++) {
-                        runButtons[i].disabled = false;
-                    }
+                    toggleButtonsVisibility("run-button", true);
+                    toggleButtonsVisibility("continue-gen-button", true);
                     console.log("Button enabled");
 
                 } else if (result.status === "failed") {
                     clearInterval(interval);
-                    console.log("error failed");
-                    for (var i = 0; i < runButtons.length; i++) {
-                        runButtons[i].disabled = false;
-                    }
+                    toggleButtonsVisibility("run-button", true);
+                    toggleButtonsVisibility("continue-gen-button", true);
                 }
             },
             error: function (error) {
                 console.error("Error checking for result:", error);
                 clearInterval(interval);
-                for (var i = 0; i < runButtons.length; i++) {
-                    runButtons[i].disabled = false;
-                }
+                toggleButtonsVisibility("run-button", true);
+                toggleButtonsVisibility("continue-gen-button", true);
             }
         });
     }, 2000);

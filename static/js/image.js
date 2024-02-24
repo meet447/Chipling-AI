@@ -5,14 +5,12 @@ document.addEventListener("DOMContentLoaded", function() {
     var steps_output = document.getElementById("steps");
     var seed_element = document.getElementById("seed_value");
 
-    // Setting initial values for the sliders
     if (output !== null){
         output.innerHTML = slider ? slider.value : "";
     }
     if (steps_output !== null){
         steps_output.innerHTML = steps_slider ? steps_slider.value : "";
     }
-    // Event listeners to update slider values in real-time
     if (slider !== null) {
         output.innerHTML = slider.value;
         slider.oninput = function() {
@@ -110,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     window.uploadProfile = function() {
-        // Getting values from input elements
 
         var prompt_element = document.getElementById("prompt");
         var prompt = prompt_element ? prompt_element.value : "";
@@ -152,8 +149,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-
-        // Determine the current domain
         var currentDomain = window.location.origin;
 
         var requestData = {
@@ -185,9 +180,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-
     window.runModel= function() {
 
+        if(document.getElementById("runButton") != null)
+        {
+          document.getElementById("runButton").style.display = "none";
+        }
         if(document.getElementById("uploadButtom") != null)
         {
           document.getElementById("uploadButton").style.display = "none";
@@ -199,7 +197,6 @@ document.addEventListener("DOMContentLoaded", function() {
         var prompt = document.getElementById("prompt").value;
         var seed = seed_element ? seed_element.value : null;
 
-        // Getting user input values
         var prompt_element = document.getElementById("prompt");
         var prompt = prompt_element ? prompt_element.value : "";
 
@@ -215,7 +212,6 @@ document.addEventListener("DOMContentLoaded", function() {
         var cfg_element = document.getElementById("myCFG");
         var cfg = cfg_element ? cfg_element.value : null;
 
-        // Validation for prompt and seed
         if (prompt.trim() === "") {
             alert("Please enter a prompt before running the model.");
             return;
@@ -227,14 +223,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-        // Logging user input values
         console.log("This is the negative prompt: " + neg_prompt);
         console.log("This is the cfg value: " + cfg);
         console.log("This is the steps value: " + steps);
         console.log("This is the seed value: " + seed);
 
-
-        // Display loading gif
         var loadingGif = "https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-11-849_512.gif";
         
         var imageElement = document.getElementById("generated-image");
@@ -243,16 +236,13 @@ document.addEventListener("DOMContentLoaded", function() {
         var models = document.getElementById("title");
         var modelText = models.textContent.toLowerCase();
 
-        // Determine the current domain
         var currentDomain = window.location.origin;
 
-        // Prepare the data object for the API request
         var requestData = {
             model: modelText,
             prompt: prompt
         };
 
-        // Add neg_prompt to requestData only if it is not null
         if (neg_prompt !== null) {
             requestData.neg_prompt = neg_prompt;
             requestData.cfg = cfg;
@@ -260,7 +250,6 @@ document.addEventListener("DOMContentLoaded", function() {
             requestData.seed = seed;
         }
 
-        // Make the API request
         $.ajax({
             type: "GET",
             url: currentDomain + "/api/prediction",
@@ -278,7 +267,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function checkForResult(id) {
         var interval = setInterval(function () {
-            // Determine the current domain
             var currentDomain = window.location.origin;
 
             var errorGif = "https://i.gifer.com/embedded/download/GY9C.gif"
@@ -300,10 +288,18 @@ document.addEventListener("DOMContentLoaded", function() {
                         {
                         document.getElementById("uploadprofileButton").style.display = "block";
                         }
+                        if(document.getElementById("runButton") != null)
+                        {
+                         document.getElementById("runButton").style.display = "block";
+                        }
                     }
                     else if (result.status === "failed"){
                         clearInterval(interval);
                         displayResult(errorGif);
+                        if(document.getElementById("runButton") != null)
+                        {
+                         document.getElementById("runButton").style.display = "block";
+                        }
                     }
                 },
                 error: function (error) {
@@ -312,6 +308,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     var imageElement = document.getElementById("generated-image");
                     imageElement.src = errorGif;
+
+                    if(document.getElementById("runButton") != null)
+                    {
+                        document.getElementById("runButton").style.display = "block";
+                    }
                 }
             });
         }, 2000);
