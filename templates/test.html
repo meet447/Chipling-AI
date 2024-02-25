@@ -3,147 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="{{ url_for('static', filename='js/test.js') }}"></script>
   <title>Chat Interaction</title>
   <style>
-    #chat-container {
-      max-width: 400px;
-      margin: 20px auto;
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 8px;
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #222;
+      color: #ddd;
+      margin: 0;
+      padding: 0;
     }
+
+    #chat-container {
+      max-width: 1000px;
+      max-height: 1200px;
+      margin: 20px auto;
+      background-color: #333;
+      border: 1px solid #444;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
     #conversation {
-      height: 200px;
+      height: 500px;
       overflow-y: scroll;
       margin-bottom: 10px;
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 4px;
+      padding: 20px;
     }
+
     #user-input {
       width: 100%;
-      padding: 8px;
+      padding: 15px;
       box-sizing: border-box;
+      border: none;
+      border-top: 1px solid #444;
+      outline: none;
+      font-size: 16px;
+      background-color: #222;
+      color: #ddd;
     }
-    .assistant-message {
-      background-color: #e6e6e6;
-      padding: 8px;
-      margin-bottom: 5px;
-      border-radius: 4px;
-    }
+
+    .assistant-message,
     .user-message {
-      background-color: #c7edfc;
-      padding: 8px;
-      margin-bottom: 5px;
-      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+
+    .assistant-message {
+      background-color: #444;
+      color: #ddd;
+    }
+
+    .user-message {
+      background-color: #555;
+      color: #fff;
     }
   </style>
 </head>
 <body>
 
 <div id="chat-container">
-  <div id="conversation"></div>
+  <div id="conversation">
+         You Enter the room while poki is taking pics for her onlyfans
+    <div class="assistant-message">Omg why are you here!</div>
+  </div>
   <input type="text" id="user-input" placeholder="Type your message...">
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const apiUrl = 'https://api.figgs.ai/chat_completion';
-
-    const headers = {
-        'Accept': '*/*',
-        'Accept-Language': 'en-US,en;q=0.9,ja;q=0.8',
-        'Connection': 'keep-alive', 
-        'Content-Type': 'application/json',
-        'Origin': 'https://www.figgs.ai',
-        'Referer': 'https://www.figgs.ai/',
-        'Sec-Fetch-Dest': 'empty',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Site': 'same-site',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"'
-    };
-
-    const chatParams = {
-      'personality': 'Poki is a thicc older sister who hates you...',
-      'scenario': 'User Enters Pokis room and catches her clicking onlyfam pics',
-      'firstMessage': 'Omg why are you here!',
-      'description': 'This is where your fig\'s description goes',
-      'name': 'Poki',
-      'exampleDialogs': ''
-    };
-
-    const messages = [];
-    const conversationElement = document.getElementById('conversation');
-    const userInputElement = document.getElementById('user-input');
-
-    function appendMessage(role, content) {
-      const messageElement = document.createElement('div');
-      messageElement.classList.add(role === 'assistant' ? 'assistant-message' : 'user-message');
-      messageElement.textContent = content;
-      conversationElement.appendChild(messageElement);
-      conversationElement.scrollTop = conversationElement.scrollHeight;
-    }
-
-    function getUserInput() {
-      const input = userInputElement.value.trim();
-      if (input) {
-        userInputElement.value = '';
-        messages.push({ 'role': 'user', 'content': input });
-        appendMessage('user', input);
-        sendChatRequest();
-      }
-    }
-
-    function sendChatRequest() {
-      fetch(apiUrl, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify({
-          'messages': messages,
-          ...chatParams
-        })
-      })
-      .then(response => response.text())
-      .then(data => {
-        const jsonResponses = data.split('\n').filter(line => line.startsWith('data:')).map(line => line.substring(6));
-
-        const responses = jsonResponses.map(json => {
-          try {
-            return JSON.parse(json);
-          } catch (error) {
-            console.error('Error parsing JSON:', error);
-            return null;
-          }
-        });
-
-        const finalContent = responses.find(response => response && response.final_content);
-
-        if (finalContent) {
-          messages.push({ 'role': 'assistant', 'content': finalContent.final_content });
-          appendMessage('assistant', finalContent.final_content);
-        } else {
-          console.log('No final content found.');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-    }
-
-    userInputElement.addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        getUserInput();
-      }
-    });
-
-    getUserInput();
-
-  });
-</script>
-
 </body>
 </html>
