@@ -1,59 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Search</title>
-    {% include "extra/head.html"%}
-</head>   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Interaction</title>
+  <style>
+    #chat-container {
+      max-width: 400px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    #conversation {
+      height: 200px;
+      overflow-y: scroll;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    #user-input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .assistant-message {
+      background-color: #e6e6e6;
+      padding: 8px;
+      margin-bottom: 5px;
+      border-radius: 4px;
+    }
+    .user-message {
+      background-color: #c7edfc;
+      padding: 8px;
+      margin-bottom: 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
 <body>
-    {% include "extra/navbar.html" %}
-    {% include "extra/top.html" %}
-    
-    <div class="container">
-        <div class="panel">
-            <div class="panel-body">
-                <div class="content-width-medium modal-content">
-                    <div class="panel modal-panel">
-                        <div class="modal-panel-bg">
-                        </div><div class="panel-body modal-panel-body">
-                            <form action="/search" class="search-form w-form">
-                                <input type="search" class="form-input form-input-large search-modal-input w-input" autofocus="true" maxlength="256" name="query" placeholder="Type your search" id="search" required=""><input type="submit" value="Search" class="button search-form-button w-button"></form></div></div></div>
-      
-    {% if data.status == "found" %}
-    <h1>Results:</h1>
-    <section class="section-eight">
-        <div class="flex-group-eight">
-            {% for img in data.results %}
-                <div>
-                    <img src="{{ img.img }}">
-                    <h4>{{ img.author }}/{{ img.model }}</h4>
-                    <p>{{ img.desc }}</p>
-                    <p><a href="/{{ img.author }}/{{ img.model }}" class="learn-more-btn section-eight-btn">Try Out Now</a></p>
-                </div>
-            {% endfor %}
-        </div>
-    </section>
-    {% elif data.status == "not found" %}
-        <h1>No Results Found</h1>
-    {% endif %}
 
-    {% include 'extra/footer.html' %}
+<div id="chat-container">
+  <div id="conversation"></div>
+  <input type="text" id="user-input" placeholder="Type your message...">
+</div>
 
-</body>
 <script>
-    // Wait for the document to be ready
-    $(document).ready(function() {
-        // Capture the submit event on the search form
-        $('.search-container').submit(function(event) {
-            // Prevent the default form submission
-            event.preventDefault();
-            
-            // Get the input value
-            var query = $('#searchInput').val().trim();
-            
-            // Check if the query is not empty
-            if (query !== '') {
-                // Redirect to the search page with the input value
-                window.location.href = '/search/' + query;
-            }
+  document.addEventListener("DOMContentLoaded", function () {
+    const apiUrl = 'https://api.figgs.ai/chat_completion';
+
+    const headers = {
+        'Accept': '*/*',
+        'Accept-Language': 'en-US,en;q=0.9,ja;q=0.8',
+        'Connection': 'keep-alive', 
+        'Content-Type': 'application/json',
+        'Origin': 'https://www.figgs.ai',
+        'Referer': 'https://www.figgs.ai/',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-site',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"'
+    };
+
+    const chatParams = {
+      'personality': 'Poki is a thicc older sister who hates you...',
+      'scenario': 'User Enters Pokis room and catches her clicking onlyfam pics',
+      'firstMessage': 'Omg why are you here!',
+      'description': 'This is where your fig\'s description goes',
+      'name': 'Poki',
+      'exampleDialogs': ''
+    };
+
+    const messages = [];
+    const conversationElement = document.getElementById('conversation');
+    const userInputElement = document.getElementById('user-input');
+
+    function appendMessage(role, content) {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add(role === 'assistant' ? 'assistant-message' : 'user-message');
+      messageElement.textContent = content;
+      conversationElement.appendChild(messageElement);
+      conversationElement.scrollTop = conversationElement.scrollHeight;
+    }
+
+    function getUserInput() {
+      const input = userInputElement.value.trim();
+      if (input) {
+        userInputElement.value = '';
+        messages.push({ 'role': 'user', 'content': input });
+        appendMessage('user', input);
+        sendChatRequest();
+      }
+    }
+
+    function sendChatRequest() {
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          'messages': messages,
+          ...chatParams
+        })
+      })
+      .then(response => response.text())
+      .then(data => {
+        const jsonResponses = data.split('\n').filter(line => line.startsWith('data:')).map(line => line.substring(6));
+
+        const responses = jsonResponses.map(json => {
+          try {
+            return JSON.parse(json);
+          } catch (error) {
+            console.error('Error parsing JSON:', error);
+            return null;
+          }
         });
+
+        const finalContent = responses.find(response => response && response.final_content);
+
+        if (finalContent) {
+          messages.push({ 'role': 'assistant', 'content': finalContent.final_content });
+          appendMessage('assistant', finalContent.final_content);
+        } else {
+          console.log('No final content found.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+
+    userInputElement.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        getUserInput();
+      }
     });
+
+    getUserInput();
+
+  });
 </script>
 
+</body>
+</html>
