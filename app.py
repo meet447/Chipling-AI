@@ -462,4 +462,7 @@ def static_from_root():
     response.headers["Content-Type"] = "application/xml"
     return response
 
-
+@app.route("/ads.txt")
+def static_from_root():
+    response = send_from_directory(app.static_folder, "ads.txt")
+    return response
