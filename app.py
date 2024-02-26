@@ -463,6 +463,6 @@ def static_from_root():
     return response
 
 @app.route("/ads.txt")
-def static_from_root():
+def static_from_ads():
     response = send_from_directory(app.static_folder, "ads.txt")
     return response
