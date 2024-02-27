@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const apiUrl = 'https://api.figgs.ai/chat_completion';
+    const apiUrl = 'http://api.figgs.ai/chat_completion';
 
     const headers = {
         'Accept': '*/*',
