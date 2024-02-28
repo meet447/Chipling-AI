@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const apiUrl = 'http://api.figgs.ai/chat_completion';
+    const apiUrl = 'https://api.figgs.ai/chat_completion';
 
     const headers = {
         'Accept': '*/*',
@@ -49,14 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function sendChatRequest() {
-        fetch(apiUrl, {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify({
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
                 'messages': messages,
                 ...chatParams
+                })
             })
-        })
             .then(response => response.text())
             .then(data => {
                 const jsonResponses = data.split('\n').filter(line => line.startsWith('data:')).map(line => line.substring(6));
