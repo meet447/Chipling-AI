@@ -9,6 +9,7 @@ from models.image.wrs111 import guofeng3
 from models.image.kandooai import juggernaut_aftermath
 from models.image.bradcatt import toonyou6
 from models.image.prompthero import openjourneyv4
+from models.image.pastel import pastel_mix
 
 from models.video.lucataco import animatediff
 from models.video.anotherjesse import zeroscopev2xl
@@ -105,6 +106,10 @@ def get_model(prompt, model, neg_prompt=None, seed=None, cfg=None, steps=None):
     
     elif model == "prompthero/openjourneyv4":
         data = openjourneyv4.openJourneyv4.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
+        return jsonify(data)
+    
+    elif model == "pastel/pastel_mix":
+        data = pastel_mix.pastelMix.create_image(prompt=prompt, neg_prompt=neg_prompt, seed=seed, cfg=cfg, steps=steps)
         return jsonify(data)
 
     else:

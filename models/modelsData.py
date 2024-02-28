@@ -44,6 +44,9 @@ class Image:
     
     openjourneyv4 = {"author":"prompthero", "model":"openjourneyv4", "desc":"open journey v4, Openjourney  is a  s a custom text-to-image model that generates AI art images in the style of Midjourney. It's a fine-tune of Stable Diffusion","runs":"-", "img":"https://prompthero.s3.amazonaws.com/og/openjourney-og-image.jpg","neg":"True","type":"image"}
     
+    pastel_mix= {"author":"pastel", "model":"pastel_mix", "desc":"Pastel mix is a custom text-to-image model that generates AI art images in the style of Patel. It's a fine-tune of Stable Diffusion for anime genration","runs":"-", "img":"https://image.stablediffusionapi.com/?quality=45&Image=https://cdn.stablediffusionapi.com/generations/4c719b17-4325-45c9-b09d-6241ab44e25b-0.png","neg":"True","type":"image"}
+
+    
 class Text:
     llama70 = {"author":"meta", "model":"llama-2-70b-chat", "desc":"llama 70 b is A 70 billion parameter language model from Meta, fine tuned for chat completions","github":"https://github.com/a16z-infra/cog-llama-template","runs":"4.3M","img":"https://i0.wp.com/analyticsindiamag.com/wp-content/uploads/2023/07/LlaMA-2-Vs-GPT-4-Vs-Claude-2A-2.jpg?fit=1920%2C1080&ssl=1","type":"text"}
     
@@ -77,15 +80,21 @@ class Video:
 
     
 class Website:
-    trending_models = [Image.dreamshaper8, Image.counterfeitv3, Text.mistral7, Video.animateDiff, Text.llama70]
+    trending_models = [Image.dreamshaper8, Image.counterfeitv3, Text.mistral7, Video.animateDiff, Text.llama70, Image.pastel_mix]
     
-    new_models = [Image.counterfeitv3, Image.toonyou6,Image.openjourneyv4]
+    new_models = [Image.pastel_mix, Image.counterfeitv3,Image.toonyou6]
     
     text_models = [Text.llama70, Text.mistral7, Text.codellama13b]
     
-    image_models = [Image.am_i_real, Image.juggernaut_aftermath,  Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.guofeng3, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency,Image.toonyou6,Image.openjourneyv4]
+    image_models = [Image.am_i_real, Image.juggernaut_aftermath,  Image.counterfeitv3, Image.absoluteReality, Image.dreamshaper8, Image.guofeng3, Image.anythingv5, Image.kandinsky, Image.sdxl, Image.stable_diff, Image.latentConsistency,Image.toonyou6,Image.openjourneyv4, Image.pastel_mix]
     
     video_models = [Video.animateDiff, Video.zeroScope]
+    
+    anime_models = [Image.pastel_mix, Image.counterfeitv3, Image.anythingv5]
+    
+    semi_real_models = [Image.sdxl, Image.kandinsky, Image.toonyou6, Image.latentConsistency]
+    
+    realistic_models = [Image.absoluteReality, Image.dreamshaper8, Image.guofeng3]
     
     
 class leaderboards:

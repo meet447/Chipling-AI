@@ -140,7 +140,7 @@ def profile():
 #MODEL ROUTES
 @app.route("/models")
 def models_page():
-    return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models, trend=Website.trending_models)
+    return render_template("models.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models, trend=Website.trending_models, anime=Website.anime_models, real=Website.realistic_models, semi=Website.semi_real_models)
 
 @app.route("/search")
 def search_page():
@@ -207,7 +207,6 @@ def response_page():
 def generateImage_page(author, model):
     
     #image models
-    
     if model == "sdxl" and author == "stability-ai":
        return render_template("image.html", data=Image.sdxl, prompt=Image.prompts)
     elif model == "stable-diffusion" and author == "stability-ai":
@@ -234,6 +233,8 @@ def generateImage_page(author, model):
         return render_template("image.html", data=Image.toonyou6, prompt=Image.prompts)
     elif model == "openjourneyv4" and author == "prompthero":
         return render_template("image.html", data=Image.openjourneyv4, prompt=Image.prompts)
+    elif model == "pastel_mix" and author == "pastel":
+        return render_template("image.html", data=Image.pastel_mix, prompt=Image.prompts)
     
     #text models 
      

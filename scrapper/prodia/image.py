@@ -15,7 +15,8 @@ class prodiaAPI:
             'cfg': cfg,
             'seed': seed,
             'sampler': 'DPM++ 2M Karras',
-            'aspect_ratio': 'landscape',
+            "width": '1080',
+            "height": '720'
         }
 
         response = requests.get('https://api.prodia.com/generate', params=json_data, headers=headers)
