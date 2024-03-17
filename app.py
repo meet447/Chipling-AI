@@ -189,6 +189,9 @@ async def handle_async_task(prompt, model, neg_prompt, cfg, seed, steps):
     data = get_model(prompt=prompt, model=model, neg_prompt=neg_prompt, cfg=cfg, seed=seed, steps=steps)
     return data
   
+from flask import request
+import requests
+
 @app.route("/api/response")
 def response_page():
     id = request.args.get("id")
@@ -196,12 +199,31 @@ def response_page():
     try:
         data = sdxl.get_image(id)
         return data
+    
     except:
         data = anythingv5.get_image(id)
         if data["status"] == "succeeded":
-            return {"status":"succeeded", "output":f"https://images.prodia.xyz/{data['job']}.png"}
+            image_url = f"https://images.prodia.xyz/{data['job']}.png"
+            url = "https://discord.com/api/webhooks/1218812046758514718/C8w7JvFjOiLKe2VEKQqQg3QVSDJNdA1JouaDWTt3LH-CUoAYf80dgGyaD3p2cME0xlgN"
+            payload = {
+                "embeds": [
+                    {
+                        "title": "Prediction Response",
+                        "color": 16711680,  # Hex color code (decimal representation)
+                        "image": {"url": image_url}  # Image URL
+                    }
+                ]
+            }
+
+            # Send a POST request to the webhook URL with the payload
+            response = requests.post(url, json=payload)
+            
+            print(response)
+            
+            return {"status": "succeeded", "output": image_url}
         else:
             return data
+
 
 @app.route("/<author>/<model>")
 def generateImage_page(author, model):
