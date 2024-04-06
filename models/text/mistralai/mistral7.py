@@ -4,7 +4,7 @@ from scrapper.replicate import image, text
 
 class Mistral7b:
     def create_req(prompt):
-        return text.replicateAPI.create_req(prompt=prompt,version="83b6a56e7c828e667f21fd596c338fd4f0039b46bcfa18d973e8e70e455fda70", model="mistralai/mistral-7b-instruct-v0.1")
+        return text.replicateAPI.create_req(prompt=prompt,version="dp-79052a3adbba8116ebc6697dcba67ad0d58feff23e7aeb2f103fc9aa545f9269", model="mistralai/mistral-7b-instruct-v0.2")
     
     def get_res(id):
         return text.replicateAPI.get_res(id=id)

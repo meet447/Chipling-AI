@@ -8,6 +8,7 @@ from models.image.anything.anythingv5 import anythingv5
 from models.modelsData import *
 from config import firebaseConfig
 from api.key import generate_api_key
+from scrapper.replicate.text import replicateAPI
 
 #import ends here
 
@@ -197,8 +198,9 @@ def response_page():
     id = request.args.get("id")
     
     try:
-        data = sdxl.get_image(id)
+        data = replicateAPI.get_res(id)
         return data
+
     
     except:
         data = anythingv5.get_image(id)
