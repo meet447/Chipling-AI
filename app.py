@@ -479,8 +479,8 @@ def playground_page():
 def changelog_page():
     return render_template("extra/changelog.html")
 
-@app.route("/test/<query>")
-def test(query):
+@app.route("/test/<model>/<query>")
+def test(model, query):
     def generate_completion():
         message = '''
         Generate HTML and CSS code for a website based on the provided query, incorporating Bootstrap and JavaScript as needed. Ensure the code represents a complete webpage with all features specified in the query. Avoid creating a basic template; instead, provide the entire page's code. Include CSS and JavaScript within the same HTML document. Omit any additional content or instructions beyond generating the code
@@ -489,7 +489,7 @@ def test(query):
         
         client = Client()
         chat_completion = client.chat.completions.create(
-            model="gpt-4-turbo",
+            model=model,
             messages=[{"role": "user", "content": message}],
             stream=True
         )
