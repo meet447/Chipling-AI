@@ -1,3 +1,4 @@
+g4f[all]
 Flask[async]
 Pyrebase4
 python-dotenv==1.0.1

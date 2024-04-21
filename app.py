@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, session, redirect, send_from_directory
+from flask import Flask, request, jsonify, render_template, session, redirect, send_from_directory, Response
 from pyrebase import pyrebase
 import asyncio, datetime,requests
 
@@ -9,6 +9,8 @@ from models.modelsData import *
 from config import firebaseConfig
 from api.key import generate_api_key
 from scrapper.replicate.text import replicateAPI
+
+from g4f.client import Client
 
 #import ends here
 
@@ -477,9 +479,25 @@ def playground_page():
 def changelog_page():
     return render_template("extra/changelog.html")
 
-@app.route("/test")
-def test():
-    return render_template("test.html", image = Website.image_models, text = Website.text_models, video = Website.video_models, new = Website.new_models, trend=Website.trending_models)
+@app.route("/test/<query>")
+def test(query):
+    def generate_completion():
+        message = '''
+        Generate HTML and CSS code for a website based on the provided query, incorporating Bootstrap and JavaScript as needed. Ensure the code represents a complete webpage with all features specified in the query. Avoid creating a basic template; instead, provide the entire page's code. Include CSS and JavaScript within the same HTML document. Omit any additional content or instructions beyond generating the code
+        query: {}
+        '''.format(query)
+        
+        client = Client()
+        chat_completion = client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=[{"role": "user", "content": message}],
+            stream=True
+        )
+
+        for completion in chat_completion:
+            yield completion.choices[0].delta.content or ""
+
+    return Response(generate_completion())
 
 @app.route("/sitemap")
 def static_from_root():
@@ -491,3 +509,5 @@ def static_from_root():
 def static_from_ads():
     response = send_from_directory(app.static_folder, "ads.txt")
     return response
+
+
