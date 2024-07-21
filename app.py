@@ -510,4 +510,9 @@ def static_from_ads():
     response = send_from_directory(app.static_folder, "ads.txt")
     return response
 
+@app.route("/api/models/image")
+def image():
+    response = Website.image_models
+    return response
+
 
