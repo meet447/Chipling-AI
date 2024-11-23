@@ -1,6 +1,15 @@
 ﻿
 [![Website](https://i.ibb.co/C1v2F9q/chipling.png)](https://Chipling.xyz/)
 
+
+
+![Screenshot 2024-11-23 145447](https://github.com/user-attachments/assets/85753760-442d-4111-9818-eb8ed6a3ffb3)
+![Screenshot 2024-11-23 145413](https://github.com/user-attachments/assets/33041eb2-1780-43f2-b17a-d432a47b2427)
+![Screenshot 2024-11-23 145343](https://github.com/user-attachments/assets/636efc15-a77d-424a-9cf5-a269da46d503)
+![Screenshot 2024-11-23 145324](https://github.com/user-attachments/assets/5a03bd95-26cf-43bf-be37-028305b28b07)
+![Screenshot 2024-11-23 145311](https://github.com/user-attachments/assets/42749d3b-c357-41d7-8f8e-abfd8c7e3e6b)
+![Screenshot 2024-11-23 145239](https://github.com/user-attachments/assets/08338aa4-cced-4f24-a47b-67a638703348)
+
 ## Run Locally
 
 
